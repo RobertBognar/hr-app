@@ -4,45 +4,4 @@
     margin: 0;
     padding: 0;
 }
-body{
-    font-family: 'Comic Neue', cursive;
-}
-.navbar-wrap{
-    background-color: rgba(241, 241, 241, 1);
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1%;
-}
-.logo-wrap{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 8%;
-    font-weight: normal;
-    font-size: 20px;
-}
-h4{
-    font-family: Comic Neue;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 18px;
-}
-ul{
-    list-style: none;
-    display: flex;
-    width: 30%;
-    justify-content: space-between;
-    font-family: Comic Neue;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 18px;
 
-
-}
-ul > li{
-    cursor: pointer;
-}
