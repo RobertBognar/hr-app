@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
     Input,
     VStack,
@@ -7,9 +10,13 @@ import {
     FormControl,
     FormLabel,
     Button,
+    Link,
 } from '@chakra-ui/react';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     //Submit Handler
     const submitHandler = (event) => {
         event.preventDefault();
@@ -46,9 +53,11 @@ const Login = () => {
                                 <Input
                                     type="email"
                                     placeholder="Email"
+                                    value={email}
                                     border="2px solid"
                                     borderColor="blackAlpha.800"
                                     borderRadius="none"
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </FormControl>
                         </GridItem>
@@ -64,25 +73,30 @@ const Login = () => {
                                 <Input
                                     type="password"
                                     placeholder="Password"
+                                    value={password}
                                     border="2px solid"
                                     borderColor="blackAlpha.800"
                                     borderRadius="none"
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                 />
                             </FormControl>
                         </GridItem>
                     </SimpleGrid>
                     <SimpleGrid columns={2} columnGap={1} rowGap={6}>
-                        <GridItem>
-                            <Text
+                        <GridItem marginTop="6">
+                            <Link
                                 width="130px"
                                 fontSize="12px"
                                 lineHeight="13.8px"
-                                paddingTop="30px"
                                 marginRight="51"
                                 letterSpacing="0.04em"
+                                textUnderlineOffset="inherit"
+                                onClick={() => navigate('/register')}
                             >
                                 Don't have an account?
-                            </Text>
+                            </Link>
                         </GridItem>
                         <GridItem>
                             <Button
