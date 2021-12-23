@@ -1,9 +1,14 @@
+import { BrowserRouter } from 'react-router-dom';
+
 import './App.css';
+import Login from './components/Login/Login';
 
 function App() {
     return (
         <div className="App">
-            <h1>Test Text</h1>
+            <BrowserRouter>
+                <Login />
+            </BrowserRouter>
         </div>
     );
 }
