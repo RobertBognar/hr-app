@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Tabs = ()=>{
    
     return(
-        <Box   w='80vw' fontSize='14px' fontFamily='Comic Neue' display={['none', 'none', 'flex', 'flex']} alignItems="center" justifyContent="space-around">
+        <Box   w='45vw' fontSize='14px' fontFamily='Comic Neue' display={['none', 'none', 'flex', 'flex']} alignItems="center" justifyContent="space-around">
                 
                 <Link to='/page-one'> Page one </Link>
                 <Link to='/page-two'> Page two </Link>

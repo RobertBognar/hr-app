@@ -12,13 +12,14 @@ const Navbar = ()=>{
         <Box bg='rgba(241, 241, 241, 1)' color='black' border='1px' alignItems="center" display={[300, 400, 500]}>
             <Flex p={0} >
                 <Flex alignItems="center" >
-                    <Image w='7%' p={5} src={companyLogo} alt="company"/>
+                    
+                    <Image width='10' p={3} src={companyLogo} alt="company"/>
                     <Text fontFamily='Comic Neue'>Company Name</Text>
                 </Flex>
                 <Spacer />
-                    <Menu>
-                        <MenuButton as={Button} rightIcon={<HamburgerIcon/>} display={['flex', 'flex', 'none', 'none']}/>
-                        <MenuList>
+                    <Menu >
+                        <MenuButton as={Button} rightIcon={<HamburgerIcon/>} display={['flex', 'flex', 'none', 'none']} />
+                        <MenuList >
                             <MenuItem>Page one</MenuItem>
                             <MenuItem>Page two</MenuItem>
                             <MenuItem>Page three</MenuItem>
