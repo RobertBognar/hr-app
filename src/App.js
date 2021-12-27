@@ -22,9 +22,8 @@ function App() {
                     mt={{ base: 4, md: 0, sm: 0 }}
                     ml={{ md: 7 }}
                     mt={{ sm: 2 }}
-                    m
                 >
-                    <BasicInfo />{' '}
+                    <BasicInfo />
                 </Box>
 
                 <Box
@@ -32,7 +31,7 @@ function App() {
                     ml={{ md: 7 }}
                     mt={{ sm: 2 }}
                 >
-                    <Security />{' '}
+                    <Security />
                 </Box>
             </Box>
         </div>
