@@ -11,6 +11,7 @@ function App() {
                 <Login />
                 <Register />
             </BrowserRouter>
+            <h1>Test Text</h1>
         </div>
     );
 }
