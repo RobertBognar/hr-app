@@ -1,4 +1,8 @@
+import { BrowserRouter } from 'react-router-dom';
+
 import './App.css';
+import Register from './components/Register';
+import Login from './components/Login/Login';
 
 import { Box } from '@chakra-ui/react';
 
