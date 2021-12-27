@@ -5,15 +5,12 @@ import companyLogo from "../../assets/corrpro-companies.svg"
 import Tabs from "./Tabs";
 
 const Navbar = ()=>{
-   
-  
-    return(
+   return(
         
-        <Box bg='rgba(241, 241, 241, 1)' color='black' border='1px' alignItems="center" display={[300, 400, 500]}>
+        <Box bg='rgba(241, 241, 241, 1)' color='black' border='1px' alignItems="center">
             <Flex p={0} >
                 <Flex alignItems="center" >
-                    
-                    <Image width='10' p={3} src={companyLogo} alt="company"/>
+                   <Image width='10' p={3} src={companyLogo} alt="company"/>
                     <Text fontFamily='Comic Neue'>Company Name</Text>
                 </Flex>
                 <Spacer />
@@ -23,8 +20,7 @@ const Navbar = ()=>{
                             <MenuItem>Page one</MenuItem>
                             <MenuItem>Page two</MenuItem>
                             <MenuItem>Page three</MenuItem>
-                            
-                        </MenuList>
+                          </MenuList>
                     </Menu>
                     <Tabs/>
            </Flex>

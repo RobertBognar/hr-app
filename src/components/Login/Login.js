@@ -100,7 +100,7 @@ const Login = () => {
                         </GridItem>
                         <GridItem>
                             <Button
-                                type="button"
+                                type="submit"
                                 width="86px"
                                 height="30px"
                                 marginLeft="99"
