@@ -34,7 +34,7 @@ const BasicInfo = () => {
                 lineHeight="32px"
                 letterSpacing=" 0.04em"
                 fontFamily=" Comic Neue"
-                color=" #000000"
+                color="#000000"
                 pb="47px"
                 mt={{ base: 14, md: 0, sm: 0 }}
             >
