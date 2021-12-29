@@ -23,18 +23,19 @@ const Login = () => {
     };
     return (
         <form onSubmit={submitHandler}>
-            <VStack w="full" h="full" p="40" alignItems="center">
-                <VStack alignItems="flex-start">
+            <VStack w="full" h="full" p="40">
+                <VStack alignItems="flex-start" textAlign={'left'}>
                     <Text
                         fontWeight="700"
                         fontStyle="normal"
                         letterSpacing="4px"
                         fontSize="28"
+                        marginRight={150}
                     >
                         uTeam - Login
                     </Text>
                 </VStack>
-                <VStack paddingLeft={36}>
+                <VStack>
                     <SimpleGrid
                         columns={1}
                         columnGap={1}
