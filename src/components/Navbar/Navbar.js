@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Flex, Spacer, Image, Text,Button,Menu,MenuButton,MenuList,MenuItem,} from "@chakra-ui/react"
-import {HamburgerIcon} from "@chakra-ui/icons"
+import { Box, Flex, Spacer, Image, Text,Button,Menu,MenuButton,MenuList,MenuItem } from "@chakra-ui/react"
+import { HamburgerIcon } from "@chakra-ui/icons"
 import companyLogo from "../../assets/corrpro-companies.svg"
 import Tabs from "./Tabs";
 
