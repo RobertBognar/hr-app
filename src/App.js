@@ -13,32 +13,24 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
-            <Box
-                display={{ lg: 'flex' }}
-                width="full"
-                justify={{ base: 'center' }}
-                direction={{ base: 'column', md: 'row' }}
-                justifyContent="center"
-                alignItems="center"
-                h="100vh"
-                m="0 auto"
-            >
                 <Box
-                    mt={{ base: 4, md: 0, sm: 0 }}
-                    ml={{ md: 7 }}
-                    mt={{ sm: 2 }}
+                    display={{ lg: 'flex' }}
+                    width="full"
+                    justify={{ base: 'center' }}
+                    direction={{ base: 'column', md: 'row' }}
+                    justifyContent="center"
+                    alignItems="center"
+                    h="100vh"
+                    m="0 auto"
                 >
-                    <BasicInfo />
-                </Box>
+                    <Box mt={{ base: 4, md: 0, sm: 0 }}>
+                        <BasicInfo />
+                    </Box>
 
-                <Box
-                    mt={{ base: 4, md: 0, sm: 0 }}
-                    ml={{ md: 7 }}
-                    mt={{ sm: 2 }}
-                >
-                    <Security />
+                    <Box mt={{ base: 4, md: 0, sm: 0 }} ml={{ md: 7 }}>
+                        <Security />
+                    </Box>
                 </Box>
-            </Box>
             </BrowserRouter>
         </div>
     );
