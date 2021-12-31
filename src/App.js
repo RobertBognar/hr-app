@@ -22,14 +22,10 @@ function App() {
                     alignItems="center"
                     h="100vh"
                     m="0 auto"
+                    gap={10}
                 >
-                    <Box mt={{ base: 4, md: 0, sm: 0 }}>
-                        <BasicInfo />
-                    </Box>
-
-                    <Box mt={{ base: 4, md: 0, sm: 0 }} ml={{ md: 7 }}>
-                        <Security />
-                    </Box>
+                    <BasicInfo />
+                    <Security />
                 </Box>
             </BrowserRouter>
         </div>

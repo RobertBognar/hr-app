@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     Box,
     Button,
@@ -7,20 +7,19 @@ import {
     Heading,
     Input,
     Stack,
+    InputGroup,
 } from '@chakra-ui/react';
 
 const BasicInfo = () => {
     const [name, setName] = useState('Michael Jones');
 
-    const fileInput = React.createRef();
-
-    const fileSelected = (e) => {
-        console.log(e.target.files[0]);
-    };
+    const fileChooser = useRef(null);
 
     const profileInfo = (e) => {
         e.preventDefault();
-        alert(`Selected file - ${fileInput.current.files[0].name}`);
+        alert(
+            ` Name - ${name}, Selected file - ${fileChooser.current.files[0].name}`,
+        );
     };
 
     return (
@@ -29,14 +28,14 @@ const BasicInfo = () => {
                 margin="auto"
                 w="445px"
                 fontSize="28px"
-                font-style="normal"
+                fontStyle="normal"
                 fontWeight="bold"
                 lineHeight="32px"
                 letterSpacing=" 0.04em"
                 fontFamily=" Comic Neue"
                 color="#000000"
                 pb="47px"
-                mt={{ base: 14, md: 0, sm: 0 }}
+                mt={{ base: 14, sm: 14, md: 14, lg: 0 }}
             >
                 My Profile
             </Heading>
@@ -82,17 +81,48 @@ const BasicInfo = () => {
                             >
                                 Profile Photo
                             </FormLabel>
-                            <Input
-                                isRequired
-                                ref={fileInput}
-                                size="lg"
-                                type="file"
-                                style={{ color: 'transparent' }}
-                                onChange={fileSelected}
+                            <InputGroup
+                                justifyContent="space-between"
+                                alignItems="center"
                                 border="2px solid"
                                 borderColor="#000000"
                                 borderRadius="none"
-                            />
+                            >
+                                <FormLabel
+                                    htmlFor="file-upload"
+                                    fontStyle="normal"
+                                    fontWeight="normal"
+                                    fontSize="16px"
+                                    lineHeight="18px"
+                                    color=" #7B7B7B"
+                                    mt={2}
+                                    ml={4}
+                                >
+                                    Upload File
+                                </FormLabel>
+                                <Button
+                                    fontWeight=" bold"
+                                    fontSize="16px"
+                                    lineHeight="18px"
+                                    color="#000000"
+                                    background="#DEE0E3"
+                                    width="122px"
+                                    height="30px"
+                                    border=" 2px solid #000000"
+                                    border-radius=" 4px"
+                                    mr={8.5}
+                                    onClick={() => {
+                                        fileChooser.current.click();
+                                    }}
+                                >
+                                    choose file
+                                </Button>
+                                <Input
+                                    type="file"
+                                    ref={fileChooser}
+                                    display="none"
+                                />
+                            </InputGroup>
                         </FormControl>
                         <Box alignSelf="self-end">
                             <Button

@@ -22,7 +22,12 @@ const Security = () => {
 
     return (
         <div>
-            <Stack border="1px solid #000000" margin="auto" w="445px" mt={132}>
+            <Stack
+                border="1px solid #000000"
+                margin="auto"
+                w="445px"
+                mt={{ base: 14, sm: 14, md: 14, lg: 135 }}
+            >
                 <Box borderBottom="1px solid #000000" pt={5} pb={3} pl={7}>
                     Security
                 </Box>
@@ -109,7 +114,7 @@ const Security = () => {
                                 border="2px solid"
                                 borderColor="#000000"
                                 mt={6}
-                                mb={4}
+                                mb={2}
                                 background="white"
                                 float="right"
                             >
