@@ -53,6 +53,7 @@ const BasicInfo = () => {
                                 fontWeight="normal"
                                 lineHeight="14px"
                                 color="#000000"
+                                mb={1}
                             >
                                 Name
                             </FormLabel>
@@ -78,6 +79,7 @@ const BasicInfo = () => {
                                 fontWeight="normal"
                                 lineHeight="14px"
                                 mt={6}
+                                mb={1}
                             >
                                 Profile Photo
                             </FormLabel>
@@ -95,11 +97,11 @@ const BasicInfo = () => {
                                     fontSize="16px"
                                     lineHeight="18px"
                                     color=" #7B7B7B"
-                                    mt={2}
+                                    mt={3.5}
                                     ml={4}
-                                    mb={4}
+                                    mb="18px"
                                 >
-                                    Upload File
+                                    Upload file
                                 </FormLabel>
                                 <Button
                                     fontWeight=" bold"
@@ -112,7 +114,8 @@ const BasicInfo = () => {
                                     border=" 2px solid #000000"
                                     border-radius=" 4px"
                                     mr={8.5}
-                                    mb={1}
+                                    mt={2}
+                                    mb={3}
                                     onClick={() => {
                                         fileChooser.current.click();
                                     }}
@@ -135,7 +138,7 @@ const BasicInfo = () => {
                                 borderColor="#000000"
                                 marginTop="40px"
                                 background="white"
-                                mb={2}
+                                mb="9px"
                                 float="right"
                             >
                                 Save

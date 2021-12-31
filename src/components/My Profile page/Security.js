@@ -26,7 +26,7 @@ const Security = () => {
                 border="1px solid #000000"
                 margin="auto"
                 w="445px"
-                mt={{ base: 14, sm: 14, md: 14, lg: 114 }}
+                mt={{ base: 14, sm: 14, md: 14, lg: 110 }}
             >
                 <Box borderBottom="1px solid #000000" pt={5} pb={3} pl={7}>
                     Security
@@ -40,7 +40,8 @@ const Security = () => {
                                 letterSpacing="0.04em"
                                 fontWeight="normal"
                                 lineHeight="14px"
-                                pt="45px"
+                                pt="43px"
+                                mb={0}
                             >
                                 Email
                             </FormLabel>
@@ -56,7 +57,6 @@ const Security = () => {
                                 fontWeight="normal"
                                 fontSize="20px"
                                 lineHeight="23px"
-                                mt={-10}
                             />
                         </FormControl>
 
@@ -67,7 +67,8 @@ const Security = () => {
                                 letterSpacing="0.04em"
                                 fontWeight="normal"
                                 lineHeight="14px"
-                                mt="15px"
+                                mt="21px"
+                                mb={1}
                             >
                                 Current Password
                             </FormLabel>
@@ -91,7 +92,8 @@ const Security = () => {
                                 letterSpacing="0.04em"
                                 fontWeight="normal"
                                 lineHeight="14px"
-                                mt="15px"
+                                mt="17px"
+                                mb={1}
                             >
                                 New Password
                             </FormLabel>
@@ -114,7 +116,7 @@ const Security = () => {
                                 height="30px"
                                 border="2px solid"
                                 borderColor="#000000"
-                                mt={5}
+                                mt="26px"
                                 mb={2}
                                 background="white"
                                 float="right"
