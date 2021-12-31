@@ -1,18 +1,22 @@
-import { BrowserRouter } from 'react-router-dom';
 
 import './App.css';
-// import Register from './components/Register';
-// import Login from './components/Login/Login';
 
 import { Box } from '@chakra-ui/react';
 
-import BasicInfo from './components/My Profile page/BasicInfo';
-import Security from './components/My Profile page/Security';
+import BasicInfo from './components/my-profile-page/BasicInfo';
+import Security from './components/my-profile-page/Security';
+import { BrowserRouter } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import Register from './components/Register';
+import Login from './components/Login/Login';
 
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
+            <Navbar/>
+            <Login/>
+            <Register/>
                 <Box
                     display={{ lg: 'flex' }}
                     width="full"
@@ -32,4 +36,4 @@ function App() {
     );
 }
 
-export default App;
+export default App

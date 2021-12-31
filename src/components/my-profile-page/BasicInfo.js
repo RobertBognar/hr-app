@@ -15,7 +15,7 @@ const BasicInfo = () => {
 
     const fileChooser = useRef(null);
 
-    const profileInfo = (e) => {
+    const submitProfileInfo = (e) => {
         e.preventDefault();
         alert(
             ` Name - ${name}, Selected file - ${fileChooser.current.files[0].name}`,
@@ -44,7 +44,7 @@ const BasicInfo = () => {
                     Basic info
                 </Box>
                 <Box p={7}>
-                    <form onSubmit={profileInfo}>
+                    <form onSubmit={submitProfileInfo}>
                         <FormControl>
                             <FormLabel
                                 htmlFor="name"
