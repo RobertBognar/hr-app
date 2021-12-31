@@ -97,6 +97,7 @@ const BasicInfo = () => {
                                     color=" #7B7B7B"
                                     mt={2}
                                     ml={4}
+                                    mb={4}
                                 >
                                     Upload File
                                 </FormLabel>
@@ -111,6 +112,7 @@ const BasicInfo = () => {
                                     border=" 2px solid #000000"
                                     border-radius=" 4px"
                                     mr={8.5}
+                                    mb={1}
                                     onClick={() => {
                                         fileChooser.current.click();
                                     }}
