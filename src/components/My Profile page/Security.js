@@ -26,7 +26,7 @@ const Security = () => {
                 border="1px solid #000000"
                 margin="auto"
                 w="445px"
-                mt={{ base: 14, sm: 14, md: 14, lg: 112 }}
+                mt={{ base: 14, sm: 14, md: 14, lg: 114 }}
             >
                 <Box borderBottom="1px solid #000000" pt={5} pb={3} pl={7}>
                     Security
@@ -40,7 +40,7 @@ const Security = () => {
                                 letterSpacing="0.04em"
                                 fontWeight="normal"
                                 lineHeight="14px"
-                                pt="44px"
+                                pt="45px"
                             >
                                 Email
                             </FormLabel>
@@ -91,7 +91,7 @@ const Security = () => {
                                 letterSpacing="0.04em"
                                 fontWeight="normal"
                                 lineHeight="14px"
-                                mt="14px"
+                                mt="15px"
                             >
                                 New Password
                             </FormLabel>
@@ -104,7 +104,6 @@ const Security = () => {
                                 border="2px solid"
                                 borderColor="#000000"
                                 borderRadius="none"
-                                size="md"
                             />
                         </FormControl>
 
