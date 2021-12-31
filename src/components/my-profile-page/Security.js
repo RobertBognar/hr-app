@@ -16,7 +16,7 @@ const Security = () => {
     const securityDataSave = (e) => {
         e.preventDefault();
         alert(
-            `Email: ${emailAdress}, Current password: ${currentPassword}, New password ${currentPassword}`,
+            `Email: ${emailAdress}, Current password: ${currentPassword}, New password ${newPassword}`,
         );
     };
 
