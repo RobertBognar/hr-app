@@ -9,14 +9,14 @@ import {
 } from '@chakra-ui/react';
 
 const Security = () => {
-    const [emailAdress, setEmailAddress] = useState('petar@quantox.com');
+    const [emailAddress, setEmailAddress] = useState('petar@quantox.com');
     const [currentPassword, setCurrentPassword] = useState('*******');
     const [newPassword, setNewPassword] = useState('*******');
 
     const securityDataSave = (e) => {
         e.preventDefault();
         alert(
-            `Email: ${emailAdress}, Current password: ${currentPassword}, New password ${newPassword}`,
+            `Email: ${emailAddress}, Current password: ${currentPassword}, New password ${newPassword}`,
         );
     };
 
@@ -49,7 +49,7 @@ const Security = () => {
                                 variant="unstyled"
                                 isRequired
                                 type="email"
-                                value={emailAdress}
+                                value={emailAddress}
                                 onChange={(e) =>
                                     setEmailAddress(e.target.value)
                                 }
@@ -57,6 +57,7 @@ const Security = () => {
                                 fontWeight="normal"
                                 fontSize="20px"
                                 lineHeight="23px"
+                                readOnly
                             />
                         </FormControl>
 
