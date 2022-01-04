@@ -19,7 +19,7 @@ const Register = () => {
     };
 
     return (
-        <VStack>
+        <VStack p="40">
             <Box textAlign={'left'} className="Register">
                 <Heading
                     fontSize={'28px'}
