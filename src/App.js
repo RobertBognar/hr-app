@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Register from './components/Register';
 import Login from './components/Login/Login';
+import GuestHomepage from './components/guest-homepage/GuestHomepage';
 
 function App() {
     return (
