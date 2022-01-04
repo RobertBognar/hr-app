@@ -31,6 +31,7 @@ function App() {
                     <BasicInfo />
                     <Security />
                 </Box>
+                <GuestHomepage />
             </BrowserRouter>
         </div>
     );
