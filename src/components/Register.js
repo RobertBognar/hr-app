@@ -110,7 +110,6 @@ const Register = () => {
                             justifyContent={'space-between'}
                             alignItems={'center'}
                         >
-                            {/* <i>Already have account ?</i> */}
                             <Link onClick={() => navigate('/login')}>
                                 Already have account?
                             </Link>

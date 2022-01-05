@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
     Box,
     Flex,
@@ -40,9 +40,15 @@ const Navbar = () => {
                         display={['flex', 'flex', 'none', 'none']}
                     />
                     <MenuList>
-                        <MenuItem>Page one</MenuItem>
-                        <MenuItem>Page two</MenuItem>
-                        <MenuItem>Page three</MenuItem>
+                        <MenuItem onClick={() => navigate('/login')}>
+                            Login
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate('/register')}>
+                            Register
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate('/profile')}>
+                            My Account
+                        </MenuItem>
                     </MenuList>
                 </Menu>
                 <Tabs />
