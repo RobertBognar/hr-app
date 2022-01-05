@@ -34,7 +34,7 @@ const BasicInfo = () => {
                 letterSpacing=" 0.04em"
                 fontFamily=" Comic Neue"
                 pb="47px"
-                mt={{ base: 14, sm: 14, md: 14, lg: 0 }}
+                mt={{ base: 0, sm: 0, md: 0, lg: 0 }}
                 color="white"
             >
                 My Profile
@@ -43,6 +43,7 @@ const BasicInfo = () => {
                 border="1px solid white"
                 margin="auto"
                 w={['90%', '445px', '445px']}
+                color="white"
             >
                 <Box borderBottom="1px solid white" pt={5} pb={3} pl={7}>
                     Basic info
@@ -71,7 +72,6 @@ const BasicInfo = () => {
                                 fontSize="16px"
                                 lineHeight="18px"
                                 border="2px solid"
-                                // borderColor="#000000"
                                 borderRadius="none"
                             />
                         </FormControl>
@@ -91,7 +91,6 @@ const BasicInfo = () => {
                                 justifyContent="space-between"
                                 alignItems="center"
                                 border="2px solid"
-                                // borderColor="#000000"
                                 borderRadius="none"
                             >
                                 <FormLabel
@@ -110,13 +109,17 @@ const BasicInfo = () => {
                                 </FormLabel>
                                 <Button
                                     fontWeight=" bold"
-                                    fontSize="16px"
+                                    fontSize={{
+                                        base: '14px',
+                                        sm: '16px',
+                                        md: '16px',
+                                        lg: '16px',
+                                    }}
                                     lineHeight="18px"
                                     color="#000000"
                                     background="#DEE0E3"
                                     width="122px"
                                     height="30px"
-                                    border=" 2px solid #000000"
                                     border-radius=" 4px"
                                     mr={8.5}
                                     mt={2}
@@ -139,8 +142,6 @@ const BasicInfo = () => {
                                 type="submit"
                                 width="80px"
                                 height="30px"
-                                border="2px solid"
-                                borderColor="#000000"
                                 marginTop="40px"
                                 background="white"
                                 mb="9px"

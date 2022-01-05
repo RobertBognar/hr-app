@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Heading, VStack } from '@chakra-ui/layout';
-import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
+import {
+    Input,
+    Box,
+    Button,
+    FormControl,
+    Flex,
+    Link,
+    Text,
+} from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
@@ -21,10 +29,14 @@ const Register = () => {
     };
 
     return (
-        <VStack p="40">
+        <VStack
+            py={['20', '40', '40']}
+            className="bgBlack"
+            minH="calc(100vh - 42px)"
+        >
             <Box textAlign={'left'} className="Register">
                 <Heading
-                    fontSize={'28px'}
+                    fontSize="28px"
                     lineHeight={'32.2px'}
                     letterSpacing={'1.12px'}
                     marginBottom={39}
@@ -32,11 +44,13 @@ const Register = () => {
                     fontWeight={600}
                     fontFamily={'Comic Neue'}
                     color="white"
+                    textAlign={['center', 'left', 'left']}
+                    width={['90vw', '372px', '372px']}
                 >
                     uTeam - Register
                 </Heading>
                 <FormControl color="white">
-                    <Box width={['300px', '372px', '372px']} className="boxes">
+                    <Box width={['90vw', '372px', '372px']} className="boxes">
                         <label htmlFor="name-input" fontSize={12}>
                             Name
                         </label>
@@ -44,12 +58,10 @@ const Register = () => {
                             variant="outline"
                             placeholder={'Name'}
                             border="2px"
-                            // borderColor="black"
                             borderRadius={'0'}
-                            // _placeholder={{ color: '#7B7B7B' }}
                         />
                     </Box>
-                    <Box width={['300px', '372px', '372px']} className="boxes">
+                    <Box width={['90vw', '372px', '372px']} className="boxes">
                         <label htmlFor="email-input" fontSize={12}>
                             Email
                         </label>
@@ -57,12 +69,10 @@ const Register = () => {
                             variant={'outline'}
                             placeholder={'Email'}
                             border="2px"
-                            // borderColor="black"
                             borderRadius={'0'}
-                            // _placeholder={{ color: '#7B7B7B' }}
                         />
                     </Box>
-                    <Box width={['300px', '372px', '372px']} className="boxes">
+                    <Box width={['90vw', '372px', '372px']} className="boxes">
                         <label htmlFor="password" fontSize={12}>
                             Password
                         </label>
@@ -70,19 +80,17 @@ const Register = () => {
                             type="password"
                             placeholder={'Password'}
                             border="2px"
-                            // borderColor="black"
                             borderRadius={'0'}
-                            // _placeholder={{ color: '#7B7B7B' }}
                         />
                     </Box>
                     <Box
-                        width={['300px', '372px', '372px']}
+                        width={['90vw', '372px', '372px']}
                         marginBottom={37}
                         position={'relative'}
                     >
                         <label>Profile photo</label>
                         <Box
-                            width={['300px', '372px', '372px']}
+                            width={['90vw', '372px', '372px']}
                             type="text"
                             placeholder={'Profile photo'}
                             position={'relative'}
@@ -90,7 +98,6 @@ const Register = () => {
                             outline={'none'}
                             _placeholder={{ color: 'red' }}
                             border="2px"
-                            // borderColor="black"
                             height={50}
                             color="white"
                         >
@@ -115,9 +122,10 @@ const Register = () => {
                         <Flex
                             justifyContent={'space-between'}
                             alignItems={'center'}
+                            width={['90vw', '372px', '372px']}
                         >
                             <Link onClick={() => navigate('/login')}>
-                                Already have account?
+                                <i>Already have account?</i>
                             </Link>
                             <Button
                                 onClick={handleSubmit}

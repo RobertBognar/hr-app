@@ -27,6 +27,7 @@ const Security = () => {
                 margin="auto"
                 w={['90%', '445px', '445px']}
                 mt={{ base: 14, sm: 14, md: 14, lg: 110 }}
+                color="white"
             >
                 <Box borderBottom="1px solid white" pt={5} pb={3} pl={7}>
                     Security
@@ -105,7 +106,6 @@ const Security = () => {
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 border="2px solid"
-                                // borderColor="#000000"
                                 borderRadius="none"
                             />
                         </FormControl>
@@ -115,8 +115,6 @@ const Security = () => {
                                 type="submit"
                                 width="80px"
                                 height="30px"
-                                border="2px solid"
-                                borderColor="#000000"
                                 mt="26px"
                                 mb={2}
                                 background="white"

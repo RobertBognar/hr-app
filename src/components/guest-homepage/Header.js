@@ -6,7 +6,6 @@ import {
     Box,
     Input,
     InputGroup,
-    HStack,
     InputLeftElement,
     Icon,
     Flex,
@@ -17,7 +16,7 @@ import { FaSearch } from 'react-icons/fa';
 
 const Header = () => {
     return (
-        <Box bg="black" px={['15px', '75px', '75px', '75px']}>
+        <Box px={['15px', '75px', '75px', '75px']}>
             <Flex
                 py="25px"
                 align="center"
@@ -27,7 +26,7 @@ const Header = () => {
                 borderBottomColor="white"
             >
                 <Flex align="center">
-                    <Box mr="10px">
+                    <Box mr="10px" bg="black">
                         <Image src={Logo} alt="Quantox-logo" />
                     </Box>
                     <Heading
