@@ -1,34 +1,60 @@
-import React from "react";
-import { Box, Flex, Spacer, Image, Text,Button,Menu,MenuButton,MenuList,MenuItem } from "@chakra-ui/react"
-import { HamburgerIcon } from "@chakra-ui/icons"
-import companyLogo from "../../assets/corrpro-companies.svg"
-import Tabs from "./Tabs";
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import {
+    Box,
+    Flex,
+    Spacer,
+    Image,
+    Text,
+    Button,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+} from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
+import companyLogo from '../../assets/corrpro-companies.svg';
+import Tabs from './Tabs';
 
-const Navbar = ()=>{
-   return(
-        
-        <Box bg='rgba(241, 241, 241, 1)' color='black' border='1px' alignItems="center">
-            <Flex p={0} >
-                <Flex alignItems="center" >
-                   <Image width='10' p={3} src={companyLogo} alt="company"/>
-                    <Text fontFamily='Comic Neue'>Company Name</Text>
+const Navbar = () => {
+    const navigate = useNavigate();
+    return (
+        <Box
+            bg="rgba(241, 241, 241, 1)"
+            color="black"
+            border="1px"
+            alignItems="center"
+        >
+            <Flex p={0}>
+                <Flex alignItems="center">
+                    <Image width="10" p={3} src={companyLogo} alt="company" />
+                    <Text onClick={() => navigate('/')} fontFamily="Comic Neue">
+                        Company Name
+                    </Text>
                 </Flex>
                 <Spacer />
-                    <Menu >
-                        <MenuButton as={Button} rightIcon={<HamburgerIcon/>} display={['flex', 'flex', 'none', 'none']} />
-                        <MenuList >
-                            <MenuItem>Page one</MenuItem>
-                            <MenuItem>Page two</MenuItem>
-                            <MenuItem>Page three</MenuItem>
-                          </MenuList>
-                    </Menu>
-                    <Tabs/>
-           </Flex>
+                <Menu>
+                    <MenuButton
+                        as={Button}
+                        rightIcon={<HamburgerIcon />}
+                        display={['flex', 'flex', 'none', 'none']}
+                    />
+                    <MenuList>
+                        <MenuItem onClick={() => navigate('/login')}>
+                            Login
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate('/register')}>
+                            Register
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate('/profile')}>
+                            My Account
+                        </MenuItem>
+                    </MenuList>
+                </Menu>
+                <Tabs />
+            </Flex>
         </Box>
-            
+    );
+};
 
-       
-    )
-}
-
-export default Navbar
+export default Navbar;

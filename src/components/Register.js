@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Heading, VStack } from '@chakra-ui/layout';
-import { Input, Box, Button, FormControl, Flex } from '@chakra-ui/react';
+import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 import './Register.css';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +21,7 @@ const Register = () => {
     };
 
     return (
-        <VStack>
+        <VStack p="40">
             <Box textAlign={'left'} className="Register">
                 <Heading
                     fontSize={'28px'}
@@ -108,7 +110,9 @@ const Register = () => {
                             justifyContent={'space-between'}
                             alignItems={'center'}
                         >
-                            <i>Already have account ?</i>
+                            <Link onClick={() => navigate('/login')}>
+                                Already have account?
+                            </Link>
                             <Button
                                 onClick={handleSubmit}
                                 background={'white'}
