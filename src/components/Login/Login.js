@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 import {
     Input,
     VStack,
@@ -17,9 +17,22 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     //Submit Handler
     const submitHandler = (event) => {
         event.preventDefault();
+        axios
+            .post('http://localhost:1337/auth/local', {
+                email: email,
+                password: password,
+            })
+            .then((response) => {
+                console.log('User profile ', response.data.user);
+                console.log('User token ', response.data.jwt);
+            })
+            .catch((error) => {
+                console.log('An error occurred:', error.message);
+            });
     };
     return (
         <form onSubmit={submitHandler}>
