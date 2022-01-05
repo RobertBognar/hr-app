@@ -4,10 +4,17 @@ import Data from './Data';
 const Card = () => {
     return (
         <Grid
-            templateColumns="repeat(auto-fill,minmax(250px,1fr))"
+            templateColumns={[
+                'repeat(1, 1fr)',
+                'repeat(1, 1fr)',
+                'repeat(2, 1fr)',
+                'repeat(3, 1fr)',
+                'repeat(auto-fill,minmax(350px,1fr))',
+            ]}
             gap={6}
-            bg="gray.800"
-            p="50px 75px"
+            bg="black"
+            py="50px"
+            px={['15px', '75px', '75px', '75px']}
         >
             {Data.map((card, id) => {
                 return (
@@ -17,20 +24,28 @@ const Card = () => {
                         cursor="pointer"
                         textAlign="left"
                         align="start"
+                        mb="50px"
+                        border="1px"
+                        borderColor="white"
                     >
                         <Image
                             w="100%"
-                            h="200px"
+                            h="450px"
                             objectFit="cover"
                             src={card.image}
                             alt={card.name}
                         />
-                        <Heading>{card.name}</Heading>
-                        <Text>{card.state}</Text>
-                        <Text px="5px" borderRadius="4px" bg="blue.800">
+                        <Heading pl="10px" pt="10px">
+                            {card.name}
+                        </Heading>
+                        <Text pl="10px">{card.state}</Text>
+                        <Text px="10px" borderRadius="4px" bg="blue.800">
                             {card.city}
                         </Text>
-                        <Text>{card.job}</Text>
+                        <Text pl="10px">{card.job}</Text>
+                        <Text pl="10px" pb="10px">
+                            Joined: {card.joined}
+                        </Text>
                     </VStack>
                 );
             })}

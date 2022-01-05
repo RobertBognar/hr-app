@@ -23,12 +23,12 @@ const Security = () => {
     return (
         <div>
             <Stack
-                border="1px solid #000000"
+                border="1px solid white"
                 margin="auto"
-                w="445px"
+                w={['90%', '445px', '445px']}
                 mt={{ base: 14, sm: 14, md: 14, lg: 110 }}
             >
-                <Box borderBottom="1px solid #000000" pt={5} pb={3} pl={7}>
+                <Box borderBottom="1px solid white" pt={5} pb={3} pl={7}>
                     Security
                 </Box>
                 <Box pl={7} pr={7} pb={5}>
@@ -81,7 +81,7 @@ const Security = () => {
                                     setCurrentPassword(e.target.value)
                                 }
                                 border="2px solid"
-                                borderColor="#000000"
+                                // borderColor="#000000"
                                 borderRadius="none"
                             />
                         </FormControl>
@@ -105,7 +105,7 @@ const Security = () => {
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 border="2px solid"
-                                borderColor="#000000"
+                                // borderColor="#000000"
                                 borderRadius="none"
                             />
                         </FormControl>
@@ -121,6 +121,7 @@ const Security = () => {
                                 mb={2}
                                 background="white"
                                 float="right"
+                                color="black"
                             >
                                 Save
                             </Button>

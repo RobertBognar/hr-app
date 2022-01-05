@@ -27,6 +27,8 @@ function App() {
                     h="100vh"
                     m="0 auto"
                     gap={10}
+                    bg="black"
+                    color="white"
                 >
                     <BasicInfo />
                     <Security />

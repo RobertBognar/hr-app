@@ -26,21 +26,25 @@ const BasicInfo = () => {
         <div>
             <Heading
                 margin="auto"
-                w="445px"
+                w={['90%', '445px', '445px']}
                 fontSize="28px"
                 fontStyle="normal"
                 fontWeight="bold"
                 lineHeight="32px"
                 letterSpacing=" 0.04em"
                 fontFamily=" Comic Neue"
-                color="#000000"
                 pb="47px"
                 mt={{ base: 14, sm: 14, md: 14, lg: 0 }}
+                color="white"
             >
                 My Profile
             </Heading>
-            <Stack border="1px solid #000000" margin="auto" w="445px">
-                <Box borderBottom="1px solid #000000" pt={5} pb={3} pl={7}>
+            <Stack
+                border="1px solid white"
+                margin="auto"
+                w={['90%', '445px', '445px']}
+            >
+                <Box borderBottom="1px solid white" pt={5} pb={3} pl={7}>
                     Basic info
                 </Box>
                 <Box p={7}>
@@ -52,7 +56,7 @@ const BasicInfo = () => {
                                 letterSpacing="0.04em"
                                 fontWeight="normal"
                                 lineHeight="14px"
-                                color="#000000"
+                                color="white"
                                 mb={1}
                             >
                                 Name
@@ -67,7 +71,7 @@ const BasicInfo = () => {
                                 fontSize="16px"
                                 lineHeight="18px"
                                 border="2px solid"
-                                borderColor="#000000"
+                                // borderColor="#000000"
                                 borderRadius="none"
                             />
                         </FormControl>
@@ -87,7 +91,7 @@ const BasicInfo = () => {
                                 justifyContent="space-between"
                                 alignItems="center"
                                 border="2px solid"
-                                borderColor="#000000"
+                                // borderColor="#000000"
                                 borderRadius="none"
                             >
                                 <FormLabel
@@ -100,6 +104,7 @@ const BasicInfo = () => {
                                     mt={3.5}
                                     ml={4}
                                     mb="18px"
+                                    color="white"
                                 >
                                     Upload file
                                 </FormLabel>
@@ -140,6 +145,7 @@ const BasicInfo = () => {
                                 background="white"
                                 mb="9px"
                                 float="right"
+                                color="black"
                             >
                                 Save
                             </Button>

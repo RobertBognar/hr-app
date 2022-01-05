@@ -19,7 +19,7 @@ const Register = () => {
     };
 
     return (
-        <VStack>
+        <VStack bg="black" py="50px">
             <Box textAlign={'left'} className="Register">
                 <Heading
                     fontSize={'28px'}
@@ -29,11 +29,12 @@ const Register = () => {
                     className="Register"
                     fontWeight={600}
                     fontFamily={'Comic Neue'}
+                    color="white"
                 >
                     uTeam - Register
                 </Heading>
-                <FormControl>
-                    <Box width={372} className="boxes">
+                <FormControl color="white">
+                    <Box width={['300px', '372px', '372px']} className="boxes">
                         <label htmlFor="name-input" fontSize={12}>
                             Name
                         </label>
@@ -41,12 +42,12 @@ const Register = () => {
                             variant="outline"
                             placeholder={'Name'}
                             border="2px"
-                            borderColor="black"
+                            // borderColor="black"
                             borderRadius={'0'}
-                            _placeholder={{ color: '#7B7B7B' }}
+                            // _placeholder={{ color: '#7B7B7B' }}
                         />
                     </Box>
-                    <Box width={372} className="boxes">
+                    <Box width={['300px', '372px', '372px']} className="boxes">
                         <label htmlFor="email-input" fontSize={12}>
                             Email
                         </label>
@@ -54,12 +55,12 @@ const Register = () => {
                             variant={'outline'}
                             placeholder={'Email'}
                             border="2px"
-                            borderColor="black"
+                            // borderColor="black"
                             borderRadius={'0'}
-                            _placeholder={{ color: '#7B7B7B' }}
+                            // _placeholder={{ color: '#7B7B7B' }}
                         />
                     </Box>
-                    <Box width={372} className="boxes">
+                    <Box width={['300px', '372px', '372px']} className="boxes">
                         <label htmlFor="password" fontSize={12}>
                             Password
                         </label>
@@ -67,15 +68,19 @@ const Register = () => {
                             type="password"
                             placeholder={'Password'}
                             border="2px"
-                            borderColor="black"
+                            // borderColor="black"
                             borderRadius={'0'}
-                            _placeholder={{ color: '#7B7B7B' }}
+                            // _placeholder={{ color: '#7B7B7B' }}
                         />
                     </Box>
-                    <Box width={372} marginBottom={37} position={'relative'}>
+                    <Box
+                        width={['300px', '372px', '372px']}
+                        marginBottom={37}
+                        position={'relative'}
+                    >
                         <label>Profile photo</label>
                         <Box
-                            width={372}
+                            width={['300px', '372px', '372px']}
                             type="text"
                             placeholder={'Profile photo'}
                             position={'relative'}
@@ -83,12 +88,13 @@ const Register = () => {
                             outline={'none'}
                             _placeholder={{ color: 'red' }}
                             border="2px"
-                            borderColor="black"
+                            // borderColor="black"
                             height={50}
+                            color="white"
                         >
                             <label
                                 htmlFor="file-upload"
-                                fontSize={12}
+                                fontSize={16}
                                 className="custom-file-upload"
                             >
                                 <p> Choose file</p>
@@ -96,7 +102,7 @@ const Register = () => {
                                     <FaCloudUploadAlt
                                         className="fa-cloud"
                                         size={24}
-                                        color="blue"
+                                        color="rgb(71, 131, 42)"
                                     />
                                 </i>
                             </label>
@@ -108,12 +114,22 @@ const Register = () => {
                             justifyContent={'space-between'}
                             alignItems={'center'}
                         >
-                            <i>Already have account ?</i>
+                            <Box
+                                cursor="pointer"
+                                fontSize="14px"
+                                _hover={{
+                                    borderBottom: '1px',
+                                    borderColor: 'white',
+                                }}
+                            >
+                                <i>Already have account ?</i>
+                            </Box>
                             <Button
                                 onClick={handleSubmit}
                                 background={'white'}
                                 border={'2px'}
                                 borderColor={'black'}
+                                color="black"
                             >
                                 Register
                             </Button>
