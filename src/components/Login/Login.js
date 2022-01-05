@@ -22,7 +22,7 @@ const Login = () => {
     const submitHandler = (event) => {
         event.preventDefault();
         axios
-            .post('http://localhost:1337/auth/local', {
+            .post('https://uteam-api-7nngy.ondigitalocean.app/api/profiles', {
                 email: email,
                 password: password,
             })
