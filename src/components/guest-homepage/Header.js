@@ -6,6 +6,7 @@ import {
     Box,
     Input,
     InputGroup,
+    HStack,
     InputLeftElement,
     Icon,
     Flex,
@@ -50,14 +51,12 @@ const Header = () => {
                             fontWeight="600"
                             fontSize="20px"
                             color="white"
-                            borderRadius="none"
                         />
                     </InputGroup>
                     <Select
                         placeholder="Sort By"
                         color="white"
                         cursor="pointer"
-                        borderRadius="none"
                         m={[
                             '10px 0 0 0',
                             '10px 0 0 0',

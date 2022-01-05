@@ -12,9 +12,9 @@ const Tabs = () => {
             alignItems="center"
             justifyContent="space-around"
         >
-            <Link to="/page-one"> Page one </Link>
-            <Link to="/page-two"> Page two </Link>
-            <Link to="/page-three"> Page three </Link>
+            <Link to="/login"> Login </Link>
+            <Link to="/register"> Register </Link>
+            <Link to="/profile"> My Account </Link>
         </Box>
     );
 };
