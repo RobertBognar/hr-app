@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import auth from '../../services/AuthService';
 import {
     Input,
     VStack,
@@ -21,18 +21,7 @@ const Login = () => {
     //Submit Handler
     const submitHandler = (event) => {
         event.preventDefault();
-        axios
-            .post('https://uteam-api-7nngy.ondigitalocean.app/api/profiles', {
-                email: email,
-                password: password,
-            })
-            .then((response) => {
-                console.log('User profile ', response.data.user);
-                console.log('User token ', response.data.jwt);
-            })
-            .catch((error) => {
-                console.log('An error occurred:', error.message);
-            });
+        auth.login(email, password);
     };
     return (
         <form onSubmit={submitHandler}>
