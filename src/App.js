@@ -9,6 +9,7 @@ import Navbar from './components/Navbar/Navbar';
 import Register from './components/Register';
 import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
+import HomepageAuthUser from './components/homepage-auth-user/HomepageAuthUser';
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                     <Security />
                 </Box>
                 <GuestHomepage />
+                <HomepageAuthUser/>
             </BrowserRouter>
         </div>
     );
