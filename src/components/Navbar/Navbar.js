@@ -27,11 +27,9 @@ const Navbar = () => {
             alignItems="center"
         >
             <Flex p={0}>
-                <Flex alignItems="center">
+                <Flex onClick={() => navigate('/')} alignItems="center">
                     <Image width="10" p={3} src={companyLogo} alt="company" />
-                    <Text onClick={() => navigate('/')} fontFamily="Comic Neue">
-                        Company Name
-                    </Text>
+                    <Text fontFamily="Comic Neue">Company Name</Text>
                 </Flex>
                 <Spacer />
                 <Menu>
