@@ -7,15 +7,17 @@ import { Box } from '@chakra-ui/react';
 const ProfilePage = () => {
     return (
         <Box
+            className="bgBlack"
             display={{ lg: 'flex' }}
             width="full"
             justify={{ base: 'center' }}
             direction={{ base: 'column', md: 'row' }}
             justifyContent="center"
             alignItems="center"
-            h="100vh"
+            minH="calc(100vh - 42px)"
             m="0 auto"
             gap={10}
+            py={{ base: 14, sm: 14, md: 14, lg: 0 }}
         >
             <BasicInfo />
             <Security />
