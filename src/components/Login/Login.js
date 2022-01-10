@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import auth from '../../services/AuthService';
 import {
     Input,
     VStack,
@@ -18,9 +18,11 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     //Submit Handler
     const submitHandler = (event) => {
         event.preventDefault();
+        auth.login(email, password);
     };
     return (
         <form onSubmit={submitHandler}>
