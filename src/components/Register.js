@@ -34,7 +34,12 @@ const Register = () => {
             className="bgBlack"
             minH="calc(100vh - 42px)"
         >
-            <Box textAlign={'left'} className="Register">
+            <Box
+                textAlign={'left'}
+                className="Register"
+                width={['100%', '372px', '372px']}
+                maxWidth="calc(100% - 125px)"
+            >
                 <Heading
                     fontSize="28px"
                     lineHeight={'32.2px'}
@@ -45,12 +50,12 @@ const Register = () => {
                     fontFamily={'Comic Neue'}
                     color="white"
                     textAlign={['center', 'left', 'left']}
-                    width={['90vw', '372px', '372px']}
+                    width="100%"
                 >
                     uTeam - Register
                 </Heading>
                 <FormControl color="white">
-                    <Box width={['90vw', '372px', '372px']} className="boxes">
+                    <Box width="100%" className="boxes">
                         <label htmlFor="name-input" fontSize={12}>
                             Name
                         </label>
@@ -61,7 +66,7 @@ const Register = () => {
                             borderRadius={'0'}
                         />
                     </Box>
-                    <Box width={['90vw', '372px', '372px']} className="boxes">
+                    <Box width="100%" className="boxes">
                         <label htmlFor="email-input" fontSize={12}>
                             Email
                         </label>
@@ -72,7 +77,7 @@ const Register = () => {
                             borderRadius={'0'}
                         />
                     </Box>
-                    <Box width={['90vw', '372px', '372px']} className="boxes">
+                    <Box width="100%" className="boxes">
                         <label htmlFor="password" fontSize={12}>
                             Password
                         </label>
@@ -83,14 +88,10 @@ const Register = () => {
                             borderRadius={'0'}
                         />
                     </Box>
-                    <Box
-                        width={['90vw', '372px', '372px']}
-                        marginBottom={37}
-                        position={'relative'}
-                    >
+                    <Box width="100%" marginBottom={37} position={'relative'}>
                         <label>Profile photo</label>
                         <Box
-                            width={['90vw', '372px', '372px']}
+                            width="100%"
                             type="text"
                             placeholder={'Profile photo'}
                             position={'relative'}
@@ -122,7 +123,7 @@ const Register = () => {
                         <Flex
                             justifyContent={'space-between'}
                             alignItems={'center'}
-                            width={['90vw', '372px', '372px']}
+                            width={['100%', '372px', '372px']}
                         >
                             <Link onClick={() => navigate('/login')}>
                                 <i>Already have account?</i>

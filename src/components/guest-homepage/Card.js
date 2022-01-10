@@ -1,5 +1,6 @@
 import { Heading, Text, Grid, VStack, Image } from '@chakra-ui/react';
 import Data from './Data';
+import { Link } from 'react-router-dom';
 
 const Card = () => {
     return (
@@ -17,35 +18,36 @@ const Card = () => {
         >
             {Data.map((card, id) => {
                 return (
-                    <VStack
-                        key={id}
-                        color="white"
-                        cursor="pointer"
-                        textAlign="left"
-                        align="start"
-                        mb="50px"
-                        border="1px"
-                        borderColor="white"
-                    >
-                        <Image
-                            w="100%"
-                            h="450px"
-                            objectFit="cover"
-                            src={card.image}
-                            alt={card.name}
-                        />
-                        <Heading pl="10px" pt="10px">
-                            {card.name}
-                        </Heading>
-                        <Text pl="10px">{card.state}</Text>
-                        <Text px="10px" borderRadius="4px" bg="blue.800">
-                            {card.city}
-                        </Text>
-                        <Text pl="10px">{card.job}</Text>
-                        <Text pl="10px" pb="10px">
-                            Joined: {card.joined}
-                        </Text>
-                    </VStack>
+                    <Link to={`/details/:${card.id}`} key={id}>
+                        <VStack
+                            color="white"
+                            cursor="pointer"
+                            textAlign="left"
+                            align="start"
+                            mb="50px"
+                            border="1px"
+                            borderColor="white"
+                        >
+                            <Image
+                                w="100%"
+                                h="450px"
+                                objectFit="cover"
+                                src={card.image}
+                                alt={card.name}
+                            />
+                            <Heading pl="10px" pt="10px">
+                                {card.name}
+                            </Heading>
+                            <Text pl="10px">{card.state}</Text>
+                            <Text px="10px" borderRadius="4px" bg="blue.800">
+                                {card.city}
+                            </Text>
+                            <Text pl="10px">{card.job}</Text>
+                            <Text pl="10px" pb="10px">
+                                Joined: {card.joined}
+                            </Text>
+                        </VStack>
+                    </Link>
                 );
             })}
         </Grid>
