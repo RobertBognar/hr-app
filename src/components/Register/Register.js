@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import registration from '../../services/RegisterService';
 
 import { Heading, VStack } from '@chakra-ui/layout';
 import { Input, Box, Button, FormControl, Flex } from '@chakra-ui/react';
-import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 import './Register.css';
@@ -11,11 +11,13 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const chooseFile = useRef(null);
 
     // submit handler
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        registration.register(name, email, password, chooseFile);
     };
 
     return (
@@ -44,6 +46,7 @@ const Register = () => {
                             borderColor="black"
                             borderRadius={'0'}
                             _placeholder={{ color: '#7B7B7B' }}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </Box>
                     <Box width={372} className="boxes">
@@ -57,6 +60,7 @@ const Register = () => {
                             borderColor="black"
                             borderRadius={'0'}
                             _placeholder={{ color: '#7B7B7B' }}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </Box>
                     <Box width={372} className="boxes">
@@ -70,6 +74,7 @@ const Register = () => {
                             borderColor="black"
                             borderRadius={'0'}
                             _placeholder={{ color: '#7B7B7B' }}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </Box>
                     <Box width={372} marginBottom={37} position={'relative'}>
@@ -80,6 +85,7 @@ const Register = () => {
                             placeholder={'Profile photo'}
                             position={'relative'}
                             color={'black'}
+                            outline={'none'}
                             outline={'none'}
                             _placeholder={{ color: 'red' }}
                             border="2px"
@@ -101,7 +107,11 @@ const Register = () => {
                                 </i>
                             </label>
                         </Box>
-                        <Input id="file-upload" type="file"></Input>{' '}
+                        <Input
+                            id="file-upload"
+                            type="file"
+                            ref={chooseFile}
+                        ></Input>{' '}
                     </Box>
                     <Box>
                         <Flex

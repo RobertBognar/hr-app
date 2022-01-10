@@ -6,7 +6,7 @@ import BasicInfo from './components/my-profile-page/BasicInfo';
 import Security from './components/my-profile-page/Security';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Register from './components/Register';
+import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 
