@@ -6,18 +6,20 @@ import Register from './components/Register';
 import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
+import Layout from './components/Layout/Layout';
 
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                <Navbar />
-                <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/board" element={<GuestHomepage />} />
-                </Routes>
+                <Layout>
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/board" element={<GuestHomepage />} />
+                    </Routes>
+                </Layout>
             </BrowserRouter>
         </div>
     );
