@@ -12,7 +12,6 @@ const Card = () => {
                 'repeat(auto-fill,minmax(350px,1fr))',
             ]}
             gap={6}
-            bg="black"
             py="50px"
             px={['15px', '75px', '75px', '75px']}
         >

@@ -6,7 +6,7 @@
     background-color: royalblue;
 }
 
-input[type="file"] {
+input[type='file'] {
     display: none;
 }
 .Inp-choose-file {
@@ -21,18 +21,18 @@ label {
     margin-bottom: 4px;
 }
 
-.custom-file-upload {    
-    border: 1px solid black;
-    background-color: #DEE0E3;
+.custom-file-upload {
+    background-color: #dee0e3;
     padding: 6px 12px;
     margin-top: 5px;
     display: flex;
     cursor: pointer;
     position: absolute;
     right: 10px;
+    color: black;
 }
 
-.custom-file-upload p{
+.custom-file-upload p {
     padding-right: 15px;
 }
 

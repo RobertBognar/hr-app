@@ -11,6 +11,7 @@ import {
     FormLabel,
     Button,
     Link,
+    Flex,
 } from '@chakra-ui/react';
 
 const Login = () => {
@@ -23,14 +24,21 @@ const Login = () => {
     };
     return (
         <form onSubmit={submitHandler}>
-            <VStack w="full" h="full" p="40">
+            <VStack
+                className="bgBlack"
+                w="full"
+                h="full"
+                py="40"
+                minH="calc(100vh - 42px)"
+            >
                 <VStack alignItems="flex-start" textAlign={'left'}>
                     <Text
                         fontWeight="700"
                         fontStyle="normal"
                         letterSpacing="4px"
                         fontSize="28"
-                        marginRight={150}
+                        marginRight={['0', '150px', '150px']}
+                        color="white"
                     >
                         uTeam - Login
                     </Text>
@@ -40,14 +48,16 @@ const Login = () => {
                         columns={1}
                         columnGap={1}
                         rowGap={6}
-                        width="372px"
+                        width={['90vw', '372px', '372px']}
+                        mb="25px"
                     >
                         <GridItem paddingTop="5">
                             <FormControl>
                                 <FormLabel
                                     htmlFor="email"
-                                    fontSize="12px"
+                                    fontSize="14px"
                                     letterSpacing="0.04em"
+                                    color="white"
                                 >
                                     Email
                                 </FormLabel>
@@ -56,9 +66,10 @@ const Login = () => {
                                     placeholder="Email"
                                     value={email}
                                     border="2px solid"
-                                    borderColor="blackAlpha.800"
+                                    borderColor="white"
                                     borderRadius="none"
                                     onChange={(e) => setEmail(e.target.value)}
+                                    color="white"
                                 />
                             </FormControl>
                         </GridItem>
@@ -66,8 +77,9 @@ const Login = () => {
                             <FormControl>
                                 <FormLabel
                                     htmlFor="password"
-                                    fontSize="12px"
+                                    fontSize="14px"
                                     letterSpacing="0.04em"
+                                    color="white"
                                 >
                                     Password
                                 </FormLabel>
@@ -76,8 +88,9 @@ const Login = () => {
                                     placeholder="Password"
                                     value={password}
                                     border="2px solid"
-                                    borderColor="blackAlpha.800"
+                                    borderColor="white"
                                     borderRadius="none"
+                                    color="white"
                                     onChange={(e) =>
                                         setPassword(e.target.value)
                                     }
@@ -85,36 +98,33 @@ const Login = () => {
                             </FormControl>
                         </GridItem>
                     </SimpleGrid>
-                    <SimpleGrid columns={2} columnGap={1} rowGap={6}>
-                        <GridItem marginTop="6">
-                            <Link
-                                width="130px"
-                                fontSize="12px"
-                                lineHeight="13.8px"
-                                marginRight="51"
-                                letterSpacing="0.04em"
-                                textUnderlineOffset="inherit"
-                                onClick={() => navigate('/register')}
-                            >
-                                Don't have an account?
-                            </Link>
-                        </GridItem>
-                        <GridItem>
-                            <Button
-                                type="submit"
-                                width="86px"
-                                height="30px"
-                                marginLeft="99"
-                                marginTop="4"
-                                borderRadius="4px"
-                                background="white"
-                                border="2px solid"
-                                borderColor="blackAlpha.800"
-                            >
-                                Login
-                            </Button>
-                        </GridItem>
-                    </SimpleGrid>
+                    <Flex
+                        align="center"
+                        justify="space-between"
+                        width={['90vw', '372px', '372px']}
+                    >
+                        <Link
+                            fontSize="14px"
+                            lineHeight="13.8px"
+                            letterSpacing="0.04em"
+                            textUnderlineOffset="inherit"
+                            color="white"
+                            onClick={() => navigate('/register')}
+                            as="i"
+                        >
+                            Don't have an account?
+                        </Link>
+
+                        <Button
+                            type="submit"
+                            width="86px"
+                            height="30px"
+                            borderRadius="4px"
+                            background="white"
+                        >
+                            Login
+                        </Button>
+                    </Flex>
                 </VStack>
             </VStack>
         </form>
