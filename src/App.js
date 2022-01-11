@@ -6,7 +6,6 @@ import Register from './components/Register';
 import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
-import DetailsModal from './components/details-modal/DetailsModal';
 
 function App() {
     return (
@@ -18,7 +17,6 @@ function App() {
                     <Route path="/register" element={<Register />} />
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/board" element={<GuestHomepage />} />
-                    <Route path="/details/:id" element={<DetailsModal />} />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -1,25 +1,27 @@
 import { Heading, Text, Grid, VStack, Image } from '@chakra-ui/react';
 import Data from './Data';
-import { Link } from 'react-router-dom';
 
-const Card = () => {
+const Card = ({ handleModal, modal }) => {
     return (
-        <Grid
-            templateColumns={[
-                'repeat(1, 1fr)',
-                'repeat(1, 1fr)',
-                'repeat(2, 1fr)',
-                'repeat(3, 1fr)',
-                'repeat(auto-fill,minmax(350px,1fr))',
-            ]}
-            gap={6}
-            py="50px"
-            px={['15px', '75px', '75px', '75px']}
-        >
-            {Data.map((card, id) => {
-                return (
-                    <Link to={`/details/:${card.id}`} key={id}>
+        <>
+            <Grid
+                templateColumns={[
+                    'repeat(1, 1fr)',
+                    'repeat(1, 1fr)',
+                    'repeat(2, 1fr)',
+                    'repeat(3, 1fr)',
+                    'repeat(auto-fill,minmax(350px,1fr))',
+                ]}
+                gap={6}
+                py="50px"
+                px={['15px', '75px', '75px', '75px']}
+                display={`${!modal ? 'Grid' : 'none'}`}
+            >
+                {Data.map((card, id) => {
+                    return (
                         <VStack
+                            id={card.id}
+                            key={card.id}
                             color="white"
                             cursor="pointer"
                             textAlign="left"
@@ -27,6 +29,7 @@ const Card = () => {
                             mb="50px"
                             border="1px"
                             borderColor="white"
+                            onClick={handleModal}
                         >
                             <Image
                                 w="100%"
@@ -47,10 +50,10 @@ const Card = () => {
                                 Joined: {card.joined}
                             </Text>
                         </VStack>
-                    </Link>
-                );
-            })}
-        </Grid>
+                    );
+                })}
+            </Grid>
+        </>
     );
 };
 

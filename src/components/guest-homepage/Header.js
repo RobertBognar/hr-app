@@ -14,9 +14,12 @@ import {
 } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 
-const Header = () => {
+const Header = ({ modal }) => {
     return (
-        <Box px={['15px', '75px', '75px', '75px']}>
+        <Box
+            px={['15px', '75px', '75px', '75px']}
+            display={`${!modal ? 'Grid' : 'none'}`}
+        >
             <Flex
                 py="25px"
                 align="center"
