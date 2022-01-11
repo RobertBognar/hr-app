@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
     Box,
     Flex,
@@ -12,7 +12,10 @@ import {
     VStack,
     Divider,
     Center,
+    MenuButton,
+    Button,
 } from '@chakra-ui/react';
+import SideNavTabs from './SideNavTabs';
 
 //Hardcoded SideNavigation, Needs Update When AuthContext Is Done
 //Separate Menu Items Depends On User Role With AuthContext
@@ -21,47 +24,45 @@ const SideNav = () => {
     const navigate = useNavigate();
     return (
         <Box backgroundColor="transparent" zIndex={1} position={'absolute'}>
-            <VStack alignItems="flex-start">
-                <Menu>
-                    <Text
-                        marginTop={10}
-                        fontSize={24}
-                        lineHeight={'27.6px'}
-                        marginLeft={5}
-                    >
-                        Menu
-                    </Text>
-                    <MenuItem>
-                        <ChevronRightIcon />
-                        <Text paddingLeft={3}>Pending For Approval</Text>
-                    </MenuItem>
-                    <MenuItem>
-                        <ChevronRightIcon />
-                        <Text paddingLeft={3}>Team</Text>
-                    </MenuItem>
-                    <MenuItem>
-                        <ChevronRightIcon />
-                        <Text paddingLeft={3}>Questions</Text>
-                    </MenuItem>
-                    <MenuItem>
-                        <ChevronRightIcon />
-                        <Text paddingLeft={3}>Company Info</Text>
-                    </MenuItem>
-                    <MenuItem>
-                        <ChevronRightIcon />
-                        <Text paddingLeft={3}>My Profile</Text>
-                    </MenuItem>
-                </Menu>
-            </VStack>
-            <Center height='600px'>
-                <Divider
-                    left={240}
-                    top={0}
-                    width={'100%'}
-                    position={'absolute'}
-                    orientation="vertical"
-                />
-            </Center>
+            <Menu>
+                {({ isOpen }) => (
+                    <>
+                        <MenuButton
+                            isActive={isOpen}
+                            as={Button}
+                            rightIcon={<ChevronDownIcon />}
+                            display={['flex', 'flex', 'none', 'none']}
+                            marginTop={1}
+                        >
+                            {isOpen ? 'Close Menu' : 'Open Menu'}
+                        </MenuButton>
+                        <MenuList backgroundColor={'whiteAlpha.900'}>
+                            <MenuItem>Pending For Approval</MenuItem>
+                            <MenuItem onClick={() => navigate('/board')}>
+                                Team
+                            </MenuItem>
+                            <MenuItem>Questions</MenuItem>
+                            <MenuItem>Company</MenuItem>
+                            <MenuItem onClick={() => navigate('/profile')}>
+                                My Profile
+                            </MenuItem>
+                        </MenuList>
+                    </>
+                )}
+            </Menu>
+            <SideNavTabs />
+            <Divider
+                left={240}
+                top={0}
+                width={'100%'}
+                position={'absolute'}
+                orientation="vertical"
+                height="895px"
+                borderLeftWidth={'1px'}
+                borderLeftStyle={'solid'}
+                borderLeftColor={'#000000'}
+                display={['none', 'none', 'flex', 'flex']}
+            />
         </Box>
     );
 };

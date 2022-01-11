@@ -1,0 +1,48 @@
+import React from 'react';
+import { Menu, MenuItem, Text, VStack } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { ChevronRightIcon } from '@chakra-ui/icons';
+
+const SideNavTabs = () => {
+    const navigate = useNavigate();
+    return (
+        <VStack
+            display={['none', 'none', 'flex', 'flex']}
+            alignItems="flex-start"
+        >
+            <Menu>
+                <Text
+                    onClick={() => navigate('/')}
+                    marginTop={10}
+                    fontSize={24}
+                    lineHeight={'27.6px'}
+                    marginLeft={5}
+                >
+                    Menu
+                </Text>
+                <MenuItem>
+                    <ChevronRightIcon />
+                    <Text paddingLeft={3}>Pending For Approval</Text>
+                </MenuItem>
+                <MenuItem onClick={() => navigate('/board')}>
+                    <ChevronRightIcon />
+                    <Text paddingLeft={3}>Team</Text>
+                </MenuItem>
+                <MenuItem>
+                    <ChevronRightIcon />
+                    <Text paddingLeft={3}>Questions</Text>
+                </MenuItem>
+                <MenuItem>
+                    <ChevronRightIcon />
+                    <Text paddingLeft={3}>Company Info</Text>
+                </MenuItem>
+                <MenuItem onClick={() => navigate('/profile')}>
+                    <ChevronRightIcon />
+                    <Text paddingLeft={3}>My Profile</Text>
+                </MenuItem>
+            </Menu>
+        </VStack>
+    );
+};
+
+export default SideNavTabs;
