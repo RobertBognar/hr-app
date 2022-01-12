@@ -6,7 +6,11 @@ import Register from './components/Register';
 import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
+
 import Layout from './components/Layout/Layout';
+
+import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
+
 
 function App() {
     return (
