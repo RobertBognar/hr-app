@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import auth from '../../services/AuthService';
+import Auth from '../../services/AuthService';
 import {
     Input,
     VStack,
@@ -22,8 +22,13 @@ const Login = () => {
     //Submit Handler
     const submitHandler = (event) => {
         event.preventDefault();
-        auth.login(email, password);
+
+        Auth(email, password);
     };
+
+    //  if (!loading && localStorage.getItem('userData')) {
+    //setUserData(JSON.parse(localStorage.getItem('userData')));
+    // }
     return (
         <form onSubmit={submitHandler}>
             <VStack
