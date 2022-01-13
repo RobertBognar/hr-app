@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import registration from '../../services/RegisterService';
 
 import { Heading, VStack } from '@chakra-ui/layout';
+import { useNavigate } from 'react-router-dom';
+
 import {
     Input,
     Box,
@@ -21,11 +23,13 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const chooseFile = useRef(null);
 
     // submit handler
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        registration.register(name, email, password, chooseFile);
     };
 
     return (
@@ -64,6 +68,8 @@ const Register = () => {
                             placeholder={'Name'}
                             border="2px"
                             borderRadius={'0'}
+                            _placeholder={{ color: '#7B7B7B' }}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </Box>
                     <Box width="100%" className="boxes">
@@ -75,6 +81,8 @@ const Register = () => {
                             placeholder={'Email'}
                             border="2px"
                             borderRadius={'0'}
+                            _placeholder={{ color: '#7B7B7B' }}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </Box>
                     <Box width="100%" className="boxes">
@@ -86,6 +94,8 @@ const Register = () => {
                             placeholder={'Password'}
                             border="2px"
                             borderRadius={'0'}
+                            _placeholder={{ color: '#7B7B7B' }}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </Box>
                     <Box width="100%" marginBottom={37} position={'relative'}>
@@ -96,6 +106,7 @@ const Register = () => {
                             placeholder={'Profile photo'}
                             position={'relative'}
                             color={'black'}
+                            outline={'none'}
                             outline={'none'}
                             _placeholder={{ color: 'red' }}
                             border="2px"
@@ -117,7 +128,11 @@ const Register = () => {
                                 </i>
                             </label>
                         </Box>
-                        <Input id="file-upload" type="file"></Input>{' '}
+                        <Input
+                            id="file-upload"
+                            type="file"
+                            ref={chooseFile}
+                        ></Input>{' '}
                     </Box>
                     <Box>
                         <Flex
