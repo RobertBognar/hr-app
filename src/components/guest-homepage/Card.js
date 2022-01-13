@@ -1,7 +1,7 @@
 import { Heading, Text, Grid, VStack, Image } from '@chakra-ui/react';
 import Data from './Data';
 
-const Card = ({ handleModal, modal }) => {
+const Card = ({ onClick }) => {
     return (
         <>
             <Grid
@@ -15,7 +15,6 @@ const Card = ({ handleModal, modal }) => {
                 gap={6}
                 py="50px"
                 px={['15px', '75px', '75px', '75px']}
-                display={`${!modal ? 'Grid' : 'none'}`}
             >
                 {Data.map((card, id) => {
                     return (
@@ -29,7 +28,7 @@ const Card = ({ handleModal, modal }) => {
                             mb="50px"
                             border="1px"
                             borderColor="white"
-                            onClick={handleModal}
+                            onClick={() => onClick(card)}
                         >
                             <Image
                                 w="100%"

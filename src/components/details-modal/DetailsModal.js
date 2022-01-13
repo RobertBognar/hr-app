@@ -1,34 +1,33 @@
-import { Heading, Text, Flex, Image, Box, Button } from '@chakra-ui/react';
-import Data from '../guest-homepage/Data';
+import {
+    Heading,
+    Text,
+    Flex,
+    Image,
+    Box,
+    Button,
+    ModalOverlay,
+    ModalContent,
+} from '@chakra-ui/react';
 
-const DetailsModal = ({ modal, itemID, setModal }) => {
-    if (!modal) {
-        return <></>;
-    } else {
-        const singleItem = Data.find((item) => item.id === +itemID);
-        const { name, state, city, job, image, joined, hobbies, petName } =
-            singleItem;
+const DetailsModal = ({ onClose, cardDetails }) => {
+    const { name, state, city, job, image, joined, hobbies, petName } =
+        cardDetails;
 
-        let hobbiesArr = [];
-        for (const key in hobbies) {
-            hobbiesArr.push(hobbies[key]);
-        }
-        const hobbi = hobbiesArr.join(', ');
+    let hobbiesArr = [];
+    for (const key in hobbies) {
+        hobbiesArr.push(hobbies[key]);
+    }
+    const hobbi = hobbiesArr.join(', ');
 
-        return (
-            <Flex
-                display={`${modal ? 'flex' : 'none'}`}
-                direction="column"
-                w="100%"
-                className="bgBlack"
-                minH="calc(100vh - 42px)"
+    return (
+        <>
+            <ModalOverlay />
+            <ModalContent
                 color="white"
-                p={[
-                    '10vh 75px 0 75px',
-                    '10vh 75px 0 75px',
-                    '10vh 175px 0 175px',
-                    '10vh 200px 0 200px',
-                ]}
+                bg="black"
+                border="1px"
+                borderColor="white"
+                p={['0', '0', '25px', '25px']}
             >
                 <Flex direction={['column', 'column', 'column', 'row']}>
                     <Box
@@ -43,6 +42,7 @@ const DetailsModal = ({ modal, itemID, setModal }) => {
                             objectFit="cover"
                             src={image}
                             alt={name}
+                            borderRadius="5px"
                         />
                     </Box>
                     <Heading
@@ -53,6 +53,7 @@ const DetailsModal = ({ modal, itemID, setModal }) => {
                         {name}
                     </Heading>
                 </Flex>
+
                 <Text pl="10px" pt="25px">
                     {state}, {city}
                 </Text>
@@ -90,19 +91,20 @@ const DetailsModal = ({ modal, itemID, setModal }) => {
                         </Text>{' '}
                     </Text>
                 )}
+
                 <Button
-                    ml="10px"
-                    mt="30px"
-                    bg="white"
-                    color="black"
                     colorScheme="black"
-                    onClick={() => setModal(false)}
+                    mr={3}
+                    color="black"
+                    bg="white"
+                    mt="30px"
+                    onClick={onClose}
                 >
                     Back
                 </Button>
-            </Flex>
-        );
-    }
+            </ModalContent>
+        </>
+    );
 };
 
 export default DetailsModal;
