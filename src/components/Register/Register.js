@@ -1,5 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import registration from '../../services/RegisterService';
+import company from '../../services/CompaniesService';
+import upload from '../../services/UploadService';
+import axios from 'axios';
 
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
@@ -23,14 +26,32 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const chooseFile = useRef(null);
+    const [chooseFile, setChooseFile] = useState(null);
+
+    console.log(chooseFile);
+    console.log(name);
 
     // submit handler
 
+    // const getToken = registration.register(name, email, password);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        registration.register(name, email, password, chooseFile);
+        const formData = new FormData();
+        console.log(formData);
+        formData.append('selectedFile', chooseFile);
+        console.log(formData);
+
+        registration.register(name, email, password, formData); // ne ide chooseFile
+        // registration.uploadFile(formData);
     };
+
+    // useEffect(() => {
+
+    //     setToken()
+    // }, [token])
+
+    // company.setCompany('quantox');
 
     return (
         <VStack
@@ -130,8 +151,8 @@ const Register = () => {
                         <Input
                             id="file-upload"
                             type="file"
-                            ref={chooseFile}
-                        ></Input>{' '}
+                            onChange={(e) => setChooseFile(e.target.files[0])}
+                        />
                     </Box>
                     <Box>
                         <Flex

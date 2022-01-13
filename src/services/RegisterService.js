@@ -1,18 +1,44 @@
 import http from './HttpService';
 
 const registration = {
-    register: function (name, email, password, chooseFile) {
-        http.post('/auth/local/register', {
+    register: async function (name, email, password, file) {
+        const response = await http.post('/auth/local/register', {
             name: name,
             email: email,
             password: password,
-            chooseFile: chooseFile.current.value,
-        })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((error) => console.log(error.message));
+        });
+        console.log(response);
+        const token = await response.data.jwt;
+        // localStorage.setItem('user', JSON.stringify(token));
+        console.log(token);
+        console.log(file);
+        // http.headers.post['Authorization'] = `Bearer ${token}`;
+        try {
+            const responseUpload = await http.post('/upload', file, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log('dadadadafggggggg', responseUpload);
+        } catch (e) {
+            console.log('!!!!', e);
+        }
+        // const responseUpload = await http({
+        //     method: 'post',
+        //     url: '/upload',
+        //     data: file,
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data',
+        //         Authorization: `Bearer ${token}`,
+        //     },
+        // });
     },
 };
 
 export default registration;
+
+// http.get('/companies', {
+//     headers: {
+//         Authorization: `Bearer ${data}`,
+//     },
+// });
