@@ -6,14 +6,15 @@ const Auth = (userEmail, userPassword) => {
         password: userPassword,
     })
         .then((response) => {
-            console.log('User profile ', response.data.user);
-            let userArray = [];
-            if (localStorage.getItem('userData')) {
-                userArray.push(JSON.parse(localStorage.getItem('userData')));
-            }
             localStorage.setItem(
                 'userData',
                 JSON.stringify(response.data.user),
+            );
+            console.log('User profile ', response.data.user);
+
+            localStorage.setItem(
+                'userToken',
+                JSON.stringify(response.data.jwt),
             );
             console.log('User token ', response.data.jwt);
         })
