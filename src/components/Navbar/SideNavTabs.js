@@ -1,7 +1,16 @@
 import React from 'react';
-import { Menu, MenuItem, Text, VStack } from '@chakra-ui/react';
+import {
+    Button,
+    Divider,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Text,
+    VStack,
+} from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 const SideNavTabs = () => {
     const navigate = useNavigate();
@@ -40,6 +49,18 @@ const SideNavTabs = () => {
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>My Profile</Text>
                 </MenuItem>
+                <Divider
+                    left={240}
+                    top={-2}
+                    width={'100%'}
+                    position={'absolute'}
+                    orientation="vertical"
+                    height="895px"
+                    borderLeftWidth={'1px'}
+                    borderLeftStyle={'solid'}
+                    borderLeftColor={'#000000'}
+                    display={['none', 'none', 'flex', 'flex']}
+                />
             </Menu>
         </VStack>
     );

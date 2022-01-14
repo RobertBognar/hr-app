@@ -8,10 +8,6 @@ import {
     Menu,
     MenuItem,
     MenuList,
-    Text,
-    VStack,
-    Divider,
-    Center,
     MenuButton,
     Button,
 } from '@chakra-ui/react';
@@ -51,18 +47,6 @@ const SideNav = () => {
                 )}
             </Menu>
             <SideNavTabs />
-            <Divider
-                left={240}
-                top={0}
-                width={'100%'}
-                position={'absolute'}
-                orientation="vertical"
-                height="895px"
-                borderLeftWidth={'1px'}
-                borderLeftStyle={'solid'}
-                borderLeftColor={'#000000'}
-                display={['none', 'none', 'flex', 'flex']}
-            />
         </Box>
     );
 };
