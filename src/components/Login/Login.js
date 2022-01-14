@@ -25,7 +25,7 @@ const Login = () => {
     };
 
     if (loginSuccessfull) {
-        navigate('../profile', { replace: true });
+        navigate('/profile', { replace: true });
     }
     return (
         <form onSubmit={submitHandler}>
