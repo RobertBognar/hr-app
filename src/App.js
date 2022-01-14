@@ -29,7 +29,6 @@ function App() {
                     </Routes>
                 </AuthLayout>
             </BrowserRouter>
-            <BrowserRouter></BrowserRouter>
         </div>
     );
 }
