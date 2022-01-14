@@ -1,0 +1,46 @@
+import { createContext, useState, useContext, useEffect } from 'react';
+import Auth from '../services/AuthService';
+
+export const AuthContext = createContext('');
+export const useAuthContext = () => useContext(AuthContext);
+export const AuthProvider = ({ children }) => {
+    const [userData, setUserData] = useState();
+    const [userToken, setUserToken] = useState();
+    const [loginSuccessfull, setLoginSuccessfull] = useState(false);
+
+    async function login(user, password) {
+        let loginData = await Auth.login(user, password);
+
+        if (loginData) {
+            setLoginSuccessfull(true);
+            localStorage.setItem(
+                'userData',
+                JSON.stringify(loginData.data.user),
+            );
+            setUserData(loginData.data.user);
+            localStorage.setItem('userToken', loginData.data.jwt);
+            setUserToken(loginData.data.jwt);
+        } else {
+            setLoginSuccessfull(false);
+            alert('Login failed');
+        }
+    }
+    useEffect(() => {
+        if (localStorage.getItem('userData')) {
+            setUserData(localStorage.getItem('userData'));
+        }
+        if (localStorage.getItem('userToken')) {
+            setUserToken(localStorage.getItem('userToken'));
+        }
+        console.log(userData);
+        console.log(userToken);
+    }, [userToken]);
+
+    return (
+        <AuthContext.Provider
+            value={{ userData, userToken, login, loginSuccessfull }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
+};

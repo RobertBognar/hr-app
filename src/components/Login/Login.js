@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import auth from '../../services/AuthService';
+import { useAuthContext } from '../../context/AuthContext';
 import {
     Input,
     VStack,
@@ -15,15 +15,18 @@ import {
 } from '@chakra-ui/react';
 
 const Login = () => {
-    const navigate = useNavigate();
+    let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    //Submit Handler
+    const { login, loginSuccessfull } = useAuthContext();
     const submitHandler = (event) => {
         event.preventDefault();
-        auth.login(email, password);
+        login(email, password);
     };
+
+    if (loginSuccessfull) {
+        navigate('/profile', { replace: true });
+    }
     return (
         <form onSubmit={submitHandler}>
             <VStack
