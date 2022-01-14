@@ -26,26 +26,33 @@ const SideNavTabs = () => {
                     fontSize={24}
                     lineHeight={'27.6px'}
                     marginLeft={5}
+                    backgroundColor={'whiteAlpha.600'}
                 >
                     Menu
                 </Text>
-                <MenuItem>
+                <MenuItem backgroundColor={'whiteAlpha.600'}>
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>Pending For Approval</Text>
                 </MenuItem>
-                <MenuItem onClick={() => navigate('/board')}>
+                <MenuItem
+                    onClick={() => navigate('/board')}
+                    backgroundColor={'whiteAlpha.600'}
+                >
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>Team</Text>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem backgroundColor={'whiteAlpha.600'}>
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>Questions</Text>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem backgroundColor={'whiteAlpha.600'}>
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>Company Info</Text>
                 </MenuItem>
-                <MenuItem onClick={() => navigate('/profile')}>
+                <MenuItem
+                    onClick={() => navigate('/profile')}
+                    backgroundColor={'whiteAlpha.600'}
+                >
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>My Profile</Text>
                 </MenuItem>
@@ -58,7 +65,7 @@ const SideNavTabs = () => {
                     height="895px"
                     borderLeftWidth={'1px'}
                     borderLeftStyle={'solid'}
-                    borderLeftColor={'#000000'}
+                    borderLeftColor={'whiteAlpha.900'}
                     display={['none', 'none', 'flex', 'flex']}
                 />
             </Menu>

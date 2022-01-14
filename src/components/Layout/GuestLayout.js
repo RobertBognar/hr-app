@@ -1,4 +1,3 @@
-import Login from '../Login/Login';
 import Navbar from '../Navbar/Navbar';
 
 //Unauthorized Guest View Layout
