@@ -39,7 +39,7 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         console.log(formData);
-        formData.append('selectedFile', chooseFile);
+        formData.append('files', chooseFile);
         console.log(formData);
 
         registration.register(name, email, password, formData); // ne ide chooseFile
@@ -126,8 +126,6 @@ const Register = () => {
                             type="text"
                             placeholder={'Profile photo'}
                             position={'relative'}
-                            color={'black'}
-                            outline={'none'}
                             outline={'none'}
                             _placeholder={{ color: 'red' }}
                             border="2px"

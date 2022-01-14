@@ -8,7 +8,7 @@ const registration = {
             password: password,
         });
         console.log(response);
-        const token = await response.data.jwt;
+        const token = response.data.jwt;
         // localStorage.setItem('user', JSON.stringify(token));
         console.log(token);
         console.log(file);
