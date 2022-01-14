@@ -7,6 +7,8 @@ export default [
         job: 'PHP Developer',
         image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
         joined: 'Jan 23rd, 2021',
+        hobbies: ['Football', 'Basketball', 'Watching Movies'],
+        petName: 'Rex',
     },
     {
         id: 2,
@@ -16,6 +18,8 @@ export default [
         job: 'TypeScript/Angular Developer',
         image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Aug 18th, 2020',
+        hobbies: ['Robot combat', 'Video Games', 'Machining'],
+        petName: 'Slavisa',
     },
     {
         id: 3,
@@ -25,6 +29,8 @@ export default [
         job: 'Tech Lead/Solution Architect',
         image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Dec 30th, 2017',
+        hobbies: ['Fantasy Games', 'Beatboxing'],
+        // petName: 'Slavisa',
     },
     {
         id: 4,
@@ -34,6 +40,8 @@ export default [
         job: 'QA',
         image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
         joined: 'Nov 3rd, 2015',
+        hobbies: ['Watching Movies', 'Chess', 'Video making'],
+        petName: 'Lesi',
     },
     {
         id: 5,
@@ -43,6 +51,8 @@ export default [
         job: 'HR',
         image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Sep 23rd, 2021',
+        hobbies: ['Hula hooping', 'Singing', 'Fitness'],
+        petName: 'Ozzy',
     },
     {
         id: 6,
@@ -52,6 +62,8 @@ export default [
         job: 'Full Stack Engineer',
         image: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80',
         joined: 'May 21st, 2018',
+        hobbies: ['Drinking Coffee With Friends', 'Watching Series'],
+        petName: 'Fluffy',
     },
     {
         id: 7,
@@ -61,6 +73,8 @@ export default [
         job: 'Back End Engineer',
         image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
         joined: 'Sep 4th, 2021',
+        hobbies: ['Fashion', 'Dance'],
+        // petName: 'Fluffy',
     },
     {
         id: 8,
@@ -70,6 +84,8 @@ export default [
         job: 'Chief Executive Officer',
         image: 'https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Jan 1st, 2018',
+        hobbies: ['Reading', 'Cooking'],
+        petName: 'Max',
     },
     {
         id: 9,
@@ -79,6 +95,8 @@ export default [
         job: 'Front End Developer',
         image: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         joined: 'Sep 23rd, 2019',
+        hobbies: ['CrossFit', 'Cooking'],
+        // petName: 'Max',
     },
     {
         id: 10,
@@ -88,6 +106,8 @@ export default [
         job: 'Data Scientist',
         image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         joined: 'Dec 3rd, 2018',
+        hobbies: ['Art', 'Beer tasting', 'Fishing'],
+        petName: 'Dzeki',
     },
     {
         id: 11,
@@ -97,6 +117,8 @@ export default [
         job: 'PHP Developer',
         image: 'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=689&q=80',
         joined: 'May 16th , 2019',
+        hobbies: ['Football', 'Basketball', 'Watching Movies'],
+        petName: 'Rex',
     },
     {
         id: 12,
@@ -106,6 +128,8 @@ export default [
         job: 'QA',
         image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80',
         joined: 'Sep 20th, 2021',
+        hobbies: ['Robot combat', 'Video Games', 'Machining'],
+        petName: 'Slavisa',
     },
     {
         id: 13,
@@ -115,6 +139,8 @@ export default [
         job: 'Tech Lead/Solution Architect',
         image: 'https://images.unsplash.com/photo-1629467057571-42d22d8f0cbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=698&q=80',
         joined: 'Jan 19th, 2018',
+        hobbies: ['Fantasy Games', 'Beatboxing'],
+        // petName: 'Slavisa',
     },
     {
         id: 14,
@@ -124,6 +150,8 @@ export default [
         job: 'Python Developer',
         image: 'https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Mar 23rd, 2019',
+        hobbies: ['Watching Movies', 'Chess', 'Video making'],
+        petName: 'Lesi',
     },
     {
         id: 15,
@@ -133,6 +161,8 @@ export default [
         job: 'Front End Developer',
         image: 'https://images.unsplash.com/photo-1632922267756-9b71242b1592?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Sep 23rd, 2021',
+        hobbies: ['Hula hooping', 'Singing', 'Fitness'],
+        petName: 'Ozzy',
     },
     {
         id: 16,
@@ -142,6 +172,8 @@ export default [
         job: 'Full Stack Engineer',
         image: 'https://images.unsplash.com/photo-1626586066636-a1523dd2141b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Mar 19th, 2019',
+        hobbies: ['Drinking Coffee With Friends', 'Watching Series'],
+        petName: 'Fluffy',
     },
     {
         id: 17,
@@ -151,6 +183,8 @@ export default [
         job: 'Front End Developer',
         image: 'https://images.unsplash.com/photo-1636041241164-3d20e98d43a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
         joined: 'Nov 23rd, 2019',
+        hobbies: ['Fashion', 'Dance'],
+        // petName: 'Fluffy',
     },
     {
         id: 18,
@@ -160,6 +194,8 @@ export default [
         job: 'Back End Developer',
         image: 'https://images.unsplash.com/photo-1636041282858-351171ff944c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
         joined: 'Mar 2nd, 2021',
+        hobbies: ['Reading', 'Cooking'],
+        petName: 'Max',
     },
     {
         id: 19,
@@ -169,6 +205,8 @@ export default [
         job: 'DevOps Engineer',
         image: 'https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
         joined: 'Apr 14th, 2018',
+        hobbies: ['CrossFit', 'Cooking'],
+        // petName: 'Max',
     },
     {
         id: 20,
@@ -178,5 +216,7 @@ export default [
         job: 'Cloud Architect',
         image: 'https://images.unsplash.com/photo-1558439749-b53250f4ffb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
         joined: 'Mar 4th, 2019',
+        hobbies: ['Art', 'Beer tasting', 'Fishing'],
+        petName: 'Dzeki',
     },
 ];

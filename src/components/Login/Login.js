@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import auth from '../../services/AuthService';
+import { useAuthContext } from '../../context/AuthContext';
 import {
     Input,
     VStack,
@@ -15,15 +15,18 @@ import {
 } from '@chakra-ui/react';
 
 const Login = () => {
-    const navigate = useNavigate();
+    let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    //Submit Handler
+    const { login, loginSuccessfull } = useAuthContext();
     const submitHandler = (event) => {
         event.preventDefault();
-        auth.login(email, password);
+        login(email, password);
     };
+
+    if (loginSuccessfull) {
+        navigate('/profile', { replace: true });
+    }
     return (
         <form onSubmit={submitHandler}>
             <VStack
@@ -45,12 +48,15 @@ const Login = () => {
                         uTeam - Login
                     </Text>
                 </VStack>
-                <VStack>
+                <VStack
+                    width={['100%', '372px', '372px']}
+                    maxWidth="calc(100% - 125px)"
+                >
                     <SimpleGrid
                         columns={1}
                         columnGap={1}
                         rowGap={6}
-                        width={['90vw', '372px', '372px']}
+                        width="100%"
                         mb="25px"
                     >
                         <GridItem paddingTop="5">
@@ -100,11 +106,7 @@ const Login = () => {
                             </FormControl>
                         </GridItem>
                     </SimpleGrid>
-                    <Flex
-                        align="center"
-                        justify="space-between"
-                        width={['90vw', '372px', '372px']}
-                    >
+                    <Flex align="center" justify="space-between" width="100%">
                         <Link
                             fontSize="14px"
                             lineHeight="13.8px"

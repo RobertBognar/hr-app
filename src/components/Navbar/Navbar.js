@@ -20,7 +20,6 @@ const Navbar = () => {
     const navigate = useNavigate();
     return (
         <Box
-            // bg="rgba(241, 241, 241, 1)"
             bgGradient="linear(to-r, rgb(71,124,54), rgb(92, 153, 62))"
             color="black"
             border="1px"
