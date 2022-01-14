@@ -2,7 +2,7 @@ import './App.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Register from './components/Register';
+import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
