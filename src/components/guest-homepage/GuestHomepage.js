@@ -19,10 +19,10 @@ const GuestHomepage = () => {
             <Header />
             <Card onClick={(item) => handleModal(item)} />
             <Modal
+                size="xl"
                 blockScrollOnMount={true}
                 isOpen={isOpen}
                 onClose={onClose}
-                size="xl"
             >
                 <DetailsModal cardDetails={cardDetails} onClose={onClose} />
             </Modal>
