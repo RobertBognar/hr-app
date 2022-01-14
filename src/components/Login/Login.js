@@ -48,12 +48,15 @@ const Login = () => {
                         uTeam - Login
                     </Text>
                 </VStack>
-                <VStack>
+                <VStack
+                    width={['100%', '372px', '372px']}
+                    maxWidth="calc(100% - 125px)"
+                >
                     <SimpleGrid
                         columns={1}
                         columnGap={1}
                         rowGap={6}
-                        width={['90vw', '372px', '372px']}
+                        width="100%"
                         mb="25px"
                     >
                         <GridItem paddingTop="5">
@@ -103,11 +106,7 @@ const Login = () => {
                             </FormControl>
                         </GridItem>
                     </SimpleGrid>
-                    <Flex
-                        align="center"
-                        justify="space-between"
-                        width={['90vw', '372px', '372px']}
-                    >
+                    <Flex align="center" justify="space-between" width="100%">
                         <Link
                             fontSize="14px"
                             lineHeight="13.8px"
