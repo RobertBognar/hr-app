@@ -6,11 +6,13 @@ export const useAuthContext = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     const [userData, setUserData] = useState();
     const [userToken, setUserToken] = useState();
+    const [loginSuccessfull, setLoginSuccessfull] = useState(false);
 
     async function login(user, password) {
         let loginData = await Auth.login(user, password);
 
         if (loginData) {
+            setLoginSuccessfull(true);
             localStorage.setItem(
                 'userData',
                 JSON.stringify(loginData.data.user),
@@ -19,7 +21,8 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('userToken', loginData.data.jwt);
             setUserToken(loginData.data.jwt);
         } else {
-            alert('Invalid email or password');
+            setLoginSuccessfull(false);
+            alert('Login failed');
         }
     }
     useEffect(() => {
@@ -34,7 +37,9 @@ export const AuthProvider = ({ children }) => {
     }, [userToken]);
 
     return (
-        <AuthContext.Provider value={{ userData, userToken, login }}>
+        <AuthContext.Provider
+            value={{ userData, userToken, login, loginSuccessfull }}
+        >
             {children}
         </AuthContext.Provider>
     );

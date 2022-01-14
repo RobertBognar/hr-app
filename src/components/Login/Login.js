@@ -15,15 +15,18 @@ import {
 } from '@chakra-ui/react';
 
 const Login = () => {
-    const navigate = useNavigate();
+    let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useAuthContext();
+    const { login, loginSuccessfull } = useAuthContext();
     const submitHandler = (event) => {
         event.preventDefault();
         login(email, password);
     };
 
+    if (loginSuccessfull) {
+        navigate('../profile', { replace: true });
+    }
     return (
         <form onSubmit={submitHandler}>
             <VStack
