@@ -101,7 +101,6 @@ const QuestionsTypeImage = ({ image, onImageChange, fileChooser }) => {
                             ref={fileChooser}
                             display="none"
                             onChange={onImageChange}
-                            className="filetype"
                             accept="image/*"
                         />
                     </InputGroup>
