@@ -3,7 +3,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 const Header = () => {
     return (
-        <Flex justifyContent="space-around">
+        <Flex justifyContent={{ base: 'space-evenly', sm: 'space-around' }}>
             <Heading
                 fontWeight="bold"
                 fontSize="28px"
@@ -16,13 +16,13 @@ const Header = () => {
             </Heading>
 
             <Button
-                w="231px"
+                w={{ base: '150px', sm: '231px' }}
                 h="32px"
                 background="#FFFFFF"
                 border="2px solid #000000"
                 borderRadius="4px"
                 fontWeight="bold"
-                fontSize="16px"
+                fontSize={{ base: '12px', sm: '16px' }}
                 lineHeight="18px"
                 color="#000000"
                 fontFamily="Comic Neue"
