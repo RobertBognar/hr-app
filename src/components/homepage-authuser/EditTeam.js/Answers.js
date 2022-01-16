@@ -28,7 +28,7 @@ const Answers = () => {
     return (
         <Stack
             border="1px solid white"
-            w={['274px', '445px', '445px']}
+            w={['73vw', '445px', '445px']}
             color="white"
         >
             <Box

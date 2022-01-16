@@ -26,7 +26,7 @@ const BasicInfo = () => {
             <Stack
                 border="1px solid white"
                 margin="auto"
-                w={['274px', '445px', '445px']}
+                w={['73vw', '445px', '445px']}
             >
                 <Box
                     borderBottom="1px solid white"
