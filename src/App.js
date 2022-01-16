@@ -8,6 +8,7 @@ import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
 import { AuthProvider } from './context/AuthContext';
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
+import EditTeam from './components/homepage-authuser/EditTeam.js/EditTeam';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         <Route path="/profile" element={<ProfilePage />} />
                         <Route path="/board" element={<GuestHomepage />} />
                         <Route path="/team" element={<HomepageAuthUser />} />
+                        <Route path="/team/:id/edit" element={<EditTeam />} />
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>

@@ -3,13 +3,13 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 const Header = () => {
     return (
-        <Flex justifyContent="space-around" mt={8.5}>
+        <Flex justifyContent="space-around">
             <Heading
                 fontWeight="bold"
                 fontSize="28px"
                 lineHeight="32px"
                 letterSpacing="0.04em"
-                color="#000000"
+                color="white"
                 fontFamily="Comic Neue"
             >
                 Team
