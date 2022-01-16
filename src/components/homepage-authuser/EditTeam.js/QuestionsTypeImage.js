@@ -18,9 +18,10 @@ const QuestionsTypeImage = ({ image, onImageChange, fileChooser }) => {
                 fontSize={{ base: '16px', sm: '20px' }}
                 lineHeight="23px"
                 color="white"
-                ml="24px"
+                ml="28px"
                 mt="22px"
                 mb="23px"
+                mr={{ base: '10px', sm: 0 }}
             >
                 Question 3 - Take a photo of your Christmas...
             </Heading>
@@ -29,14 +30,14 @@ const QuestionsTypeImage = ({ image, onImageChange, fileChooser }) => {
                 <Image
                     src={image}
                     alt={image}
-                    ml="22px"
+                    ml="28px"
                     mr="13px"
                     mb="36px"
                     border="1px solid white"
-                    minW={{ base: '120px', sm: '172px' }}
-                    minH={{ base: '120px', sm: '124px' }}
-                    maxW={{ base: '120px', sm: '172px' }}
-                    maxH={{ base: '120px', sm: '124px' }}
+                    minW={{ base: '110px', sm: '172px' }}
+                    minH={{ base: '110px', sm: '124px' }}
+                    maxW={{ base: '110px', sm: '172px' }}
+                    maxH={{ base: '110px', sm: '124px' }}
                 />
 
                 <FormControl>
@@ -53,7 +54,7 @@ const QuestionsTypeImage = ({ image, onImageChange, fileChooser }) => {
                         alignItems="center"
                         border="2px solid"
                         borderRadius="none"
-                        w={{ base: '100px', sm: '206px' }}
+                        w={{ base: '93px', sm: '202px' }}
                         h={{ base: '30px', sm: '50px' }}
                     >
                         <FormLabel
