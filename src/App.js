@@ -8,7 +8,7 @@ import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
 import { AuthProvider } from './context/AuthContext';
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
-import EditTeam from './components/homepage-authuser/EditTeam.js/EditTeam';
+import EditTeam from './components/edit-team/EditTeam';
 
 function App() {
     return (
