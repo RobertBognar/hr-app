@@ -8,6 +8,8 @@ import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
 import { AuthProvider } from './context/AuthContext';
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
+import ProtectedRoute from './components/Routes/ProtectedRoute';
+import GuestRoute from './components/Routes/GuestRoute';
 
 function App() {
     return (
@@ -16,11 +18,18 @@ function App() {
                 <BrowserRouter>
                     <Navbar />
                     <Routes>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/profile" element={<ProfilePage />} />
-                        <Route path="/board" element={<GuestHomepage />} />
-                        <Route path="/team" element={<HomepageAuthUser />} />
+                        <Route element={<GuestRoute />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </Route>
+                        <Route element={<ProtectedRoute />}>
+                            <Route path="/profile" element={<ProfilePage />} />
+                            <Route
+                                path="/team"
+                                element={<HomepageAuthUser />}
+                            />
+                            <Route path="/board" element={<GuestHomepage />} />
+                        </Route>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
