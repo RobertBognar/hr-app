@@ -1,21 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import registration from '../../services/RegisterService';
-import company from '../../services/CompaniesService';
-import upload from '../../services/UploadService';
-import axios from 'axios';
 
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
 
-import {
-    Input,
-    Box,
-    Button,
-    FormControl,
-    Flex,
-    Link,
-    Text,
-} from '@chakra-ui/react';
+import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
@@ -28,30 +17,14 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [chooseFile, setChooseFile] = useState(null);
 
-    console.log(chooseFile);
-    console.log(name);
-
     // submit handler
-
-    // const getToken = registration.register(name, email, password);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        console.log(formData);
         formData.append('files', chooseFile);
-        console.log(formData);
-
-        registration.register(name, email, password, formData); // ne ide chooseFile
-        // registration.uploadFile(formData);
+        registration.register(name, email, password, formData);
     };
-
-    // useEffect(() => {
-
-    //     setToken()
-    // }, [token])
-
-    // company.setCompany('quantox');
 
     return (
         <VStack
@@ -85,6 +58,7 @@ const Register = () => {
                             Name
                         </label>
                         <Input
+                            id="nameInput"
                             variant="outline"
                             placeholder={'Name'}
                             border="2px"
@@ -98,6 +72,7 @@ const Register = () => {
                             Email
                         </label>
                         <Input
+                            id="mainInput"
                             variant={'outline'}
                             placeholder={'Email'}
                             border="2px"
@@ -111,6 +86,7 @@ const Register = () => {
                             Password
                         </label>
                         <Input
+                            id="passwordInput"
                             type="password"
                             placeholder={'Password'}
                             border="2px"
