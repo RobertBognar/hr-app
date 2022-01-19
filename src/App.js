@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthContext';
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import GuestRoute from './components/Routes/GuestRoute';
+import EditTeam from './components/edit-team/EditTeam';
 
 function App() {
     return (
@@ -29,6 +30,10 @@ function App() {
                                 element={<HomepageAuthUser />}
                             />
                             <Route path="/board" element={<GuestHomepage />} />
+                            <Route
+                                path="/team/:id/edit"
+                                element={<EditTeam />}
+                            />
                         </Route>
                     </Routes>
                 </BrowserRouter>
