@@ -7,7 +7,7 @@ const company = {
                 name: `${companyName}'s Company`,
             },
         });
-        return responseCompany;
+        return responseCompany.data.data.id;
     },
 };
 
