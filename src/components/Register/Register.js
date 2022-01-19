@@ -24,6 +24,7 @@ const Register = () => {
         const formData = new FormData();
         formData.append('files', chooseFile);
         registration.register(name, email, password, formData);
+        localStorage.getItem('token');
     };
 
     return (

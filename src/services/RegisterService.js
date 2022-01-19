@@ -8,21 +8,22 @@ const registration = {
             email: email,
             password: password,
         });
-
         const token = response.data.jwt;
         localStorage.setItem('token', token);
-
-        const responseUpload = await http.post('/upload', file, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+        const responseUpload = await http.post('/upload', file);
 
         const username = response.data.user.username;
         const userId = response.data.user.id;
         const profilePhotoId = responseUpload.data[0].id;
 
-        profile.createProfile(username, userId, profilePhotoId, '4');
+        await http.post('/companies', {
+            data: {
+                name: `${username}'s Company`,
+            },
+        });
+
+        await profile.createProfile(username, userId, profilePhotoId);
+        return response;
     },
 };
 

@@ -21,7 +21,6 @@ const BasicInfo = () => {
             ` Name - ${name}, Selected file - ${fileChooser.current.files[0]}`,
         );
     };
-    console.log(fileChooser.current.files[0]);
 
     return (
         <div>
