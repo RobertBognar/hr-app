@@ -4,7 +4,7 @@ import upload from './UploadService';
 import company from './CompanyService';
 
 const registration = {
-    register: async function (name, email, password, file, companies) {
+    register: async function (name, email, password, file, companyName) {
         const response = await http.post('/auth/local/register', {
             username: name,
             email: email,
@@ -16,13 +16,13 @@ const registration = {
         const username = response.data.user.username;
         const userId = response.data.user.id;
         const profilePhotoId = await upload.upload(file);
-        const companiesName = await company.setCompany(companies);
+        const nameOfCompany = await company.createCompany(companyName);
 
         await profile.createProfile(
             username,
             userId,
             profilePhotoId,
-            companiesName,
+            nameOfCompany,
         );
     },
 };

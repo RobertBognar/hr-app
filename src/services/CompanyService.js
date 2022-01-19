@@ -1,10 +1,10 @@
 import http from './HttpService';
 
 const company = {
-    setCompany: async function (companies) {
+    createCompany: async function (companyName) {
         const responseCompany = await http.post('/companies', {
             data: {
-                name: `${companies}'s Company`,
+                name: `${companyName}'s Company`,
             },
         });
         return responseCompany;
