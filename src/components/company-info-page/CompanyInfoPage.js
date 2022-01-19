@@ -28,6 +28,7 @@ const CompanyInfoPage = () => {
     const onSubmit = (data) => {
         if (logoImage) {
             const allData = { ...data, logoImage };
+            console.log(allData);
         } else if (!logoImage) {
             setLogoMessage(true);
         }
@@ -36,7 +37,8 @@ const CompanyInfoPage = () => {
     const inputImage = (event) => {
         if (
             event.target.files[0].type === 'image/jpeg' ||
-            event.target.files[0].type === 'image/svg+xml'
+            event.target.files[0].type === 'image/svg+xml' ||
+            event.target.files[0].type === 'image/png'
         ) {
             setLogoImage(event.target.files[0].name);
             setLogoMessageFormat(false);
@@ -144,7 +146,7 @@ const CompanyInfoPage = () => {
                 )}
                 {logoMessageFormat && (
                     <Text color="red">
-                        Company Logo file must be in jpeg or svg format!
+                        Company Logo file must be in jpeg, png or svg format!
                     </Text>
                 )}
 

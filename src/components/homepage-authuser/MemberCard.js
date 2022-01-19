@@ -1,6 +1,9 @@
 import { Text, Image, Flex, Button, Box } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const MemberCard = ({ card, handleDelete }) => {
+    const navigate = useNavigate();
+
     return (
         <Box
             key={card.id}
@@ -32,7 +35,7 @@ const MemberCard = ({ card, handleDelete }) => {
                     {card.name}
                 </Text>
 
-                <Button
+                <Text
                     background="#7B7B7B"
                     color="white"
                     fontStyle=" normal"
@@ -42,12 +45,13 @@ const MemberCard = ({ card, handleDelete }) => {
                     border=" 2px solid #7B7B7B"
                     borderRadius="32px"
                     mt={5}
-                    p="6px 16px 6px 16px"
+                    textAlign="center"
+                    pt={1}
                     w="97px"
                     h="30px"
                 >
                     Published
-                </Button>
+                </Text>
             </Flex>
 
             <Text
@@ -72,6 +76,7 @@ const MemberCard = ({ card, handleDelete }) => {
                     borderRadius="4px"
                     background="#FFFFFF"
                     border="2px solid #000000"
+                    onClick={() => navigate(`/team/${card.id}/edit`)}
                 >
                     Edit
                 </Button>

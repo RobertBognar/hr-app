@@ -25,7 +25,7 @@ const Security = () => {
             <Stack
                 border="1px solid white"
                 margin="auto"
-                w={['90%', '445px', '445px']}
+                w={['73%', '445px', '445px']}
                 mt={{ base: 14, sm: 14, md: 14, lg: 110 }}
                 color="white"
             >
