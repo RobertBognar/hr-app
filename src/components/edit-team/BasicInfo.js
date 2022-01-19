@@ -4,7 +4,6 @@ import {
     Button,
     FormControl,
     FormLabel,
-    Heading,
     Input,
     Stack,
     InputGroup,
@@ -24,29 +23,23 @@ const BasicInfo = () => {
 
     return (
         <div>
-            <Heading
-                margin="auto"
-                w={['90%', '445px', '445px']}
-                fontSize="28px"
-                fontStyle="normal"
-                fontWeight="bold"
-                lineHeight="32px"
-                letterSpacing=" 0.04em"
-                fontFamily=" Comic Neue"
-                pb="47px"
-                mt={{ base: 0, sm: 0, md: 0, lg: 0 }}
-                color="white"
-                textAlign={{ base: 'center', sm: 'left' }}
-            >
-                My Profile
-            </Heading>
             <Stack
                 border="1px solid white"
                 margin="auto"
-                w={['73%', '445px', '445px']}
-                color="white"
+                w={['73vw', '445px', '445px']}
             >
-                <Box borderBottom="1px solid white" pt={5} pb={3} pl={7}>
+                <Box
+                    borderBottom="1px solid white"
+                    pt={5}
+                    pb={3}
+                    pl={7}
+                    fontStyle=" normal"
+                    fontWeight=" bold"
+                    fontSize=" 12px"
+                    lineHeight=" 14px"
+                    letterSpacing=" 0.04"
+                    color="white"
+                >
                     Basic info
                 </Box>
                 <Box p={7}>
@@ -74,6 +67,7 @@ const BasicInfo = () => {
                                 lineHeight="18px"
                                 border="2px solid"
                                 borderRadius="none"
+                                color="white"
                             />
                         </FormControl>
                         <FormControl>
@@ -85,13 +79,14 @@ const BasicInfo = () => {
                                 lineHeight="14px"
                                 mt={6}
                                 mb={1}
+                                color="white"
                             >
                                 Profile Photo
                             </FormLabel>
                             <InputGroup
                                 justifyContent="space-between"
                                 alignItems="center"
-                                border="2px solid"
+                                border="2px solid white"
                                 borderRadius="none"
                             >
                                 <FormLabel
@@ -137,16 +132,16 @@ const BasicInfo = () => {
                                 />
                             </InputGroup>
                         </FormControl>
-                        <Box alignSelf="self-end">
+                        <Box>
                             <Button
                                 type="submit"
                                 width="80px"
                                 height="30px"
                                 marginTop="40px"
                                 background="white"
-                                mb="9px"
-                                float="right"
+                                mb="46px"
                                 color="black"
+                                float={{ base: 'right' }}
                             >
                                 Save
                             </Button>
