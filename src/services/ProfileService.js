@@ -8,7 +8,7 @@ const profile = {
                 name: `${username}`,
                 profilePhoto: `${photoId}`,
                 user: `${userId}`,
-                companyId,
+                company: companyId,
             },
         });
     },
