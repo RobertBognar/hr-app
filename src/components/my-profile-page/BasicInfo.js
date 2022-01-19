@@ -18,7 +18,7 @@ const BasicInfo = () => {
     const submitProfileInfo = (e) => {
         e.preventDefault();
         alert(
-            ` Name - ${name}, Selected file - ${fileChooser.current.files[0].name}`,
+            ` Name - ${name}, Selected file - ${fileChooser.current.files[0]}`,
         );
     };
 

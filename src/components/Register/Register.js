@@ -1,18 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import registration from '../../services/RegisterService';
-
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
 
-import {
-    Input,
-    Box,
-    Button,
-    FormControl,
-    Flex,
-    Link,
-    Text,
-} from '@chakra-ui/react';
+import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
@@ -23,13 +14,15 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const chooseFile = useRef(null);
+    const [chooseFile, setChooseFile] = useState(null);
 
     // submit handler
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        registration.register(name, email, password, chooseFile);
+        const formData = new FormData();
+        formData.append('files', chooseFile);
+        registration.register(name, email, password, formData, name);
     };
 
     return (
@@ -64,6 +57,7 @@ const Register = () => {
                             Name
                         </label>
                         <Input
+                            id="nameInput"
                             variant="outline"
                             placeholder={'Name'}
                             border="2px"
@@ -77,6 +71,7 @@ const Register = () => {
                             Email
                         </label>
                         <Input
+                            id="mainInput"
                             variant={'outline'}
                             placeholder={'Email'}
                             border="2px"
@@ -90,6 +85,7 @@ const Register = () => {
                             Password
                         </label>
                         <Input
+                            id="passwordInput"
                             type="password"
                             placeholder={'Password'}
                             border="2px"
@@ -105,8 +101,6 @@ const Register = () => {
                             type="text"
                             placeholder={'Profile photo'}
                             position={'relative'}
-                            color={'black'}
-                            outline={'none'}
                             outline={'none'}
                             _placeholder={{ color: 'red' }}
                             border="2px"
@@ -131,8 +125,8 @@ const Register = () => {
                         <Input
                             id="file-upload"
                             type="file"
-                            ref={chooseFile}
-                        ></Input>{' '}
+                            onChange={(e) => setChooseFile(e.target.files[0])}
+                        />
                     </Box>
                     <Box>
                         <Flex
