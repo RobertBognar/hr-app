@@ -59,10 +59,16 @@ const Members = () => {
             flexWrap="wrap"
             m="37px auto"
             w="100%"
-            maxW={{ base: '90vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
+            maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
         >
-            {members.map((card) => {
-                return <MemberCard card={card} handleDelete={handleDelete} />;
+            {members.map((card, id) => {
+                return (
+                    <MemberCard
+                        card={card}
+                        handleDelete={handleDelete}
+                        key={id}
+                    />
+                );
             })}
         </Container>
     );
