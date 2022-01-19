@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import registration from '../../services/RegisterService';
-
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,8 +22,7 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('files', chooseFile);
-        registration.register(name, email, password, formData);
-        localStorage.getItem('token');
+        registration.register(name, email, password, formData, name);
     };
 
     return (

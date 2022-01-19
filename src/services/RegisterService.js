@@ -1,8 +1,10 @@
 import http from './HttpService';
-import profile from './CreateProfile';
+import profile from './ProfileService';
+import upload from './UploadService';
+import company from './CompanyService';
 
 const registration = {
-    register: async function (name, email, password, file) {
+    register: async function (name, email, password, file, companies) {
         const response = await http.post('/auth/local/register', {
             username: name,
             email: email,
@@ -10,20 +12,18 @@ const registration = {
         });
         const token = response.data.jwt;
         localStorage.setItem('token', token);
-        const responseUpload = await http.post('/upload', file);
 
         const username = response.data.user.username;
         const userId = response.data.user.id;
-        const profilePhotoId = responseUpload.data[0].id;
+        const profilePhotoId = await upload.upload(file);
+        const companiesName = await company.setCompany(companies);
 
-        await http.post('/companies', {
-            data: {
-                name: `${username}'s Company`,
-            },
-        });
-
-        await profile.createProfile(username, userId, profilePhotoId);
-        return response;
+        await profile.createProfile(
+            username,
+            userId,
+            profilePhotoId,
+            companiesName,
+        );
     },
 };
 
