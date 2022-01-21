@@ -1,0 +1,41 @@
+.Register {
+    font-family: 'Comic Neue';
+}
+
+.Inp-choose-file {
+    background-color: royalblue;
+}
+
+input[type='file'] {
+    display: none;
+}
+.Inp-choose-file {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.custom-file-upload {
+    background-color: #dee0e3;
+    padding: 6px 12px;
+    margin-top: 5px;
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    color: black;
+}
+
+.custom-file-upload p {
+    padding-right: 15px;
+}
+
+.boxes {
+    margin-bottom: 22px;
+}
