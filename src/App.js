@@ -1,7 +1,7 @@
 import './App.css';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
@@ -11,28 +11,77 @@ import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import GuestRoute from './components/Routes/GuestRoute';
 import EditTeam from './components/edit-team/EditTeam';
+import GuestLayout from './components/Layout/GuestLayout';
+import AuthLayout from './components/Layout/AuthLayout';
+import Page from './components/pages/Page';
 
 function App() {
     return (
-        <div className="App">
+        <div>
             <AuthProvider>
                 <BrowserRouter>
-                    <Navbar />
                     <Routes>
+                        <Route
+                            path="/"
+                            element={<Navigate replace to="/login" />}
+                        />
                         <Route element={<GuestRoute />}>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                        </Route>
-                        <Route element={<ProtectedRoute />}>
-                            <Route path="/profile" element={<ProfilePage />} />
+                            <Route
+                                path="/board"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={GuestHomepage}
+                                    />
+                                }
+                            ></Route>
+                            <Route
+                                path="/login"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={Login}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/register"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={Register}
+                                    />
+                                }
+                            />
                             <Route
                                 path="/team"
-                                element={<HomepageAuthUser />}
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={HomepageAuthUser}
+                                    />
+                                }
                             />
-                            <Route path="/board" element={<GuestHomepage />} />
+                        </Route>
+
+                        <Route element={<ProtectedRoute />}>
+                            <Route
+                                path="/profile"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={ProfilePage}
+                                    />
+                                }
+                            />
                             <Route
                                 path="/team/:id/edit"
-                                element={<EditTeam />}
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={EditTeam}
+                                    />
+                                }
                             />
                         </Route>
                     </Routes>

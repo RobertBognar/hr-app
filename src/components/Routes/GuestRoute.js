@@ -1,11 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
-import ProfilePage from '../my-profile-page/ProfilePage';
 function GuestRoute() {
-    const { loginSuccessfull } = useAuthContext();
+    const { userToken } = useAuthContext();
 
-    return loginSuccessfull ? <ProfilePage /> : <Outlet />;
+    return userToken ? <Navigate to="/profile" /> : <Outlet />;
 }
 
 export default GuestRoute;
