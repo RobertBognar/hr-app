@@ -11,13 +11,11 @@ import {
     Image,
     Box,
 } from '@chakra-ui/react';
-import { FaCloudUploadAlt } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import './CompanyInfoPage.css';
 
 const CompanyInfoPage = () => {
-    const [logoImage, setLogoImage] = useState('');
-    const [logoMessageFormat, setLogoMessageFormat] = useState(false);
-    const [logoMessage, setLogoMessage] = useState(false);
+    const [logoMessageFormat, setLogoMessageFormat] = useState('');
 
     const {
         register,
@@ -25,30 +23,7 @@ const CompanyInfoPage = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
-        if (logoImage) {
-            const allData = { ...data, logoImage };
-            console.log(allData);
-        } else if (!logoImage) {
-            setLogoMessage(true);
-        }
-    };
-
-    const inputImage = (event) => {
-        if (
-            event.target.files[0].type === 'image/jpeg' ||
-            event.target.files[0].type === 'image/svg+xml' ||
-            event.target.files[0].type === 'image/png'
-        ) {
-            setLogoImage(event.target.files[0].name);
-            setLogoMessageFormat(false);
-            setLogoMessage(false);
-        } else {
-            setLogoMessageFormat(true);
-            setLogoMessage(false);
-            setLogoImage('');
-        }
-    };
+    const onSubmit = (data) => console.log(data);
 
     return (
         <Flex
@@ -91,63 +66,38 @@ const CompanyInfoPage = () => {
                     maxWidth="calc(100% - 50px)"
                     mt="20px"
                 >
-                    <FormLabel color="white">Company Logo</FormLabel>
-                    <InputGroup
-                        justifyContent="space-between"
-                        alignItems="center"
-                        border="1px solid"
-                        borderColor="white"
-                        borderRadius="none"
-                    >
-                        <Text color="gray.400" ml="15px">
-                            Company Name
-                        </Text>
-                        <FormLabel
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            w="150px"
-                            htmlFor="companyLogo"
-                            fontStyle="normal"
-                            fontWeight="normal"
-                            fontSize="16px"
-                            lineHeight="18px"
-                            mt="6px"
-                            bg="white"
-                            color="black"
-                            p="5px 15px"
-                            cursor="pointer"
-                        >
-                            choose file
-                            <FaCloudUploadAlt
-                                size={24}
-                                color="rgb(71, 131, 42)"
-                                ml="15px"
-                            />
-                        </FormLabel>
-                        <Input
-                            id="companyLogo"
-                            type="file"
-                            onChange={inputImage}
-                        />
-                    </InputGroup>
+                    <FormLabel htmlFor="companyLogo" color="white">
+                        Company Logo
+                    </FormLabel>
+                    <Input
+                        id="companyLogo"
+                        type="file"
+                        fontSize={['14px', '16px', '16px', '16px']}
+                        {...register('companyLogo', {
+                            required: 'Company Logo file is required!',
+                            validate: (value) => {
+                                if (
+                                    value[0].type === 'image/jpeg' ||
+                                    value[0].type === 'image/svg+xml' ||
+                                    value[0].type === 'image/png'
+                                ) {
+                                    setLogoMessageFormat('');
+                                    return value;
+                                } else {
+                                    setLogoMessageFormat(
+                                        'Company Logo file must be in jpeg, png or svg format!',
+                                    );
+                                    return (value = '');
+                                }
+                            },
+                        })}
+                    />
                 </FormControl>
-                {logoMessage
-                    ? !logoMessageFormat && (
-                          <Text color="red">
-                              Company Logo file is required!
-                          </Text>
-                      )
-                    : ''}
-                {logoImage && (
-                    <Text color="white" fontSize="36px">
-                        {logoImage}
-                    </Text>
+                {errors.companyLogo && (
+                    <Text color="red">{errors.companyLogo.message} </Text>
                 )}
                 {logoMessageFormat && (
-                    <Text color="red">
-                        Company Logo file must be in jpeg, png or svg format!
-                    </Text>
+                    <Text color="red">{logoMessageFormat} </Text>
                 )}
 
                 <Button
