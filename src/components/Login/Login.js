@@ -18,15 +18,12 @@ const Login = () => {
     let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login, loginSuccessfull } = useAuthContext();
+    const { login } = useAuthContext();
     const submitHandler = (event) => {
         event.preventDefault();
         login(email, password);
     };
 
-    if (loginSuccessfull) {
-        navigate('/profile', { replace: true });
-    }
     return (
         <form onSubmit={submitHandler}>
             <VStack
