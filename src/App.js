@@ -63,26 +63,26 @@ function App() {
                                     />
                                 }
                             />
-                            <Route element={<ProtectedRoute />}>
-                                <Route
-                                    path="/profile"
-                                    element={
-                                        <Page
-                                            Layout={AuthLayout}
-                                            Component={ProfilePage}
-                                        />
-                                    }
-                                />
-                                <Route
-                                    path="/team/:id/edit"
-                                    element={
-                                        <Page
-                                            Layout={AuthLayout}
-                                            Component={EditTeam}
-                                        />
-                                    }
-                                />
-                            </Route>
+                        </Route>
+                        <Route element={<ProtectedRoute />}>
+                            <Route
+                                path="/profile"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={ProfilePage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/team/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={EditTeam}
+                                    />
+                                }
+                            />
                             <Route
                                 path="/companyinfopage"
                                 element={
