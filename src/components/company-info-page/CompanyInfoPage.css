@@ -1,0 +1,11 @@
+#companyLogo[type='file'] {
+    display: block;
+    color: #a0aec0;
+    padding-top: 5px;
+}
+#companyLogo:focus-visible[type='file'] {
+    color: white !important;
+}
+#companyLogo[type='file']::-webkit-file-upload-button {
+    margin-top: 0px;
+}

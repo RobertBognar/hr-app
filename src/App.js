@@ -14,6 +14,7 @@ import EditTeam from './components/edit-team/EditTeam';
 import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
+import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
 
 function App() {
     return (
@@ -63,7 +64,6 @@ function App() {
                                 }
                             />
                         </Route>
-
                         <Route element={<ProtectedRoute />}>
                             <Route
                                 path="/profile"
@@ -80,6 +80,15 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={EditTeam}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/companyinfopage"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={CompanyInfoPage}
                                     />
                                 }
                             />

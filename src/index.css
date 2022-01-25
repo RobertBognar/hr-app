@@ -1,22 +1,8 @@
 :root {
     --chakra-shadows-outline: rgb(92, 153, 62) !important;
 }
-.css-ks98qh:focus,
-.css-ks98qh[data-focus],
-.css-bpsk0e:focus,
-.css-bpsk0e[data-focus],
-.css-n512j1:focus,
-.css-n512j1[data-focus],
-.css-1k27his:focus,
-.css-1k27his[data-focus],
-.css-u8frlc:focus,
-.css-u8frlc[data-focus],
-.css-1m0798y:focus,
-.css-1m0798y[data-focus],
-.css-1v6c5m7:focus,
-.css-1v6c5m7[data-focus],
-.css-z0cpft:focus,
-.css-z0cpft[data-focus] {
+input:focus,
+select:focus {
     z-index: 1;
     border-color: rgb(92, 153, 62) !important;
     box-shadow: 0 0 0 1px rgb(92, 153, 62) !important;
