@@ -63,32 +63,32 @@ function App() {
                                     />
                                 }
                             />
+                            <Route element={<ProtectedRoute />}>
+                                <Route
+                                    path="/profile"
+                                    element={
+                                        <Page
+                                            Layout={AuthLayout}
+                                            Component={ProfilePage}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/team/:id/edit"
+                                    element={
+                                        <Page
+                                            Layout={AuthLayout}
+                                            Component={EditTeam}
+                                        />
+                                    }
+                                />
+                            </Route>
                             <Route
                                 path="/companyinfopage"
                                 element={
                                     <Page
-                                        Layout={GuestLayout}
+                                        Layout={AuthLayout}
                                         Component={CompanyInfoPage}
-                                    />
-                                }
-                            />
-                        </Route>
-                        <Route element={<ProtectedRoute />}>
-                            <Route
-                                path="/profile"
-                                element={
-                                    <Page
-                                        Layout={AuthLayout}
-                                        Component={ProfilePage}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/team/:id/edit"
-                                element={
-                                    <Page
-                                        Layout={AuthLayout}
-                                        Component={EditTeam}
                                     />
                                 }
                             />
