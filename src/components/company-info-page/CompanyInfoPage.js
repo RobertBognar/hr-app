@@ -7,9 +7,6 @@ import {
     FormControl,
     FormLabel,
     Button,
-    InputGroup,
-    Image,
-    Box,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import './CompanyInfoPage.css';
