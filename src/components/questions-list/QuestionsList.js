@@ -40,9 +40,9 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                     >
                         <Flex direction="column">
                             <Text fontWeight="700" fontSize="14px">
-                                Question {id + 1} - {card.questionType}
+                                Question {id + 1}
                             </Text>
-                            <Text fontSize="24px">{card.question}</Text>
+                            <Text fontSize="24px">{card.attributes.text}</Text>
                         </Flex>
                         <Flex>
                             <Button
