@@ -15,6 +15,8 @@ import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
+import QuestionsListMain from './components/questions-list/QuestionsListMain';
+import EditQuestion from './components/questions-list/EditQuestion';
 
 function App() {
     return (
@@ -60,6 +62,24 @@ function App() {
                                     <Page
                                         Layout={GuestLayout}
                                         Component={HomepageAuthUser}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questionslistmain"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={QuestionsListMain}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questions/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={EditQuestion}
                                     />
                                 }
                             />
