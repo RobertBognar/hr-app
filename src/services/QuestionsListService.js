@@ -23,15 +23,8 @@ const questionsListService = {
     editQuestion: async function (id, text) {
         const response = await http.put(`/questions/${id}`, {
             data: {
-                text,
+                text: `${text}`,
                 type: 'text',
-                order: 0,
-                answers: [`${id}`, 'string or id'],
-                company: 'string or id',
-                createdAt: '2022-01-31T13:27:05.951Z',
-                updatedAt: '2022-01-31T13:27:05.951Z',
-                createdBy: 'string or id',
-                updatedBy: 'string or id',
             },
         });
         console.log(response);
