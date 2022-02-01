@@ -63,6 +63,17 @@ function App() {
                                     />
                                 }
                             />
+                            {/* Delete Later, And Put Back In Protected Routes */}
+                            <Route
+                                path="/companyinfopage"
+                                element={
+                                    <Page
+                                        // change to auth layout
+                                        Layout={GuestLayout}
+                                        Component={CompanyInfoPage}
+                                    />
+                                }
+                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -83,7 +94,7 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
+                            {/* <Route
                                 path="/companyinfopage"
                                 element={
                                     <Page
@@ -91,7 +102,7 @@ function App() {
                                         Component={CompanyInfoPage}
                                     />
                                 }
-                            />
+                            /> */}
                         </Route>
                     </Routes>
                 </BrowserRouter>

@@ -7,15 +7,15 @@ import {
     FormControl,
     FormLabel,
     Button,
-    InputGroup,
-    Image,
-    Box,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import './CompanyInfoPage.css';
+import addCompanyInfoService from '../../services/CompanyInfoService';
 
 const CompanyInfoPage = () => {
     const [logoMessageFormat, setLogoMessageFormat] = useState('');
+    const [companyName, setCompanyName] = useState('');
+    const [logo, setLogo] = useState('');
 
     const {
         register,
@@ -23,7 +23,13 @@ const CompanyInfoPage = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        console.log(data);
+        addCompanyInfoService.addCompanyInfo(companyName, logo);
+        console.log(companyName, logo);
+        setCompanyName('');
+        setLogo('');
+    };
 
     return (
         <Flex
@@ -47,6 +53,7 @@ const CompanyInfoPage = () => {
                     <Input
                         id="companyName"
                         type="text"
+                        value={companyName}
                         {...register('companyName', {
                             required: true,
                             validate: (value) => {
@@ -56,6 +63,7 @@ const CompanyInfoPage = () => {
                         borderRadius="none"
                         placeholder="Company Name"
                         color="white"
+                        onChange={(e) => setCompanyName(e.target.value)}
                     />
                 </FormControl>
                 {errors.companyName && (
@@ -72,6 +80,7 @@ const CompanyInfoPage = () => {
                     <Input
                         id="companyLogo"
                         type="file"
+                        value={logo}
                         fontSize={['14px', '16px', '16px', '16px']}
                         {...register('companyLogo', {
                             required: 'Company Logo file is required!',
@@ -91,6 +100,7 @@ const CompanyInfoPage = () => {
                                 }
                             },
                         })}
+                        onChange={(e) => setLogo(e.target.value)}
                     />
                 </FormControl>
                 {errors.companyLogo && (
