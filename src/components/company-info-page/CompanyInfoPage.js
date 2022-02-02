@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Heading,
     Text,
@@ -10,9 +11,10 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import './CompanyInfoPage.css';
-import addCompanyInfoService from '../../services/CompanyInfoService';
+import companyInfoService from '../../services/CompanyInfoService';
 
 const CompanyInfoPage = () => {
+    let navigate = useNavigate();
     const [logoMessageFormat, setLogoMessageFormat] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [logo, setLogo] = useState('');
@@ -24,8 +26,25 @@ const CompanyInfoPage = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
-        addCompanyInfoService.addCompanyInfo(companyName, logo);
+        companyInfoService.addCompanyInfo(companyName, logo);
+
+        // axios
+        //     .post(
+        //         'https://uteam-api-7nngy.ondigitalocean.app/api/companyinfo',
+        //         {
+        //             companyName: companyName,
+        //             logo: logo,
+        //         },
+        //     )
+        //     .then((response) => {
+        //         setCompanyName(response.data);
+        //         setLogo(response.data);
+        //         console.log(response);
+        //     })
+        //     .catch((error) => {
+        //         console.log('Error is here: ' + error.message);
+        //     });
+
         console.log(companyName, logo);
         setCompanyName('');
         setLogo('');
@@ -121,6 +140,18 @@ const CompanyInfoPage = () => {
                     Save
                 </Button>
             </form>
+            <Flex>
+                <Button
+                    colorScheme="white"
+                    color="black"
+                    bg="white"
+                    p="5px 25px"
+                    mt="20px"
+                    onClick={() => navigate('/editcompanyinfo')}
+                >
+                    Edit
+                </Button>
+            </Flex>
         </Flex>
     );
 };

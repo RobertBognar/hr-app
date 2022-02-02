@@ -1,6 +1,6 @@
 import http from './HttpService';
 
-const addCompanyInfoService = {
+const companyInfoService = {
     addCompanyInfo: async function (companyName, logo) {
         const data = {
             companyName: companyName,
@@ -17,4 +17,4 @@ const addCompanyInfoService = {
     },
 };
 
-export default addCompanyInfoService;
+export default companyInfoService;
