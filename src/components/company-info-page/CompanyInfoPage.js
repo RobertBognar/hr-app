@@ -31,8 +31,9 @@ const CompanyInfoPage = () => {
 
     //Post Data To API
     const onSubmit = (data) => {
-        //company.createCompany(companyName);
-        companyInfoService.addCompanyInfo(companyName);
+        //add logo to company service
+        company.createCompany(companyName);
+        //companyInfoService.addCompanyInfo(data);
         console.log(companyName, logo);
         setCompanyName('');
         setLogo('');
