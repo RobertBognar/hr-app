@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     Heading,
@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import './CompanyInfoPage.css';
-import companyInfoService from '../../services/CompanyInfoService';
 
 const EditCompanyInfoPage = () => {
     let navigate = useNavigate();
@@ -25,7 +24,12 @@ const EditCompanyInfoPage = () => {
         formState: { errors },
     } = useForm();
 
-    //Get Company Info Add And Connect, Edit With Put
+    //Fetch API Info
+    useEffect(() => {
+        //companyInfoService.getCompanyInfo();
+    }, []);
+
+    //Edit Info With API
     const onSubmit = (data) => {
         console.log(data);
     };
@@ -128,7 +132,7 @@ const EditCompanyInfoPage = () => {
                     cursor="pointer"
                     onClick={() => navigate('/companyinfopage')}
                 >
-                    Back To Company Info Page
+                    Go To Company Info Page
                 </Text>
             </Flex>
         </Flex>

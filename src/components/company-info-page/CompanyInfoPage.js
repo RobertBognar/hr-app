@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     Heading,
@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import './CompanyInfoPage.css';
+import company from '../../services/CompanyService';
 import companyInfoService from '../../services/CompanyInfoService';
 
 const CompanyInfoPage = () => {
@@ -25,8 +26,13 @@ const CompanyInfoPage = () => {
         formState: { errors },
     } = useForm();
 
+    //Fetch All Data From API
+    useEffect(() => {}, []);
+
+    //Post Data To API
     const onSubmit = (data) => {
-        companyInfoService.addCompanyInfo(companyName, logo);
+        //company.createCompany(companyName);
+        companyInfoService.addCompanyInfo(companyName);
         console.log(companyName, logo);
         setCompanyName('');
         setLogo('');
@@ -123,16 +129,15 @@ const CompanyInfoPage = () => {
                 </Button>
             </form>
             <Flex>
-                <Button
-                    colorScheme="white"
-                    color="black"
-                    bg="white"
-                    p="5px 25px"
-                    mt="20px"
+                <Text
+                    as="i"
+                    pt="6px"
+                    color="whiteAlpha.900"
+                    cursor="pointer"
                     onClick={() => navigate('/editcompanyinfo')}
                 >
-                    Edit
-                </Button>
+                    Go To Edit Info Page
+                </Text>
             </Flex>
         </Flex>
     );
