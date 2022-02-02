@@ -27,24 +27,6 @@ const CompanyInfoPage = () => {
 
     const onSubmit = (data) => {
         companyInfoService.addCompanyInfo(companyName, logo);
-
-        // axios
-        //     .post(
-        //         'https://uteam-api-7nngy.ondigitalocean.app/api/companyinfo',
-        //         {
-        //             companyName: companyName,
-        //             logo: logo,
-        //         },
-        //     )
-        //     .then((response) => {
-        //         setCompanyName(response.data);
-        //         setLogo(response.data);
-        //         console.log(response);
-        //     })
-        //     .catch((error) => {
-        //         console.log('Error is here: ' + error.message);
-        //     });
-
         console.log(companyName, logo);
         setCompanyName('');
         setLogo('');
