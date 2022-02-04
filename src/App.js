@@ -15,7 +15,6 @@ import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
-import EditCompanyInfoPage from './components/company-info-page/EditCompanyInfoPage';
 
 function App() {
     return (
@@ -75,16 +74,6 @@ function App() {
                                     />
                                 }
                             />
-                            {/* Send To Protected Routes & Change To Auth Layout */}
-                            <Route
-                                path="/editcompanyinfo"
-                                element={
-                                    <Page
-                                        Layout={GuestLayout}
-                                        Component={EditCompanyInfoPage}
-                                    />
-                                }
-                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -105,7 +94,7 @@ function App() {
                                     />
                                 }
                             />
-                            {/* <Route
+                            <Route
                                 path="/companyinfopage"
                                 element={
                                     <Page
@@ -113,7 +102,7 @@ function App() {
                                         Component={CompanyInfoPage}
                                     />
                                 }
-                            /> */}
+                            />
                         </Route>
                     </Routes>
                 </BrowserRouter>

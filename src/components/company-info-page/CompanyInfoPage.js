@@ -12,7 +12,8 @@ import {
 import { useForm } from 'react-hook-form';
 import './CompanyInfoPage.css';
 import company from '../../services/CompanyService';
-import companyInfoService from '../../services/CompanyInfoService';
+import upload from '../../services/UploadService';
+import http from '../../services/HttpService';
 
 const CompanyInfoPage = () => {
     let navigate = useNavigate();
@@ -26,14 +27,36 @@ const CompanyInfoPage = () => {
         formState: { errors },
     } = useForm();
 
-    //Fetch All Data From API
-    useEffect(() => {}, []);
+    const fetchCompany = () => {
+        company.fetchCompany(companyName);
+        console.log(companyName);
+    }
+
+    const editCompany = () => {
+        http.put('/companies/1', {
+            data: {
+                name: companyName,
+            }
+        });
+    }
+
+    useEffect(() => {
+        // http.get('/companies').then((data) => {
+        //     setCompanyName(data.data.attributes.name);
+        //     console.log(data.data);
+        // }).catch(error => {
+        //     console.log(error);
+        // })
+        setTimeout(() => {
+            fetchCompany();
+        }, 2000)
+    }, []);
 
     //Post Data To API
     const onSubmit = (data) => {
-        //add logo to company service
+        upload.upload(logo);
         company.createCompany(companyName);
-        //companyInfoService.addCompanyInfo(data);
+        editCompany();
         console.log(companyName, logo);
         setCompanyName('');
         setLogo('');
@@ -128,7 +151,10 @@ const CompanyInfoPage = () => {
                 >
                     Save
                 </Button>
+                
             </form>
+            <Flex>
+            </Flex>
             <Flex>
                 <Text
                     as="i"
@@ -139,6 +165,7 @@ const CompanyInfoPage = () => {
                 >
                     Go To Edit Info Page
                 </Text>
+                
             </Flex>
         </Flex>
     );
