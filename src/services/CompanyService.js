@@ -9,13 +9,21 @@ const company = {
         });
         return responseCompany.data.data.id;
     },
-    fetchCompany: async function (companyName) {
-        const responseFetchCompany = await http.get('/companies/1', {
+    fetchCompany: async function (id, companyName) {
+        const responseFetchCompany = await http.get(`/companies/${id}`, {
             data: {
                 name: `${companyName}`,
             }
         })
         return responseFetchCompany.data.data.id;
+    },
+    editCompany: async function (id, companyName) {
+        const responseEditCompany = await http.put(`/companies/${id}`, {
+            data: {
+                name: companyName,
+            },
+        });
+        return responseEditCompany;
     }
 };
 

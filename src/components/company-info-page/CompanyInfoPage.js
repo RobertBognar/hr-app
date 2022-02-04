@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
 import {
     Heading,
     Text,
@@ -9,16 +10,15 @@ import {
     FormLabel,
     Button,
 } from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
 import './CompanyInfoPage.css';
 import company from '../../services/CompanyService';
 import upload from '../../services/UploadService';
-import http from '../../services/HttpService';
+
 
 const CompanyInfoPage = () => {
-    let navigate = useNavigate();
+    let id;
     const [logoMessageFormat, setLogoMessageFormat] = useState('');
-    const [companyName, setCompanyName] = useState('');
+    const [companyName, setCompanyName] = useState('Test Company');
     const [logo, setLogo] = useState('');
 
     const {
@@ -30,23 +30,10 @@ const CompanyInfoPage = () => {
     const fetchCompany = () => {
         company.fetchCompany(companyName);
         console.log(companyName);
-    }
-
-    const editCompany = () => {
-        http.put('/companies/1', {
-            data: {
-                name: companyName,
-            }
-        });
+        setCompanyName('test fetched company name');
     }
 
     useEffect(() => {
-        // http.get('/companies').then((data) => {
-        //     setCompanyName(data.data.attributes.name);
-        //     console.log(data.data);
-        // }).catch(error => {
-        //     console.log(error);
-        // })
         setTimeout(() => {
             fetchCompany();
         }, 2000)
@@ -56,8 +43,8 @@ const CompanyInfoPage = () => {
     const onSubmit = (data) => {
         upload.upload(logo);
         company.createCompany(companyName);
-        editCompany();
         console.log(companyName, logo);
+        console.log(data)
         setCompanyName('');
         setLogo('');
     };
@@ -72,7 +59,6 @@ const CompanyInfoPage = () => {
             <Heading py="50px" color="white">
                 Company Info
             </Heading>
-
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
                     width={['100%', '372px', '372px']}
@@ -150,22 +136,16 @@ const CompanyInfoPage = () => {
                     mt="20px"
                 >
                     Save
-                </Button>
-                
+                </Button>  
             </form>
             <Flex>
-            </Flex>
-            <Flex>
-                <Text
-                    as="i"
-                    pt="6px"
-                    color="whiteAlpha.900"
-                    cursor="pointer"
-                    onClick={() => navigate('/editcompanyinfo')}
-                >
-                    Go To Edit Info Page
-                </Text>
-                
+                <Button 
+                    mt="6px" colorScheme="white"
+                    color="black"
+                    bg="white" 
+                    onClick={() => company.editCompany(id, companyName)}>
+                        Edit Info
+                </Button>
             </Flex>
         </Flex>
     );
