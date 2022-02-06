@@ -7,6 +7,7 @@ const company = {
                 name: `${companyName}'s Company`,
             },
         });
+        console.log(responseCompany.data.data.id);
         return responseCompany.data.data.id;
     },
 };

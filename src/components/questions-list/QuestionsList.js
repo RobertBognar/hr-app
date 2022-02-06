@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import questionsListService from '../../services/QuestionsListService';
 
 import { Heading, Text, Flex, Button } from '@chakra-ui/react';
 import { SmallAddIcon } from '@chakra-ui/icons';
@@ -41,6 +40,7 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                         p="25px"
                         mb="25px"
                     >
+                        {console.log(card)}
                         <Flex direction="column">
                             <Text fontWeight="700" fontSize="14px">
                                 Question {id + 1}
@@ -49,12 +49,7 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                         </Flex>
                         <Flex>
                             {}
-                            <Link
-                                to={`/questions/${id + 1}/edit`}
-                                onClick={() =>
-                                    questionsListService.getQuestion(id + 1)
-                                }
-                            >
+                            <Link to={`/questions/${card.id}/edit`}>
                                 <Button
                                     bg="black"
                                     color="white"

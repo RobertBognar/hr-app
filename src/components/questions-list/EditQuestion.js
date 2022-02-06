@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { Flex, Box, Input, Heading, Button, Text } from '@chakra-ui/react';
 
 import questionsListService from '../../services/QuestionsListService';
 
-import { Flex, Box, Input, Heading, Button } from '@chakra-ui/react';
-// import http from '../../services/HttpService';
-// import questionsListService from '../../services/QuestionsListService';
-
 const EditQuestion = () => {
     const [question, setQuestion] = useState('');
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitted, isSubmitting },
+    } = useForm();
+
+    const navigate = useNavigate();
 
     async function getQuestion() {
         const quest = await questionsListService.getQuestion(id);
@@ -18,43 +24,74 @@ const EditQuestion = () => {
         getQuestion();
     }, []);
 
+    const onSubmit = (data) => {
+        const inputValue = data.edit;
+        questionsListService.editQuestion(id, inputValue);
+    };
+
     const para = useParams();
     const id = para.id;
-    console.log(id);
-    console.log(question);
+    useEffect(() => {
+        if (isSubmitted && !errors.edit) {
+            navigate('/questionslistmain', { replace: true });
+        }
+    }, [isSubmitted, isSubmitting]);
 
     return (
         <>
             <Flex
                 px={['55px', '55px', '155px']}
-                direction="row"
+                direction="column"
+                flexWrap={'wrap'}
+                alignContent={'center'}
                 className="bgBlack"
                 minH="calc(100vh - 42px)"
                 color={'white'}
-                justifyContent="space-around"
+                justifyContent="flex-start"
                 paddingTop={20}
             >
-                <Heading>Edit Question</Heading>
-                <form /* width={'1000px'} */>
-                    {
-                        <Input
-                            width={'700px'}
-                            color={'white'}
-                            value={question}
-                            onChange={(e) => setQuestion(e.target.value)}
-                        />
-                    }
+                <Heading marginBottom={8}>Edit Question</Heading>
+
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input
+                        width={'700px'}
+                        color={'white'}
+                        {...register('edit', {
+                            required: true,
+                            validate: (value) => {
+                                return !!value.trim();
+                            },
+                        })}
+                        defaultValue={question}
+                    />
+                    <Box marginTop={8} position={'relative'}>
+                        {errors.edit && (
+                            <Text
+                                color="red"
+                                position={'absolute'} /* ref={text} */
+                            >
+                                Edit text is required!
+                            </Text>
+                        )}
+                        <Button
+                            position={'absolute'}
+                            type="submit"
+                            width={20}
+                            right={'0px'}
+                            bg="black"
+                            color="white"
+                            border="1px"
+                            borderColor="white"
+                            mt="15px"
+                            _hover={{
+                                background: 'white',
+                                color: 'black',
+                            }}
+                        >
+                            Edit
+                        </Button>
+                    </Box>
                 </form>
-                <Box justifySelf={'flex-start'}>
-                    <Button
-                        onClick={() =>
-                            questionsListService.editQuestion(id, question)
-                        }
-                        color={'black'}
-                    >
-                        Edit
-                    </Button>
-                </Box>
             </Flex>
         </>
     );

@@ -13,11 +13,7 @@ const questionsListService = {
     },
     getQuestion: async function (id) {
         const response = await http.get(`/questions/${id}`);
-        console.log(response.data.data.attributes.text);
         const question = response.data.data.attributes.text;
-        // console.log(response.data.attributes.text);
-        const idd = response.data.data.id;
-        console.log('aaaaaaaaaaaaaaaaaaaaaafafasf', idd);
         return question;
     },
     editQuestion: async function (id, text) {
@@ -27,7 +23,7 @@ const questionsListService = {
                 type: 'text',
             },
         });
-        console.log(response);
+        return response;
     },
 };
 
