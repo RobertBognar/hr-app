@@ -18,7 +18,7 @@ import Tabs from './Tabs';
 
 const Navbar = () => {
     const navigate = useNavigate();
-
+    
     return (
         <Box
             bgGradient="linear(to-r, rgb(71,124,54), rgb(92, 153, 62))"

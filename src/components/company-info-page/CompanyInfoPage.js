@@ -14,11 +14,10 @@ import './CompanyInfoPage.css';
 import company from '../../services/CompanyService';
 import upload from '../../services/UploadService';
 
-
 const CompanyInfoPage = () => {
     let id;
     const [logoMessageFormat, setLogoMessageFormat] = useState('');
-    const [companyName, setCompanyName] = useState('Test Company');
+    const [companyName, setCompanyName] = useState('');
     const [logo, setLogo] = useState('');
 
     const {
@@ -30,13 +29,18 @@ const CompanyInfoPage = () => {
     const fetchCompany = () => {
         company.fetchCompany(companyName);
         console.log(companyName);
-        setCompanyName('test fetched company name');
+        //setCompanyName('test fetched company name');
+        setCompanyName(companyName);
+    }
+
+    const editCompany = () => {
+        company.editCompany(id, companyName);
     }
 
     useEffect(() => {
         setTimeout(() => {
             fetchCompany();
-        }, 2000)
+        }, 1000)
     }, []);
 
     //Post Data To API
@@ -44,7 +48,7 @@ const CompanyInfoPage = () => {
         upload.upload(logo);
         company.createCompany(companyName);
         console.log(companyName, logo);
-        console.log(data)
+        console.log(data);
         setCompanyName('');
         setLogo('');
     };
@@ -126,7 +130,6 @@ const CompanyInfoPage = () => {
                 {logoMessageFormat && (
                     <Text color="red">{logoMessageFormat} </Text>
                 )}
-
                 <Button
                     type="submit"
                     colorScheme="white"
@@ -143,7 +146,7 @@ const CompanyInfoPage = () => {
                     mt="6px" colorScheme="white"
                     color="black"
                     bg="white" 
-                    onClick={() => company.editCompany(id, companyName)}>
+                    onClick={() => editCompany()}>
                         Edit Info
                 </Button>
             </Flex>
