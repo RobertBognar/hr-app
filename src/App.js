@@ -16,6 +16,7 @@ import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
+import AddNewQuestion from './components/questions-list/AddNewQuestion';
 
 function App() {
     return (
@@ -64,15 +65,6 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
-                                path="/questionslistmain"
-                                element={
-                                    <Page
-                                        Layout={GuestLayout}
-                                        Component={QuestionsListMain}
-                                    />
-                                }
-                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -99,6 +91,24 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={CompanyInfoPage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questionslistmain"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={QuestionsListMain}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questionslistmain/addnewquestion"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={AddNewQuestion}
                                     />
                                 }
                             />

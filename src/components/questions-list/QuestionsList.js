@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Heading, Text, Flex, Button } from '@chakra-ui/react';
 import { SmallAddIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
+import questionsListService from '../../services/QuestionsListService';
 
-const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
+const QuestionsList = () => {
+    const [data, setData] = useState([]);
+
+    async function questionArrayFunc() {
+        const arr = await questionsListService.questionsData();
+        setData(arr);
+    }
+    useEffect(() => {
+        questionArrayFunc();
+    }, []);
+
+    const navigate = useNavigate();
+
+    async function handleDelete(id) {
+        await questionsListService.deleteQuestion(id);
+        questionArrayFunc();
+    }
+
     return (
         <>
             <Flex
@@ -19,7 +38,9 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                     alignItems="end"
                     py="10px"
                     className="question-list-add-btn"
-                    onClick={() => setAddNewQuestion(true)}
+                    onClick={() =>
+                        navigate('/questionslistmain/addnewquestion')
+                    }
                 >
                     <SmallAddIcon w={6} h={6} />
                     Add new question
@@ -38,7 +59,14 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                         p="25px"
                         mb="25px"
                     >
-                        <Flex direction="column">
+                        <Flex
+                            direction="column"
+                            w={[
+                                '100%',
+                                'calc(100% - 180px)',
+                                'calc(100% - 180px)',
+                            ]}
+                        >
                             <Text fontWeight="700" fontSize="14px">
                                 Question {id + 1}
                             </Text>
