@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -9,18 +9,26 @@ import {
     Stack,
     InputGroup,
 } from '@chakra-ui/react';
+import profile from '../../services/ProfileService';
 
 const BasicInfo = () => {
-    const [name, setName] = useState('Michael Jones');
+    const [name, setName] = useState('');
 
     const fileChooser = useRef(null);
 
     const submitProfileInfo = (e) => {
         e.preventDefault();
-        alert(
-            ` Name - ${name}, Selected file - ${fileChooser.current.files[0]}`,
-        );
+        // alert(
+        // ` Name - ${name}, Selected file - ${fileChooser.current.files[0]}`,
+        // );
+        profile.updateProfile(name);
     };
+
+    useEffect(() => {
+        profile.filter();
+
+        //   setName(name)
+    }, []);
 
     return (
         <div>
