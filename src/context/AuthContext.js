@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
             alert('Login failed');
         }
     }
+
     useEffect(() => {
         if (localStorage.getItem('userData')) {
             setUserData(localStorage.getItem('userData'));
@@ -29,9 +30,10 @@ export const AuthProvider = ({ children }) => {
         if (localStorage.getItem('userToken')) {
             setUserToken(localStorage.getItem('userToken'));
         }
+
         console.log(userData);
         console.log(userToken);
-    }, [userToken]);
+    }, []);
 
     return (
         <AuthContext.Provider value={{ userData, userToken, login }}>
