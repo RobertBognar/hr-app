@@ -20,10 +20,10 @@ const company = {
     editCompany: async function (id, companyName) {
         const responseEditCompany = await http.put(`/companies/${id}`, {
             data: {
-                name: companyName,
+                name: `${companyName}`,
             },
         });
-        return responseEditCompany;
+        return responseEditCompany.data.data.id;
     }
 };
 
