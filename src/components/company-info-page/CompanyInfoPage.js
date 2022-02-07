@@ -59,7 +59,7 @@ const CompanyInfoPage = () => {
             direction="column"
             className="bgBlack"
             minH="calc(100vh - 42px)"
-        >
+        >   
             <Heading py="50px" color="white">
                 Company Info
             </Heading>
@@ -74,7 +74,8 @@ const CompanyInfoPage = () => {
                     <Input
                         id="companyName"
                         type="text"
-                        value={companyName}
+                        // value={companyName}
+                        defaultValue={companyName}
                         {...register('companyName', {
                             required: true,
                             validate: (value) => {
