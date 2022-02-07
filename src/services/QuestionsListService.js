@@ -20,7 +20,6 @@ const questionsListService = {
         const response = await http.put(`/questions/${id}`, {
             data: {
                 text: `${text}`,
-                type: 'text',
             },
         });
         return response;

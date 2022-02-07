@@ -33,7 +33,7 @@ const EditQuestion = () => {
     const id = para.id;
     useEffect(() => {
         if (isSubmitted && !errors.edit) {
-            navigate('/questionslistmain', { replace: true });
+            navigate('/questionslistmain');
         }
     }, [isSubmitted, isSubmitting]);
 
@@ -66,10 +66,7 @@ const EditQuestion = () => {
                     />
                     <Box marginTop={8} position={'relative'}>
                         {errors.edit && (
-                            <Text
-                                color="red"
-                                position={'absolute'} /* ref={text} */
-                            >
+                            <Text color="red" position={'absolute'}>
                                 Edit text is required!
                             </Text>
                         )}
