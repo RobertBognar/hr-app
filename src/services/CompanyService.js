@@ -15,7 +15,7 @@ const company = {
                 name: `${companyName}`,
             }
         })
-        return responseFetchCompany.data.data.id;
+        return responseFetchCompany.data.data.attributes.name;
     },
     editCompany: async function (id, companyName) {
         const responseEditCompany = await http.put(`/companies/${id}`, {
@@ -23,7 +23,7 @@ const company = {
                 name: `${companyName}`,
             },
         });
-        return responseEditCompany.data.data.id;
+        return responseEditCompany;
     }
 };
 
