@@ -22,7 +22,7 @@ const profile = {
             );
             console.log(response.data.data[0]);
 
-            return response.data.data[0].id;
+            return response.data.data[0];
         } catch (error) {
             console.error(error);
         }
@@ -32,7 +32,7 @@ const profile = {
         try {
             const user = await profile.filter();
             console.log(user);
-            const response = await http.put(`/profiles/` + user, {
+            const response = await http.put(`/profiles/` + user.id, {
                 data: {
                     name: name,
                     // profilePhoto: photoId,

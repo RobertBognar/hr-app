@@ -24,10 +24,17 @@ const BasicInfo = () => {
         profile.updateProfile(name);
     };
 
-    useEffect(() => {
-        profile.filter();
+    const p = async () => {
+        const pr = await profile.filter();
+        console.log(pr.attributes.name);
+        return pr.attributes.name;
+    };
 
-        //   setName(name)
+    useEffect(async () => {
+        const response = await p();
+        const data = response;
+        console.log(data);
+        setName(data);
     }, []);
 
     return (
