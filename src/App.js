@@ -23,7 +23,6 @@ import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
 
-
 function App() {
     return (
         <div>
@@ -112,28 +111,11 @@ function App() {
                                 }
                             />
                             <Route
-
                                 path="/editcompany"
                                 element={
                                     <Page
                                         Layout={AuthLayout}
                                         Component={EditCompany}
-
-                                path="/questionslistmain"
-                                element={
-                                    <Page
-                                        Layout={AuthLayout}
-                                        Component={QuestionsListMain}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/questionslistmain/addnewquestion"
-                                element={
-                                    <Page
-                                        Layout={AuthLayout}
-                                        Component={AddNewQuestion}
-
                                     />
                                 }
                             />
