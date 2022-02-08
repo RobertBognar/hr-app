@@ -13,9 +13,8 @@ import {
 } from '@chakra-ui/react';
 import './CompanyInfoPage.css';
 import company from '../../services/CompanyService';
-import upload from '../../services/UploadService';
 
-const CompanyInfoPage = () => {
+const EditCompany = () => {
     let id;
     const navigate = useNavigate();
     const [logoMessageFormat, setLogoMessageFormat] = useState('');
@@ -29,22 +28,18 @@ const CompanyInfoPage = () => {
     } = useForm();
 
     async function getCompany() {
-        const comp = await company.fetchCompany();
+        const comp = await company.fetchCompany(id);
         setCompanyName(comp);
     }
 
     useEffect(() => {
         getCompany();
-    }, []);
+    });
 
     //Post Data To API
     const onSubmit = (data) => {
-        // upload.upload(logo);
-        company.createCompany(companyName);
-        console.log(companyName, logo);
-        console.log(data);
-        setCompanyName('');
-        setLogo('');
+        const inputCompanyValue = data.editCompanyName;
+        company.editCompany(id, inputCompanyValue);
     };
 
     return (
@@ -55,7 +50,7 @@ const CompanyInfoPage = () => {
             minH="calc(100vh - 42px)"
         >
             <Heading py="50px" color="white">
-                Company Info
+                Edit Company Info
             </Heading>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
@@ -68,8 +63,8 @@ const CompanyInfoPage = () => {
                     <Input
                         id="companyName"
                         type="text"
-                        value={companyName}
-                        {...register('companyName', {
+                        defaultValue={companyName}
+                        {...register('editCompanyName', {
                             required: true,
                             validate: (value) => {
                                 return !!value.trim();
@@ -82,7 +77,7 @@ const CompanyInfoPage = () => {
                     />
                 </FormControl>
                 {errors.companyName && (
-                    <Text color="red">Company Name is required!</Text>
+                    <Text color="red">Edit Company Text Is Required!</Text>
                 )}
                 <FormControl
                     width={['100%', '372px', '372px']}
@@ -132,7 +127,7 @@ const CompanyInfoPage = () => {
                     p="5px 25px"
                     mt="20px"
                 >
-                    Save
+                    Edit
                 </Button>
             </form>
             <Flex>
@@ -143,14 +138,14 @@ const CompanyInfoPage = () => {
                     as="i"
                     cursor="pointer"
                     onClick={() => {
-                        navigate('/editcompany');
+                        navigate('/companyinfopage');
                     }}
                 >
-                    Go To Edit Company Page
+                    Go To Company Page
                 </Text>
             </Flex>
         </Flex>
     );
 };
 
-export default CompanyInfoPage;
+export default EditCompany;

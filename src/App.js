@@ -15,6 +15,7 @@ import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
+import EditCompany from './components/company-info-page/EditCompany';
 
 function App() {
     return (
@@ -100,6 +101,15 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={CompanyInfoPage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/editcompany"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={EditCompany}
                                     />
                                 }
                             />
