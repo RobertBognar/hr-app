@@ -18,6 +18,7 @@ import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
 import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
+import EditQuestion from './components/questions-list/EditQuestion';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
 
 function App() {
@@ -111,6 +112,15 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={AddNewQuestion}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questions/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={EditQuestion}
                                     />
                                 }
                             />
