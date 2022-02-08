@@ -13,7 +13,7 @@ const profile = {
         }
     },
 
-    filter: async function () {
+    filterUser: async function () {
         try {
             const userStorage = JSON.parse(localStorage.getItem('userData'));
             console.log(userStorage);
@@ -30,15 +30,13 @@ const profile = {
 
     updateProfile: async function (name, photoId) {
         try {
-            const user = await profile.filter();
-            console.log(user);
+            const user = await profile.filterUser();
             const response = await http.put(`/profiles/` + user.id, {
                 data: {
                     name: name,
                     // profilePhoto: photoId,
                 },
             });
-            // console.log(response)
 
             return response.data.data.attributes.name;
         } catch (error) {

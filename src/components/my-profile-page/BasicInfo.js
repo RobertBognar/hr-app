@@ -18,23 +18,17 @@ const BasicInfo = () => {
 
     const submitProfileInfo = (e) => {
         e.preventDefault();
-        // alert(
-        // ` Name - ${name}, Selected file - ${fileChooser.current.files[0]}`,
-        // );
         profile.updateProfile(name);
     };
 
-    const p = async () => {
-        const pr = await profile.filter();
-        console.log(pr.attributes.name);
-        return pr.attributes.name;
-    };
+    async function showInputName() {
+        const user = await profile.filterUser();
+        const userName = user.attributes.name;
+        setName(userName);
+    }
 
-    useEffect(async () => {
-        const response = await p();
-        const data = response;
-        console.log(data);
-        setName(data);
+    useEffect(() => {
+        showInputName();
     }, []);
 
     return (
