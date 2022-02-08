@@ -7,6 +7,7 @@ import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
 import { AuthProvider } from './context/AuthContext';
+
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import GuestRoute from './components/Routes/GuestRoute';
@@ -15,8 +16,10 @@ import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
+import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import EditQuestion from './components/questions-list/EditQuestion';
+import AddNewQuestion from './components/questions-list/AddNewQuestion';
 
 function App() {
     return (
@@ -65,24 +68,6 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
-                                path="/questionslistmain"
-                                element={
-                                    <Page
-                                        Layout={GuestLayout}
-                                        Component={QuestionsListMain}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/questions/:id/edit"
-                                element={
-                                    <Page
-                                        Layout={AuthLayout}
-                                        Component={EditQuestion}
-                                    />
-                                }
-                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -112,9 +97,38 @@ function App() {
                                     />
                                 }
                             />
+                            <Route
+                                path="/questionslistmain"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={QuestionsListMain}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questionslistmain/addnewquestion"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={AddNewQuestion}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questions/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={EditQuestion}
+                                    />
+                                }
+                            />
                         </Route>
                     </Routes>
                 </BrowserRouter>
+
+                <AddNew />
             </AuthProvider>
         </div>
     );

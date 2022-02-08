@@ -6,9 +6,9 @@ const http = axios.create({
 
 http.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('userToken');
         if (token) {
-            const useToken = localStorage.getItem('token');
+            const useToken = localStorage.getItem('userToken');
             config.headers.Authorization = `Bearer ${useToken}`;
         }
 
