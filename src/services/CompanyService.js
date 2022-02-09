@@ -20,26 +20,12 @@ const company = {
         console.log(responseCompany.data.data.id);
         return responseCompany.data.data.id;
     },
-
-    // const c = await company.createCompany();
-    //     const response = await http.get(`/companies/` + c);
-    //     // const company = response.data.data.attributes.name;
-    //     console.log(response);
-    //     return response;
     fetchCompany: async function (id) {
         const response = await http.get(`/companies/1`);
         const company = response.data.data.attributes.name;
         console.log(company);
         return company;
     },
-    // fetchCompany: async function (id, companyName) {
-    //     const responseFetchedCompany = await http.get(`/companies/1`, {
-    //         data: {
-    //             name: `${companyName}`,
-    //         },
-    //     });
-    //     return responseFetchedCompany;
-    // },
     editCompany: async function (id, companyName) {
         const responseEditCompany = await http.put(`/companies/1`, {
             data: {
