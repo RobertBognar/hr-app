@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import { Heading, Text, Flex, Button } from '@chakra-ui/react';
 import { SmallAddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import questionsListService from '../../services/QuestionsListService';
+import PaginationQuestionsList from './PaginationQuestionsList';
 
 const QuestionsList = () => {
     const [data, setData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(4);
 
     async function questionArrayFunc() {
         const arr = await questionsListService.questionsData();
@@ -23,6 +25,14 @@ const QuestionsList = () => {
         await questionsListService.deleteQuestion(id);
         questionArrayFunc();
     }
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <>
@@ -48,7 +58,7 @@ const QuestionsList = () => {
                     Add new question
                 </Button>
             </Flex>
-            {data.map((card, id) => {
+            {currentPosts.map((card, id) => {
                 return (
                     <Flex
                         direction={['column', 'row', 'row']}
@@ -61,7 +71,6 @@ const QuestionsList = () => {
                         p="25px"
                         mb="25px"
                     >
-                        {console.log(card)}
                         <Flex direction="column">
                             <Text fontWeight="700" fontSize="14px">
                                 Question {id + 1}
@@ -104,6 +113,12 @@ const QuestionsList = () => {
                     </Flex>
                 );
             })}
+            <PaginationQuestionsList
+                postsPerPage={postsPerPage}
+                totalPosts={data.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
         </>
     );
 };
