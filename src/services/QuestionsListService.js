@@ -1,4 +1,3 @@
-import { AiOutlineConsoleSql } from 'react-icons/ai';
 import http from './HttpService';
 
 const questionsListService = {
@@ -8,6 +7,19 @@ const questionsListService = {
             const responseQuestions = response.data.data;
 
             return responseQuestions;
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    questionsDataPagination: async function (currentPage) {
+        try {
+            const response = await http.get('/questions', {
+                params: {
+                    'pagination[page]': currentPage,
+                    'pagination[pageSize]': 5,
+                },
+            });
+            return response;
         } catch (error) {
             console.error(error);
         }
@@ -63,5 +75,5 @@ const questionsListService = {
         });
     },
 };
-
+questionsListService.questionsDataPagination(2);
 export default questionsListService;

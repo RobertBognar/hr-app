@@ -9,30 +9,37 @@ import PaginationQuestionsList from './PaginationQuestionsList';
 const QuestionsList = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(4);
+    const [totalPosts, setTotalPosts] = useState();
+    const [pageCount, setPageCount] = useState();
 
-    async function questionArrayFunc() {
-        const arr = await questionsListService.questionsData();
-        setData(arr);
+    async function questionArrayFunc(currentPage) {
+        const dataResponive =
+            await questionsListService.questionsDataPagination(currentPage);
+        setData(dataResponive.data.data);
+        setTotalPosts(dataResponive.data.meta.pagination.total);
+        setPageCount(dataResponive.data.meta.pagination.pageCount);
     }
     useEffect(() => {
-        questionArrayFunc();
+        questionArrayFunc(currentPage);
     }, []);
 
     const navigate = useNavigate();
 
     async function handleDelete(id) {
         await questionsListService.deleteQuestion(id);
-        questionArrayFunc();
+        if (totalPosts % 5 == 1) {
+            questionArrayFunc(currentPage - 1);
+            setCurrentPage(currentPage - 1);
+        } else {
+            questionArrayFunc(currentPage);
+        }
     }
 
-    // Get current posts
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
-
     // Change page
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        questionArrayFunc(pageNumber);
+        setCurrentPage(pageNumber);
+    };
 
     return (
         <>
@@ -58,7 +65,7 @@ const QuestionsList = () => {
                     Add new question
                 </Button>
             </Flex>
-            {currentPosts.map((card, id) => {
+            {data.map((card, id) => {
                 return (
                     <Flex
                         direction={['column', 'row', 'row']}
@@ -114,10 +121,11 @@ const QuestionsList = () => {
                 );
             })}
             <PaginationQuestionsList
-                postsPerPage={postsPerPage}
-                totalPosts={data.length}
+                postsPerPage={pageCount}
+                totalPosts={totalPosts}
                 paginate={paginate}
                 currentPage={currentPage}
+                questionArrayFunc={questionArrayFunc}
             />
         </>
     );

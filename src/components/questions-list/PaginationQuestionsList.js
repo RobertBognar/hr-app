@@ -1,22 +1,17 @@
 import React from 'react';
-import { Button, Text, Flex, Box, HStack } from '@chakra-ui/react';
+import { Button, Text, Box, HStack } from '@chakra-ui/react';
 
-const PaginationQuestionsList = ({
-    postsPerPage,
-    totalPosts,
-    paginate,
-    currentPage,
-}) => {
+const PaginationQuestionsList = ({ postsPerPage, paginate, currentPage }) => {
     const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    for (let i = 1; i <= postsPerPage; i++) {
         pageNumbers.push(i);
     }
 
     const handlePageNumber = (e) => {
         if (e === 'previos') {
             if (currentPage === 1) {
-                currentPage = 1;
+                paginate(1);
             } else {
                 paginate(currentPage - 1);
             }
