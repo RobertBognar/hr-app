@@ -2,7 +2,8 @@
     --chakra-shadows-outline: rgb(92, 153, 62) !important;
 }
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
     z-index: 1;
     border-color: rgb(92, 153, 62) !important;
     box-shadow: 0 0 0 1px rgb(92, 153, 62) !important;

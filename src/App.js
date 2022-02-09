@@ -20,6 +20,7 @@ import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import EditQuestion from './components/questions-list/EditQuestion';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
+import SubmitResponsePage from './components/questions-list/SubmitResponsePage';
 
 function App() {
     return (
@@ -121,6 +122,15 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={EditQuestion}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/submitresponsepage"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={SubmitResponsePage}
                                     />
                                 }
                             />

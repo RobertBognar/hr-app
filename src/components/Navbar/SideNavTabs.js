@@ -56,7 +56,7 @@ const SideNavTabs = () => {
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>My Profile</Text>
                 </MenuItem>
-                <Divider
+                {/* <Divider
                     left={240}
                     top={-2}
                     width={'100%'}
@@ -67,7 +67,7 @@ const SideNavTabs = () => {
                     borderLeftStyle={'solid'}
                     borderLeftColor={'whiteAlpha.900'}
                     display={['none', 'none', 'flex', 'flex']}
-                />
+                /> */}
             </Menu>
         </VStack>
     );

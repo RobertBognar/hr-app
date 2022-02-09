@@ -53,7 +53,7 @@ const CompanyInfoPage = () => {
                         borderRadius="none"
                         placeholder="Company Name"
                         color="white"
-                    />
+                    />{' '}
                 </FormControl>
                 {errors.companyName && (
                     <Text color="red">Company Name is required!</Text>

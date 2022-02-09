@@ -4,9 +4,22 @@ const questionsListService = {
     questionsData: async function () {
         try {
             const response = await http.get('/questions');
-            console.log(response);
             const responseQuestions = response.data.data;
+
             return responseQuestions;
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    questionsDataPagination: async function (currentPage) {
+        try {
+            const response = await http.get('/questions', {
+                params: {
+                    'pagination[page]': currentPage,
+                    'pagination[pageSize]': 5,
+                },
+            });
+            return response;
         } catch (error) {
             console.error(error);
         }
@@ -49,5 +62,18 @@ const questionsListService = {
             console.log('An error occurred:', error.message);
         }
     },
+    addAnswersData: async function (answersData) {
+        await answersData.forEach((answer) => {
+            try {
+                const response = http.post('/answers', {
+                    data: { answer: answer },
+                });
+                return response;
+            } catch (error) {
+                console.log('An error occurred:', error.message);
+            }
+        });
+    },
 };
+questionsListService.questionsDataPagination(2);
 export default questionsListService;

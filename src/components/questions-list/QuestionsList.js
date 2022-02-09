@@ -1,28 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import { Heading, Text, Flex, Button } from '@chakra-ui/react';
 import { SmallAddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import questionsListService from '../../services/QuestionsListService';
+import PaginationQuestionsList from './PaginationQuestionsList';
 
 const QuestionsList = () => {
     const [data, setData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPosts, setTotalPosts] = useState();
+    const [pageCount, setPageCount] = useState();
 
-    async function questionArrayFunc() {
-        const arr = await questionsListService.questionsData();
-        setData(arr);
+    async function questionArrayFunc(currentPage) {
+        const dataResponive =
+            await questionsListService.questionsDataPagination(currentPage);
+        setData(dataResponive.data.data);
+        setTotalPosts(dataResponive.data.meta.pagination.total);
+        setPageCount(dataResponive.data.meta.pagination.pageCount);
     }
     useEffect(() => {
-        questionArrayFunc();
+        questionArrayFunc(currentPage);
     }, []);
 
     const navigate = useNavigate();
 
     async function handleDelete(id) {
         await questionsListService.deleteQuestion(id);
-        questionArrayFunc();
+        if (totalPosts % 5 == 1) {
+            questionArrayFunc(currentPage - 1);
+            setCurrentPage(currentPage - 1);
+        } else {
+            questionArrayFunc(currentPage);
+        }
     }
+
+    // Change page
+    const paginate = (pageNumber) => {
+        questionArrayFunc(pageNumber);
+        setCurrentPage(pageNumber);
+    };
 
     return (
         <>
@@ -61,7 +78,6 @@ const QuestionsList = () => {
                         p="25px"
                         mb="25px"
                     >
-                        {console.log(card)}
                         <Flex direction="column">
                             <Text fontWeight="700" fontSize="14px">
                                 Question {id + 1}
@@ -104,6 +120,13 @@ const QuestionsList = () => {
                     </Flex>
                 );
             })}
+            <PaginationQuestionsList
+                postsPerPage={pageCount}
+                totalPosts={totalPosts}
+                paginate={paginate}
+                currentPage={currentPage}
+                questionArrayFunc={questionArrayFunc}
+            />
         </>
     );
 };
