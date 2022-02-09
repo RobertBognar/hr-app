@@ -42,7 +42,6 @@ const SubmitResponsePage = () => {
 
     const openModal = () => {
         onOpen();
-        questionsListService.addAnswersData(answersData);
     };
 
     const closeModal = () => {
@@ -61,9 +60,22 @@ const SubmitResponsePage = () => {
 
     const onSubmit = (answer) => {
         if (answer.answer === '') {
-            setAnswersData([...answersData, answer.answerFile[0]]);
+            setAnswersData([...answersData, answer.answerFile[0].name]);
         } else {
             setAnswersData([...answersData, answer.answer]);
+        }
+        if (data.length === visibleItem + 1) {
+            if (answer.answer === '') {
+                questionsListService.addAnswersData([
+                    ...answersData,
+                    answer.answerFile[0].name,
+                ]);
+            } else {
+                questionsListService.addAnswersData([
+                    ...answersData,
+                    answer.answer,
+                ]);
+            }
         }
         setVisibleItem(visibleItem + 1);
         setValue('answer', '');

@@ -1,3 +1,4 @@
+import { AiOutlineConsoleSql } from 'react-icons/ai';
 import http from './HttpService';
 
 const questionsListService = {
@@ -5,7 +6,7 @@ const questionsListService = {
         try {
             const response = await http.get('/questions');
             const responseQuestions = response.data.data;
-            console.log(response);
+
             return responseQuestions;
         } catch (error) {
             console.error(error);
@@ -50,10 +51,10 @@ const questionsListService = {
         }
     },
     addAnswersData: async function (answersData) {
-        answersData.forEach((answer) => {
+        await answersData.forEach((answer) => {
             try {
-                const response = await http.post('/questions', {
-                    data: answer,
+                const response = http.post('/answers', {
+                    data: { answer: answer },
                 });
                 return response;
             } catch (error) {
@@ -62,4 +63,5 @@ const questionsListService = {
         });
     },
 };
+
 export default questionsListService;
