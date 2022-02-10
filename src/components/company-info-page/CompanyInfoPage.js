@@ -13,14 +13,13 @@ import {
 } from '@chakra-ui/react';
 import './CompanyInfoPage.css';
 import company from '../../services/CompanyService';
-import upload from '../../services/UploadService';
+import http from '../../services/HttpService';
 
 const CompanyInfoPage = () => {
-    let id;
     const navigate = useNavigate();
     const [logoMessageFormat, setLogoMessageFormat] = useState('');
     const [companyName, setCompanyName] = useState('');
-    const [logo, setLogo] = useState('');
+    const [files, setFiles] = useState();
 
     const {
         register,
@@ -28,23 +27,52 @@ const CompanyInfoPage = () => {
         formState: { errors },
     } = useForm();
 
+    const uploadImage = async () => {
+        const formData = new FormData();
+
+        formData.append('files', files[0]);
+
+        http.post('/upload', formData)
+            .then((response) => {
+                const imageId = response.data[0].id;
+
+                http.post('/companies', { image: imageId })
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     async function getCompany() {
         const comp = await company.fetchCompany();
+        console.log(comp);
         setCompanyName(comp);
+    }
+
+    async function getLogo() {
+        const thumblogo = await company.fetchLogo();
+        console.log(thumblogo);
+        setFiles(thumblogo);
     }
 
     useEffect(() => {
         getCompany();
+        getLogo();
     }, []);
 
     //Post Data To API
     const onSubmit = (data) => {
-        // upload.upload(logo);
+        uploadImage();
         company.createCompany(companyName);
-        console.log(companyName, logo);
         console.log(data);
         setCompanyName('');
-        setLogo('');
+        setFiles('');
     };
 
     return (
@@ -95,7 +123,7 @@ const CompanyInfoPage = () => {
                     <Input
                         id="companyLogo"
                         type="file"
-                        value={logo}
+                        // value={logo}
                         fontSize={['14px', '16px', '16px', '16px']}
                         {...register('companyLogo', {
                             required: 'Company Logo file is required!',
@@ -115,7 +143,8 @@ const CompanyInfoPage = () => {
                                 }
                             },
                         })}
-                        onChange={(e) => setLogo(e.target.value)}
+                        // onChange={(e) => setLogo(e.target.logo)}
+                        onChange={(e) => setFiles(e.target.files)}
                     />
                 </FormControl>
                 {errors.companyLogo && (
