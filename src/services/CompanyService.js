@@ -21,13 +21,20 @@ const company = {
         return responseCompany.data.data.id;
     },
     fetchCompany: async function (id) {
-        const response = await http.get(`/companies/1`);
+        const response = await http.get(`/companies/484`);
         const company = response.data.data.attributes.name;
-        console.log(company);
         return company;
+        // const response = await http.get(`/companies/${id}`);
+        // const company = response.data.data.id;
+        // return company;
+    },
+    fetchLogo: async function () {
+        const response = await http.get(`/upload/files/637`);
+        const logo = response.data.name;
+        return logo;
     },
     editCompany: async function (id, companyName) {
-        const responseEditCompany = await http.put(`/companies/1`, {
+        const responseEditCompany = await http.put(`/companies/484`, {
             data: {
                 name: `${companyName}`,
             },
