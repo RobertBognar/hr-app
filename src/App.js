@@ -16,6 +16,9 @@ import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
+
+import EditCompany from './components/company-info-page/EditCompany';
+
 import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import EditQuestion from './components/questions-list/EditQuestion';
@@ -68,6 +71,17 @@ function App() {
                                     />
                                 }
                             />
+                            {/* Delete Later, And Put Back In Protected Routes */}
+                            <Route
+                                path="/companyinfopage"
+                                element={
+                                    <Page
+                                        // change to auth layout
+                                        Layout={GuestLayout}
+                                        Component={CompanyInfoPage}
+                                    />
+                                }
+                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -98,20 +112,11 @@ function App() {
                                 }
                             />
                             <Route
-                                path="/questionslistmain"
+                                path="/editcompany"
                                 element={
                                     <Page
                                         Layout={AuthLayout}
-                                        Component={QuestionsListMain}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/questionslistmain/addnewquestion"
-                                element={
-                                    <Page
-                                        Layout={AuthLayout}
-                                        Component={AddNewQuestion}
+                                        Component={EditCompany}
                                     />
                                 }
                             />

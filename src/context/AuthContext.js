@@ -25,8 +25,10 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        
         if (localStorage.getItem('userData')) {
             setUserData(localStorage.getItem('userData'));
+            
         }
         if (localStorage.getItem('userToken')) {
             setUserToken(localStorage.getItem('userToken'));

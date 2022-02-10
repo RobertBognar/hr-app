@@ -47,7 +47,12 @@ const SideNavTabs = () => {
                 </MenuItem>
                 <MenuItem backgroundColor={'whiteAlpha.600'}>
                     <ChevronRightIcon />
-                    <Text paddingLeft={3}>Company Info</Text>
+                    <Text
+                        onClick={() => navigate('/companyinfopage')}
+                        paddingLeft={3}
+                    >
+                        Company Info
+                    </Text>
                 </MenuItem>
                 <MenuItem
                     onClick={() => navigate('/profile')}

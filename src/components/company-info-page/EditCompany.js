@@ -13,13 +13,13 @@ import {
 } from '@chakra-ui/react';
 import './CompanyInfoPage.css';
 import company from '../../services/CompanyService';
-import http from '../../services/HttpService';
 
-const CompanyInfoPage = () => {
+const EditCompany = () => {
+    let id;
     const navigate = useNavigate();
     const [logoMessageFormat, setLogoMessageFormat] = useState('');
     const [companyName, setCompanyName] = useState('');
-    const [files, setFiles] = useState();
+    const [logo, setLogo] = useState('');
 
     const {
         register,
@@ -27,52 +27,19 @@ const CompanyInfoPage = () => {
         formState: { errors },
     } = useForm();
 
-    const uploadImage = async () => {
-        const formData = new FormData();
-
-        formData.append('files', files[0]);
-
-        http.post('/upload', formData)
-            .then((response) => {
-                const imageId = response.data[0].id;
-
-                http.post('/companies', { image: imageId })
-                    .then((response) => {
-                        console.log(response);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
     async function getCompany() {
-        const comp = await company.fetchCompany();
-        console.log(comp);
+        const comp = await company.fetchCompany(id);
         setCompanyName(comp);
-    }
-
-    async function getLogo() {
-        const thumblogo = await company.fetchLogo();
-        console.log(thumblogo);
-        setFiles(thumblogo);
     }
 
     useEffect(() => {
         getCompany();
-        getLogo();
-    }, []);
+    });
 
     //Post Data To API
     const onSubmit = (data) => {
-        uploadImage();
-        company.createCompany(companyName);
-        console.log(data);
-        setCompanyName('');
-        setFiles('');
+        const inputCompanyValue = data.editCompanyName;
+        company.editCompany(id, inputCompanyValue);
     };
 
     return (
@@ -83,7 +50,7 @@ const CompanyInfoPage = () => {
             minH="calc(100vh - 42px)"
         >
             <Heading py="50px" color="white">
-                Company Info
+                Edit Company Info
             </Heading>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
@@ -96,8 +63,8 @@ const CompanyInfoPage = () => {
                     <Input
                         id="companyName"
                         type="text"
-                        value={companyName}
-                        {...register('companyName', {
+                        defaultValue={companyName}
+                        {...register('editCompanyName', {
                             required: true,
                             validate: (value) => {
                                 return !!value.trim();
@@ -110,7 +77,7 @@ const CompanyInfoPage = () => {
                     />
                 </FormControl>
                 {errors.companyName && (
-                    <Text color="red">Company Name is required!</Text>
+                    <Text color="red">Edit Company Text Is Required!</Text>
                 )}
                 <FormControl
                     width={['100%', '372px', '372px']}
@@ -123,7 +90,7 @@ const CompanyInfoPage = () => {
                     <Input
                         id="companyLogo"
                         type="file"
-                        // value={logo}
+                        value={logo}
                         fontSize={['14px', '16px', '16px', '16px']}
                         {...register('companyLogo', {
                             required: 'Company Logo file is required!',
@@ -143,8 +110,7 @@ const CompanyInfoPage = () => {
                                 }
                             },
                         })}
-                        // onChange={(e) => setLogo(e.target.logo)}
-                        onChange={(e) => setFiles(e.target.files)}
+                        onChange={(e) => setLogo(e.target.value)}
                     />
                 </FormControl>
                 {errors.companyLogo && (
@@ -161,7 +127,7 @@ const CompanyInfoPage = () => {
                     p="5px 25px"
                     mt="20px"
                 >
-                    Save
+                    Edit
                 </Button>
             </form>
             <Flex>
@@ -172,14 +138,14 @@ const CompanyInfoPage = () => {
                     as="i"
                     cursor="pointer"
                     onClick={() => {
-                        navigate('/editcompany');
+                        navigate('/companyinfopage');
                     }}
                 >
-                    Go To Edit Company Page
+                    Go To Company Page
                 </Text>
             </Flex>
         </Flex>
     );
 };
 
-export default CompanyInfoPage;
+export default EditCompany;
