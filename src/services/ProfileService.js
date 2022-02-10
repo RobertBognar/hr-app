@@ -16,7 +16,6 @@ const profile = {
     filterUser: async function () {
         try {
             const userStorage = JSON.parse(localStorage.getItem('userData'));
-            console.log(userStorage);
             const response = await http.get(
                 '/profiles?filters[user][id][$eq]=' + userStorage.id,
             );
@@ -34,7 +33,7 @@ const profile = {
             const response = await http.put(`/profiles/` + user.id, {
                 data: {
                     name: name,
-                    // profilePhoto: photoId,
+                    profilePhoto: photoId,
                 },
             });
 

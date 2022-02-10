@@ -10,15 +10,25 @@ import {
     InputGroup,
 } from '@chakra-ui/react';
 import profile from '../../services/ProfileService';
+import http from '../../services/HttpService';
 
 const BasicInfo = () => {
     const [name, setName] = useState('');
-
+    const [choosePhoto, setChoosePhoto] = useState();
     const fileChooser = useRef(null);
 
     const submitProfileInfo = (e) => {
         e.preventDefault();
-        profile.updateProfile(name);
+
+        const formData = new FormData();
+        formData.append('files', choosePhoto[0]);
+        http.post('/upload', formData)
+            .then((response) => {
+                profile.updateProfile(name, response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     async function showInputName() {
@@ -143,6 +153,9 @@ const BasicInfo = () => {
                                     type="file"
                                     ref={fileChooser}
                                     display="none"
+                                    onChange={(e) =>
+                                        setChoosePhoto(e.target.files)
+                                    }
                                 />
                             </InputGroup>
                         </FormControl>
