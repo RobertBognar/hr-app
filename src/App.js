@@ -117,7 +117,7 @@ function App() {
                                 path="/submitresponse"
                                 element={
                                     <Page
-                                        Layout={GuestLayout}
+                                        Layout={AuthLayout}
                                         Component={SubmitResponseR}
                                     />
                                 }
