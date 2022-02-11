@@ -37,9 +37,7 @@ const SideNav = () => {
                             <MenuItem onClick={() => navigate('/board')}>
                                 Team
                             </MenuItem>
-                            <MenuItem onClick={() => navigate('/addnew')}>
-                                Questions
-                            </MenuItem>
+                            <MenuItem>Questions</MenuItem>
                             <MenuItem>Company</MenuItem>
                             <MenuItem onClick={() => navigate('/profile')}>
                                 My Profile
