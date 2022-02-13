@@ -10,6 +10,8 @@ import {
     Button,
     Flex,
     Select,
+    Textarea,
+    InputGroup,
 } from '@chakra-ui/react';
 const AddNew = () => {
     const {
@@ -18,14 +20,15 @@ const AddNew = () => {
         getValues,
         formState: { errors },
     } = useForm();
-
+    let option;
     const saveQuestion = () => {
         const question = getValues('question');
-        const option = getValues('questionType');
-
+        option = getValues('questionType');
+        localStorage.setItem('optionType', option);
         addQuestionService.addQuestion(question, option);
     };
-
+    let getOption = localStorage.getItem('optionType');
+    console.log(getOption);
     return (
         <Flex direction="column">
             <form onSubmit={handleSubmit(saveQuestion)}>
@@ -47,14 +50,39 @@ const AddNew = () => {
                                 <FormLabel color="whiteAlpha.700">
                                     Question text
                                 </FormLabel>
-                                <Input
-                                    color="white"
-                                    placeholder="Question text"
-                                    width="50%"
-                                    {...register('question', {
-                                        required: true,
-                                    })}
-                                />
+                                {option === 'Image' ? (
+                                    <InputGroup>
+                                        <Input
+                                            type={'file'}
+                                            color="white"
+                                            placeholder="Question text"
+                                            width="50%"
+                                            {...register('question', {
+                                                required: true,
+                                            })}
+                                        />
+                                    </InputGroup>
+                                ) : option === 'text' ? (
+                                    <Input
+                                        type="text"
+                                        color="white"
+                                        placeholder="Question text"
+                                        width="50%"
+                                        {...register('question', {
+                                            required: true,
+                                        })}
+                                    />
+                                ) : (
+                                    <Textarea
+                                        type="long_text"
+                                        color="white"
+                                        placeholder="Question text"
+                                        width="50%"
+                                        {...register('question', {
+                                            required: true,
+                                        })}
+                                    />
+                                )}
                             </FormControl>
                             {errors.question && (
                                 <Text color="red">

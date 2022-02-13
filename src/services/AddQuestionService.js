@@ -4,15 +4,20 @@ const addQuestionService = {
     addQuestion: async function (addedQuestion, option) {
         try {
             const questions = await http.get('/questions');
-            let order = questions.data.data.length;
-
-            console.log(order);
+            let arrQuestions = questions.data.data;
+            let maxOrder = 0;
+            for (let i = 0; i < arrQuestions.length; i++) {
+                if (arrQuestions[i].attributes.order > maxOrder) {
+                    maxOrder = arrQuestions[i].attributes.order;
+                }
+            }
+            console.log(maxOrder);
             let userData = JSON.parse(localStorage.getItem('userData'));
             let data = {
                 data: {
                     text: addedQuestion,
                     type: option,
-                    order: order + 1,
+                    order: maxOrder + 1,
                     company: userData.username,
                 },
             };
