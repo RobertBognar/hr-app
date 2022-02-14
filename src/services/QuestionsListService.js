@@ -49,5 +49,15 @@ const questionsListService = {
             console.log('An error occurred:', error.message);
         }
     },
+    submitQuestion: async function (answer, question, profile) {
+        const response = await http.post(`/answers`, {
+            data: {
+                answer,
+                profile,
+                question,
+            },
+        });
+        return response;
+    },
 };
 export default questionsListService;
