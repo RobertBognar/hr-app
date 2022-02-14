@@ -16,7 +16,11 @@ import {
     ModalBody,
     ModalFooter,
 } from '@chakra-ui/react';
-import { ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import {
+    ChevronUpIcon,
+    ChevronDownIcon,
+    CheckCircleIcon,
+} from '@chakra-ui/icons';
 
 import questionsListService from '../../services/QuestionsListService';
 
@@ -80,7 +84,6 @@ const SubmitResponse = () => {
         }
         setVisibleQuestionCount(visibleQuestionCount + 1);
         setValue('answer', '');
-        questionsListService.addAnswersData(questionAnswers);
     };
 
     return (
@@ -226,9 +229,9 @@ const SubmitResponse = () => {
                                             <Button
                                                 type="submit"
                                                 bg="black"
-                                                color="white"
+                                                color="whiteAlpha.500"
                                                 border="1px"
-                                                borderColor="white"
+                                                borderColor="gray.200"
                                                 _hover={{
                                                     background: 'white',
                                                     color: 'black',
@@ -249,21 +252,17 @@ const SubmitResponse = () => {
                     </div>
                 );
             })}
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} size="2xl">
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent backgroundColor="gray.50">
                     <ModalCloseButton />
-                    <ModalBody>
-                        <Text pt="40px" as="i">
+                    <ModalBody mt="48px" textAlign="center">
+                        <Text as="i">
                             Thank you for subbmiting the answers! :)
                         </Text>
                     </ModalBody>
                     <ModalFooter>
-                        <Button
-                            colorScheme="blackAlpha"
-                            mr={3}
-                            onClick={onClose}
-                        >
+                        <Button colorScheme="gray" mr={3} onClick={onClose}>
                             Close
                         </Button>
                     </ModalFooter>

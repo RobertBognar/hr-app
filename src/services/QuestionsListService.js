@@ -50,7 +50,7 @@ const questionsListService = {
         }
     },
     addAnswersData: async function (answersData) {
-        answersData.map((answer) => {
+        answersData.forEach((answer) => {
             try {
                 const response = http.post('/answers', {
                     data: answer,
@@ -59,7 +59,6 @@ const questionsListService = {
             } catch (error) {
                 console.log('Error occured: ', error.message);
             }
-            return answersData;
         });
     },
 };
