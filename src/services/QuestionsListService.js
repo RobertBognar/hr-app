@@ -5,10 +5,24 @@ const questionsListService = {
         try {
             const response = await http.get('/questions');
             const responseQuestions = response.data.data;
+            console.log(response);
             return responseQuestions;
         } catch (error) {
             console.error(error);
         }
+    },
+    getQuestion: async function (id) {
+        const response = await http.get(`/questions/${id}`);
+        const question = response.data.data.attributes.text;
+        return question;
+    },
+    editQuestion: async function (id, text) {
+        const response = await http.put(`/questions/${id}`, {
+            data: {
+                text: `${text}`,
+            },
+        });
+        return response;
     },
     addQuestion: async function (singleData) {
         try {
@@ -35,6 +49,18 @@ const questionsListService = {
             console.log('An error occurred:', error.message);
         }
     },
+    addAnswersData: async function (answersData) {
+        answersData.map((answer) => {
+            try {
+                const response = http.post('/answers', {
+                    data: answer,
+                });
+                return response;
+            } catch (error) {
+                console.log('Error occured: ', error.message);
+            }
+            return answersData;
+        });
+    },
 };
-
 export default questionsListService;

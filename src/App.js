@@ -17,7 +17,7 @@ import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
-import SubmitResponseR from './components/questions-list/SubmitResponseR';
+import SubmitResponse from './components/questions-list/SubmitResponse';
 
 function App() {
     return (
@@ -117,8 +117,8 @@ function App() {
                                 path="/submitresponse"
                                 element={
                                     <Page
-                                        Layout={AuthLayout}
-                                        Component={SubmitResponseR}
+                                        Layout={GuestLayout}
+                                        Component={SubmitResponse}
                                     />
                                 }
                             />
