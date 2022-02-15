@@ -9,19 +9,18 @@ export const GetQuestionsProvider = ({ children }) => {
         let getQ = await GetCompanyQuestionsService.userCompanyQuestions(id);
         let questionObject;
         let questionArr = [];
-
         if (getQ) {
             getQ.map((question) => {
                 questionObject = {};
+                questionObject.id = question.id;
                 questionObject.text = question.attributes.text;
                 questionObject.type = question.attributes.type;
+
                 questionArr.push(questionObject);
             });
         }
 
         setCompanyQuestions(questionArr);
-
-        localStorage.setItem('questionsList', questionArr);
     }
 
     return (
