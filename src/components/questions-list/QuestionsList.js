@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import { Heading, Text, Flex, Button } from '@chakra-ui/react';
 import { SmallAddIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
+import questionsListService from '../../services/QuestionsListService';
 
-const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
+const QuestionsList = () => {
+    const [data, setData] = useState([]);
+
+    async function questionArrayFunc() {
+        const arr = await questionsListService.questionsData();
+        setData(arr);
+    }
+    useEffect(() => {
+        questionArrayFunc();
+    }, []);
+
+    const navigate = useNavigate();
+
+    async function handleDelete(id) {
+        await questionsListService.deleteQuestion(id);
+        questionArrayFunc();
+    }
+
     return (
         <>
             <Flex
@@ -19,7 +40,9 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                     alignItems="end"
                     py="10px"
                     className="question-list-add-btn"
-                    onClick={() => setAddNewQuestion(true)}
+                    onClick={() =>
+                        navigate('/questionslistmain/addnewquestion')
+                    }
                 >
                     <SmallAddIcon w={6} h={6} />
                     Add new question
@@ -38,6 +61,7 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                         p="25px"
                         mb="25px"
                     >
+                        {console.log(card)}
                         <Flex direction="column">
                             <Text fontWeight="700" fontSize="14px">
                                 Question {id + 1}
@@ -45,19 +69,22 @@ const QuestionsList = ({ data, handleDelete, setAddNewQuestion }) => {
                             <Text fontSize="24px">{card.attributes.text}</Text>
                         </Flex>
                         <Flex>
-                            <Button
-                                bg="black"
-                                color="white"
-                                border="1px"
-                                borderColor="white"
-                                mt="15px"
-                                _hover={{
-                                    background: 'white',
-                                    color: 'black',
-                                }}
-                            >
-                                Edit
-                            </Button>
+                            {}
+                            <Link to={`/questions/${card.id}/edit`}>
+                                <Button
+                                    bg="black"
+                                    color="white"
+                                    border="1px"
+                                    borderColor="white"
+                                    mt="15px"
+                                    _hover={{
+                                        background: 'white',
+                                        color: 'black',
+                                    }}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
                             <Button
                                 bg="black"
                                 color="white"

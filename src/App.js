@@ -19,6 +19,8 @@ import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
 import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import SubmitResponse from './components/SubmitResponse/SubmitResponse';
+import EditQuestion from './components/questions-list/EditQuestion';
+import AddNewQuestion from './components/questions-list/AddNewQuestion';
 
 function App() {
     return (
@@ -67,15 +69,6 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
-                                path="/questionslistmain"
-                                element={
-                                    <Page
-                                        Layout={GuestLayout}
-                                        Component={QuestionsListMain}
-                                    />
-                                }
-                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -102,6 +95,33 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={CompanyInfoPage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questionslistmain"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={QuestionsListMain}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questionslistmain/addnewquestion"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={AddNewQuestion}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/questions/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={EditQuestion}
                                     />
                                 }
                             />
