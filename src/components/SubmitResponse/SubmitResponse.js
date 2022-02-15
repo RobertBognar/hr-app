@@ -1,19 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Box, Text, Input, Textarea, Button, Flex } from '@chakra-ui/react';
+import {
+    Box,
+    Text,
+    Input,
+    Textarea,
+    Button,
+    Flex,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+} from '@chakra-ui/react';
 
 import { useGetQuestionsContext } from '../../context/GetQuestionsContext';
 import GetCompanyQuestionsService from '../../services/GetCompanyQuestionsService';
+import { FaCloudUploadAlt } from 'react-icons/fa';
 const SubmitResponse = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [arrayOfAnswers, setArrayOfAnswers] = useState([]);
+    const [finishedAnswers, setFinishedAnswers] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const { companyQuestions, getCompanyQ } = useGetQuestionsContext();
 
     const {
         register,
         handleSubmit,
-        getValues,
+
         resetField,
         formState: { errors },
     } = useForm({
@@ -71,6 +89,8 @@ const SubmitResponse = () => {
     };
     const Save = () => {
         GetCompanyQuestionsService.answerServis(arrayOfAnswers);
+        setFinishedAnswers(true);
+        onOpen();
     };
     const displayQuestions = companyQuestions
         .slice(pagesVisited - 1, pagesVisited)
@@ -88,14 +108,46 @@ const SubmitResponse = () => {
                         value={question.id}
                     />
                     {question.type === 'image' ? (
-                        <Input
-                            type="file"
-                            id="myfile"
-                            name="myfile"
-                            {...register('answer', {
-                                required: true,
-                            })}
-                        />
+                        <Box
+                            width="100%"
+                            marginBottom={37}
+                            position={'relative'}
+                        >
+                            <label>Image</label>
+                            <Box
+                                width="100%"
+                                type="text"
+                                placeholder={'Profile photo'}
+                                position={'relative'}
+                                outline={'none'}
+                                _placeholder={{ color: 'red' }}
+                                border="2px"
+                                height={50}
+                                color="white"
+                            >
+                                <label
+                                    htmlFor="file-upload"
+                                    fontSize={16}
+                                    className="custom-file-upload"
+                                >
+                                    <p> Choose file</p>
+                                    <i>
+                                        <FaCloudUploadAlt
+                                            className="fa-cloud"
+                                            size={24}
+                                            color="rgb(71, 131, 42)"
+                                        />
+                                    </i>
+                                </label>
+                            </Box>
+                            <Input
+                                id="file-upload"
+                                type="file"
+                                {...register('answer', {
+                                    required: true,
+                                })}
+                            />
+                        </Box>
                     ) : question.type === 'text' ? (
                         <Input
                             type="text"
@@ -114,14 +166,39 @@ const SubmitResponse = () => {
                             })}
                         />
                     )}
+                    {errors.answer && <Text>Please enter answer</Text>}
                     <Box>
                         <Flex>
                             <Button onClick={Previous}>Previous</Button>
                             <Button type="submit">Next</Button>
                         </Flex>
                     </Box>
-                    <Button onClick={Save}>Save</Button>
+                    {pagesVisited == totalPages && (
+                        <Button onClick={Save}>Save</Button>
+                    )}
                 </Box>
+                {finishedAnswers && (
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                            <ModalHeader>
+                                Thank you for filling the form
+                            </ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody></ModalBody>
+
+                            <ModalFooter>
+                                <Button
+                                    colorScheme="blue"
+                                    mr={3}
+                                    onClick={onClose}
+                                >
+                                    Close
+                                </Button>
+                            </ModalFooter>
+                        </ModalContent>
+                    </Modal>
+                )}
             </form>
         ));
 
