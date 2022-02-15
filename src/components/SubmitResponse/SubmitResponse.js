@@ -1,17 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-    Box,
-    FormControl,
-    FormLabel,
-    Text,
-    Input,
-    Textarea,
-    Button,
-    Flex,
-    Select,
-    Container,
-} from '@chakra-ui/react';
+import { Box, Text, Input, Textarea, Button, Flex } from '@chakra-ui/react';
 
 import { useGetQuestionsContext } from '../../context/GetQuestionsContext';
 import GetCompanyQuestionsService from '../../services/GetCompanyQuestionsService';
