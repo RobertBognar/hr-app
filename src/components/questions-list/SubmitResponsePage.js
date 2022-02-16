@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Heading, Text, Flex, Image, useDisclosure } from '@chakra-ui/react';
-
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import QuestionCard from './QuestionCard';
+import questionsListService from '../../services/QuestionsListService';
+
+import QuestionCards from './QuestionCards';
 import ModalWindow from './ModalWindow';
 import './styles.css';
-import questionsListService from '../../services/QuestionsListService';
 
 const SubmitResponsePage = () => {
     const [questions, setQuestions] = useState([]);
@@ -93,7 +93,7 @@ const SubmitResponsePage = () => {
 
             {questions.map((card, counter) => {
                 return (
-                    <QuestionCard
+                    <QuestionCards
                         card={card}
                         counter={counter}
                         key={card.id}

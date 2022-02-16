@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons';
 
-const QuestionCard = ({
+const QuestionCards = ({
     card,
     counter,
     register,
@@ -19,7 +19,6 @@ const QuestionCard = ({
     onSubmit,
     errors,
     questions,
-
     questionCard,
     handlePreviousButton,
     openModal,
@@ -60,9 +59,9 @@ const QuestionCard = ({
                                             required: 'Please enter you answer',
                                         })}
                                     />
-                                    {errors.answer && (
+                                    {errors.answerText && (
                                         <Text color="red">
-                                            {errors.answer.message}
+                                            {errors.answerText.message}
                                         </Text>
                                     )}
                                 </>
@@ -94,9 +93,9 @@ const QuestionCard = ({
                                         })}
                                     />
 
-                                    {errors.answer && (
+                                    {errors.answerText && (
                                         <Text color="red">
-                                            {errors.answer.message}
+                                            {errors.answerText.message}
                                         </Text>
                                     )}
                                 </>
@@ -155,4 +154,4 @@ const QuestionCard = ({
     );
 };
 
-export default QuestionCard;
+export default QuestionCards;
