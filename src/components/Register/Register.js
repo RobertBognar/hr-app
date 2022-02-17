@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import registration from '../../services/RegisterService';
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
 
-import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
+import {
+    Input,
+    Box,
+    Button,
+    FormControl,
+    Flex,
+    Link,
+    Select,
+} from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
@@ -15,6 +23,16 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [chooseFile, setChooseFile] = useState(null);
+    const [listOfCompaniesData, setListOfCompaniesData] = useState();
+    const [chooseCompany, setChooseCompany] = useState();
+
+    async function listOfCompaniesFunc() {
+        const arr = await registration.listOfCompanies();
+        setListOfCompaniesData(arr);
+    }
+    useEffect(() => {
+        listOfCompaniesFunc();
+    }, []);
 
     // submit handler
 
@@ -22,7 +40,16 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('files', chooseFile);
-        registration.register(name, email, password, formData, name);
+        if (!chooseCompany) {
+            return registration.register(
+                name,
+                email,
+                password,
+                formData,
+                listOfCompaniesData[0].attributes.name,
+            );
+        }
+        registration.register(name, email, password, formData, chooseCompany);
     };
 
     return (
@@ -94,7 +121,7 @@ const Register = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Box>
-                    <Box width="100%" marginBottom={37} position={'relative'}>
+                    <Box width="100%" marginBottom={17} position={'relative'}>
                         <label>Profile photo</label>
                         <Box
                             width="100%"
@@ -127,6 +154,30 @@ const Register = () => {
                             type="file"
                             onChange={(e) => setChooseFile(e.target.files[0])}
                         />
+                    </Box>
+                    <Box>
+                        <label htmlFor="registerCompany" fontSize={12}>
+                            Company
+                        </label>
+                        <Select
+                            id="registerCompany"
+                            color="white"
+                            cursor="pointer"
+                            fontSize="20px"
+                            mb="25px"
+                            onChange={(e) => setChooseCompany(e.target.value)}
+                        >
+                            {listOfCompaniesData?.map((item, id) => {
+                                return (
+                                    <option
+                                        value={item.attributes.name}
+                                        key={item.id}
+                                    >
+                                        {item.attributes.name}
+                                    </option>
+                                );
+                            })}
+                        </Select>
                     </Box>
                     <Box>
                         <Flex

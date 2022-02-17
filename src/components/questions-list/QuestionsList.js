@@ -61,7 +61,6 @@ const QuestionsList = () => {
                         p="25px"
                         mb="25px"
                     >
-                        {console.log(card)}
                         <Flex direction="column">
                             <Text fontWeight="700" fontSize="14px">
                                 Question {id + 1}
