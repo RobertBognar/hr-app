@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
-import './submitResponsePage.css';
 import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronUp } from 'react-icons/bs';
+
+import './submitResponsePage.css';
+
 import http from '../../services/HttpService';
 import questionsListService from '../../services/QuestionsListService';
 
@@ -28,6 +29,7 @@ const SubmitResponsePage = () => {
     const [questionsArray, setQuestionsArray] = useState([]);
     const [iterQuestion, setIterQuestion] = useState(0);
     const [profile, setProfile] = useState('');
+    const [answersArray, setAnswersArray] = useState([]);
 
     const navigate = useNavigate();
 
@@ -39,7 +41,6 @@ const SubmitResponsePage = () => {
         );
         setProfile(response);
     };
-
     useEffect(() => {
         idProf();
     }, []);
@@ -48,7 +49,6 @@ const SubmitResponsePage = () => {
         register,
         handleSubmit,
         setValue,
-        getValues,
         formState: { errors },
     } = useForm();
 
@@ -65,27 +65,29 @@ const SubmitResponsePage = () => {
 
     const onSubmit = (data) => {
         setIterQuestion(iterQuestion + 1);
-        const value = getValues('submitquestion');
-        const picture = getValues('picture');
 
-        if (picture) {
+        if (data.picture) {
             const formData = new FormData();
-            formData.append('files', picture[0]);
-            questionsListService.submitQuestion(
-                picture[0].name,
-                questionsArray[iterQuestion].id,
-                profile.data.data[0].id,
-            );
+            formData.append('files', data.picture[0]);
+            setAnswersArray([...answersArray, data.picture[0].name]);
         } else {
-            questionsListService.submitQuestion(
-                value,
-                questionsArray[iterQuestion].id,
-                profile.data.data[0].id,
-            );
+            setAnswersArray([...answersArray, data.submitquestion]);
         }
-
         setValue('submitquestion', '');
+        setValue('picture', '');
     };
+
+    useEffect(() => {
+        if (answersArray.length) {
+            if (questionsArray.length === answersArray.length) {
+                questionsListService.submitQuestion(
+                    answersArray,
+                    questionsArray[iterQuestion - 1].id,
+                    profile.data.data[0].id,
+                );
+            }
+        }
+    }, [answersArray]);
 
     const decrease = () => {
         setIterQuestion(iterQuestion - 1);
@@ -155,7 +157,6 @@ const SubmitResponsePage = () => {
                                                                 },
                                                             },
                                                         )}
-                                                        defaultValue={''}
                                                     />
                                                 )}
                                                 {quest.attributes.type ===
