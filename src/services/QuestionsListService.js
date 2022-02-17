@@ -4,8 +4,8 @@ const questionsListService = {
     questionsData: async function () {
         try {
             const response = await http.get('/questions');
-            console.log(response);
             const responseQuestions = response.data.data;
+            console.log(response);
             return responseQuestions;
         } catch (error) {
             console.error(error);
@@ -48,6 +48,18 @@ const questionsListService = {
         } catch (error) {
             console.log('An error occurred:', error.message);
         }
+    },
+    addAnswersData: async function (answersData) {
+        answersData.forEach((answer) => {
+            try {
+                const response = http.post('/answers', {
+                    data: answer,
+                });
+                return response;
+            } catch (error) {
+                console.log('Error occured: ', error.message);
+            }
+        });
     },
 };
 export default questionsListService;
