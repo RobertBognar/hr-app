@@ -27,7 +27,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [chooseFile, setChooseFile] = useState(null);
     const [companies, setCompanies] = useState([]);
-    const [idOfCompany, setidOfCompany] = useState('');
+    const [idOfCompany, setidOfCompany] = useState(null);
 
     // submit handler
 
@@ -47,6 +47,7 @@ const Register = () => {
         setCompanies(companies);
     }
 
+    console.log(companies);
     useEffect(() => {
         getComp();
     }, []);
@@ -163,8 +164,10 @@ const Register = () => {
                             color="white"
                             cursor="pointer"
                             marginBottom={'30px'}
-                            value={idOfCompany}
-                            onChange={(e) => setidOfCompany(e.target.value)}
+                            value={parseInt(idOfCompany)}
+                            onChange={(e) =>
+                                setidOfCompany(parseInt(e.target.value))
+                            }
                         >
                             <option value="-">-</option>
                             {companies.map((company, id) => {

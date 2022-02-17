@@ -16,11 +16,11 @@ const registration = {
         const username = response.data.user.username;
         const userId = response.data.user.id;
         console.log(companyName);
+        console.log(typeof companyName);
         const profilePhotoId = await upload.upload(file);
 
-        const nameOfCompany = await company.createCompany(companyName); // ovde je pozivamo createC
-
         if (typeof companyName === 'string') {
+            const nameOfCompany = await company.createCompany(companyName);
             await profile.createProfile(
                 username,
                 userId,
