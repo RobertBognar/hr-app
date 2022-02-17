@@ -25,6 +25,8 @@ const Register = () => {
     const [chooseFile, setChooseFile] = useState(null);
     const [listOfCompaniesData, setListOfCompaniesData] = useState();
     const [chooseCompany, setChooseCompany] = useState();
+    const [existedBtn, setExistedBtn] = useState(false);
+    const [newCompanyBtn, setNewCompanyBtn] = useState(false);
 
     async function listOfCompaniesFunc() {
         const arr = await registration.listOfCompanies();
@@ -37,19 +39,31 @@ const Register = () => {
     // submit handler
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('files', chooseFile);
-        if (!chooseCompany) {
-            return registration.register(
+        if (existedBtn || newCompanyBtn) {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append('files', chooseFile);
+            if (!chooseCompany && newCompanyBtn) {
+                return;
+            } else if (!chooseCompany && existedBtn) {
+                return registration.register(
+                    name,
+                    email,
+                    password,
+                    formData,
+                    listOfCompaniesData[0].attributes.name,
+                );
+            }
+            registration.register(
                 name,
                 email,
                 password,
                 formData,
-                listOfCompaniesData[0].attributes.name,
+                chooseCompany,
             );
+            setExistedBtn(false);
+            setNewCompanyBtn(false);
         }
-        registration.register(name, email, password, formData, chooseCompany);
     };
 
     return (
@@ -155,29 +169,69 @@ const Register = () => {
                             onChange={(e) => setChooseFile(e.target.files[0])}
                         />
                     </Box>
-                    <Box>
+                    <Box mb="25px">
                         <label htmlFor="registerCompany" fontSize={12}>
                             Company
                         </label>
-                        <Select
-                            id="registerCompany"
-                            color="white"
-                            cursor="pointer"
-                            fontSize="20px"
-                            mb="25px"
-                            onChange={(e) => setChooseCompany(e.target.value)}
-                        >
-                            {listOfCompaniesData?.map((item, id) => {
-                                return (
-                                    <option
-                                        value={item.attributes.name}
-                                        key={item.id}
-                                    >
-                                        {item.attributes.name}
-                                    </option>
-                                );
-                            })}
-                        </Select>
+                        {!existedBtn && !newCompanyBtn ? (
+                            <Flex justify="space-between" align="center">
+                                <Button
+                                    bg="transparent"
+                                    _hover={{
+                                        background: 'transparent',
+                                    }}
+                                    onClick={() => setExistedBtn(true)}
+                                >
+                                    Existed
+                                </Button>
+                                or
+                                <Button
+                                    bg="transparent"
+                                    _hover={{
+                                        background: 'transparent',
+                                    }}
+                                    onClick={() => setNewCompanyBtn(true)}
+                                >
+                                    New Company
+                                </Button>
+                            </Flex>
+                        ) : (
+                            ''
+                        )}
+                        {existedBtn && (
+                            <Select
+                                id="registerCompany"
+                                color="white"
+                                cursor="pointer"
+                                fontSize="20px"
+                                mb="25px"
+                                onChange={(e) =>
+                                    setChooseCompany(e.target.value)
+                                }
+                            >
+                                {listOfCompaniesData?.map((item, id) => {
+                                    return (
+                                        <option
+                                            value={item.attributes.name}
+                                            key={item.id}
+                                        >
+                                            {item.attributes.name}
+                                        </option>
+                                    );
+                                })}
+                            </Select>
+                        )}
+                        {newCompanyBtn && (
+                            <Input
+                                placeholder={'Company name'}
+                                border="2px"
+                                borderRadius={'0'}
+                                _placeholder={{ color: '#7B7B7B' }}
+                                onChange={(e) =>
+                                    setChooseCompany(e.target.value)
+                                }
+                            />
+                        )}
                     </Box>
                     <Box>
                         <Flex
