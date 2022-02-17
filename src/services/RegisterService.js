@@ -25,6 +25,15 @@ const registration = {
             nameOfCompany,
         );
     },
+    listOfCompanies: async function () {
+        try {
+            const response = await http.get('companies');
+            const responseListOfCompanies = response.data.data;
+            return responseListOfCompanies;
+        } catch (error) {
+            console.error(error);
+        }
+    },
 };
 
 export default registration;
