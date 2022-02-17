@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import registration from '../../services/RegisterService';
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
 
-import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
+import {
+    Input,
+    Box,
+    Button,
+    FormControl,
+    Flex,
+    Link,
+    FormLabel,
+    Select,
+} from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 import './Register.css';
+import company from '../../services/CompanyService';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -15,6 +25,8 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [chooseFile, setChooseFile] = useState(null);
+    const [companies, setCompanies] = useState([]);
+    const [optionCompany, setOptionCompany] = useState('');
 
     // submit handler
 
@@ -22,8 +34,22 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('files', chooseFile);
-        registration.register(name, email, password, formData, name);
+        // registration.register(name, email, password, formData, name);
+        registration.register(name, email, password, formData, optionCompany);
     };
+
+    //Fetch Company Data
+
+    async function fetchCompanies() {
+        const companyDataArray = await company.companyData();
+        setCompanies(companyDataArray);
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            fetchCompanies();
+        }, 2000);
+    }, []);
 
     return (
         <VStack
@@ -79,6 +105,26 @@ const Register = () => {
                             _placeholder={{ color: '#7B7B7B' }}
                             onChange={(e) => setEmail(e.target.value)}
                         />
+                    </Box>
+                    <Box width="100%" className="boxes">
+                        <FormLabel>Company</FormLabel>
+                        <Select
+                            value={optionCompany}
+                            onChange={(e) => {
+                                setOptionCompany(e.target.value);
+                            }}
+                        >
+                            {companies.map((comp) => {
+                                return (
+                                    <option
+                                        key={comp.id}
+                                        value={comp.attributes.name}
+                                    >
+                                        {comp.attributes.name}
+                                    </option>
+                                );
+                            })}
+                        </Select>
                     </Box>
                     <Box width="100%" className="boxes">
                         <label htmlFor="password" fontSize={12}>
