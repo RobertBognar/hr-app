@@ -18,6 +18,7 @@ import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 import './Register.css';
+import profile from '../../services/ProfileService';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [chooseFile, setChooseFile] = useState(null);
     const [companies, setCompanies] = useState([]);
-    const [nameOfCompany, setNameOfCompany] = useState('');
+    const [idOfCompany, setidOfCompany] = useState('');
 
     // submit handler
 
@@ -34,7 +35,11 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('files', chooseFile);
-        registration.register(name, email, password, formData, nameOfCompany);
+        if (!idOfCompany) {
+            registration.register(name, email, password, formData, name);
+        } else {
+            registration.register(name, email, password, formData, idOfCompany);
+        }
     };
 
     async function getComp() {
@@ -158,20 +163,20 @@ const Register = () => {
                             color="white"
                             cursor="pointer"
                             marginBottom={'30px'}
-                            value={nameOfCompany}
-                            onChange={(e) => setNameOfCompany(e.target.value)}
+                            value={idOfCompany}
+                            onChange={(e) => setidOfCompany(e.target.value)}
                         >
+                            <option value="-">-</option>
                             {companies.map((company, id) => {
                                 return (
-                                    <option
-                                        value={company.attributes.name}
-                                        key={id}
-                                    >
-                                        {company.attributes.name}
-                                        {console.log(nameOfCompany)}
-                                    </option>
+                                    <>
+                                        <option value={company.id} key={id}>
+                                            {company.attributes.name}
+                                        </option>
+                                    </>
                                 );
                             })}
+                            {console.log(idOfCompany)}
                         </Select>
                     </Box>
                     <Box>
