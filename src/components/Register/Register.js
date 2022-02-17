@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import registration from '../../services/RegisterService';
+import company from '../../services/CompanyService';
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
 
-import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
+import {
+    Input,
+    Box,
+    Button,
+    FormControl,
+    Flex,
+    Link,
+    Select,
+    Text,
+} from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
@@ -15,6 +25,8 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [chooseFile, setChooseFile] = useState(null);
+    const [companies, setCompanies] = useState([]);
+    const [nameOfCompany, setNameOfCompany] = useState('');
 
     // submit handler
 
@@ -22,8 +34,19 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('files', chooseFile);
-        registration.register(name, email, password, formData, name);
+        registration.register(name, email, password, formData, nameOfCompany);
     };
+
+    async function getComp() {
+        const companies = await company.getCompanies();
+        setCompanies(companies);
+    }
+
+    useEffect(() => {
+        getComp();
+    }, []);
+
+    console.log(companies);
 
     return (
         <VStack
@@ -127,6 +150,29 @@ const Register = () => {
                             type="file"
                             onChange={(e) => setChooseFile(e.target.files[0])}
                         />
+                    </Box>
+                    <Box>
+                        <Text>Choose company</Text>
+
+                        <Select
+                            color="white"
+                            cursor="pointer"
+                            marginBottom={'30px'}
+                            value={nameOfCompany}
+                            onChange={(e) => setNameOfCompany(e.target.value)}
+                        >
+                            {companies.map((company, id) => {
+                                return (
+                                    <option
+                                        value={company.attributes.name}
+                                        key={id}
+                                    >
+                                        {company.attributes.name}
+                                        {console.log(nameOfCompany)}
+                                    </option>
+                                );
+                            })}
+                        </Select>
                     </Box>
                     <Box>
                         <Flex
