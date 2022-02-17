@@ -35,7 +35,7 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('files', chooseFile);
-        registration.register(name, email, password, formData, name);
+        registration.register(name, email, password, formData, selectedCompany);
     };
 
     async function showCompanies() {
