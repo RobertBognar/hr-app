@@ -22,7 +22,10 @@ const MemberCard = ({ card, handleDelete }) => {
                 width="248px"
                 height="161px"
                 objectFit="cover"
-                src={card.image}
+                src={
+                    'https://uteam-api-7nngy.ondigitalocean.app' +
+                    card.attributes.profilePhoto.data.attributes.url
+                }
                 alt={card.name}
             />
 

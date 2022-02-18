@@ -14,7 +14,7 @@ const profile = {
     },
     getProfile: async function () {
         try {
-            const response = await http.get('/profiles');
+            const response = await http.get('/profiles?populate=*');
             const responseProfiles = response.data.data;
             console.log(responseProfiles);
             return responseProfiles;
