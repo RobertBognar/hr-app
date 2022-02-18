@@ -8,32 +8,36 @@ import {
     Stack,
     InputGroup,
 } from '@chakra-ui/react';
-import profile from '../../services/ProfileService';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import profile from '../../services/ProfileService';
 
 const BasicInfo = () => {
     const [name, setName] = useState('');
 
-    const fileChooser = useRef(null);
-
     const para = useParams();
     const id = para.id;
 
-    async function getProfileId() {
+    async function getQuestion() {
         const fetchedProfile = await profile.getProfileId(id);
         console.log(fetchedProfile);
         setName(fetchedProfile);
     }
-
     useEffect(() => {
-        getProfileId();
+        getQuestion();
     }, []);
 
-    const submitProfileInfo = (e) => {
-        e.preventDefault();
-        alert(
-            ` Name - ${name}, Selected file - ${fileChooser.current.files[0].name}`,
-        );
+    const { register, handleSubmit } = useForm();
+
+    const fileChooser = useRef(null);
+
+    const submitProfileInfo = (data) => {
+        // e.preventDefault();
+        // alert(
+        //     ` Name - ${name}, Selected file - ${fileChooser.current.files[0].name}`,
+        // );
+        const inputValue = data.edit;
+        profile.editProfile(id, inputValue);
     };
 
     return (
@@ -58,7 +62,7 @@ const BasicInfo = () => {
                     Basic info
                 </Box>
                 <Box p={7}>
-                    <form onSubmit={submitProfileInfo}>
+                    <form onSubmit={handleSubmit(submitProfileInfo)}>
                         <FormControl>
                             <FormLabel
                                 htmlFor="name"
@@ -74,8 +78,7 @@ const BasicInfo = () => {
                             <Input
                                 isRequired
                                 type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                // onChange={(e) => setName(e.target.value)}
                                 fontStyle="normal"
                                 fontWeight="normal"
                                 fontSize="16px"
@@ -83,6 +86,13 @@ const BasicInfo = () => {
                                 border="2px solid"
                                 borderRadius="none"
                                 color="white"
+                                {...register('edit', {
+                                    required: true,
+                                    validate: (value) => {
+                                        return !!value.trim();
+                                    },
+                                })}
+                                defaultValue={name}
                             />
                         </FormControl>
                         <FormControl>
