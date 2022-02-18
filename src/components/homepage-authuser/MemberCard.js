@@ -1,4 +1,5 @@
 import { Text, Image, Flex, Button, Box } from '@chakra-ui/react';
+
 import { useNavigate } from 'react-router-dom';
 
 const MemberCard = ({ card, handleDelete }) => {
@@ -32,7 +33,7 @@ const MemberCard = ({ card, handleDelete }) => {
                     lineHeight="18px"
                     fontWeight="bold"
                 >
-                    {card.name}
+                    {card.attributes.name}
                 </Text>
 
                 <Text
@@ -50,10 +51,9 @@ const MemberCard = ({ card, handleDelete }) => {
                     w="97px"
                     h="30px"
                 >
-                    Published
+                    {card.attributes.status}
                 </Text>
             </Flex>
-
             <Text
                 mt="-8px"
                 mb={8}
@@ -61,9 +61,8 @@ const MemberCard = ({ card, handleDelete }) => {
                 lineHeight="14px"
                 letterSpacing="0.04em"
             >
-                Joined {card.joined}
+                Joined {card.attributes.createdAt}
             </Text>
-
             <Flex justifyContent="space-between">
                 <Button
                     fontWeight="bold"
@@ -80,7 +79,6 @@ const MemberCard = ({ card, handleDelete }) => {
                 >
                     Edit
                 </Button>
-
                 <Button
                     fontWeight="bold"
                     fontSize="16px"

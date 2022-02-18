@@ -18,6 +18,7 @@ import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
 import SubmitResponse from './components/questions-list/SubmitResponse';
+import AddNewTeamMember from './components/homepage-authuser/AddNewTeamMember';
 
 function App() {
     return (
@@ -57,15 +58,6 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
-                                path="/team"
-                                element={
-                                    <Page
-                                        Layout={GuestLayout}
-                                        Component={HomepageAuthUser}
-                                    />
-                                }
-                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -78,11 +70,29 @@ function App() {
                                 }
                             />
                             <Route
+                                path="/team"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={HomepageAuthUser}
+                                    />
+                                }
+                            />
+                            <Route
                                 path="/team/:id/edit"
                                 element={
                                     <Page
                                         Layout={AuthLayout}
                                         Component={EditTeam}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/addnewteammember"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={AddNewTeamMember}
                                     />
                                 }
                             />

@@ -1,7 +1,9 @@
 import { Heading, Button, Flex } from '@chakra-ui/react';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+    const navigate = useNavigate();
     return (
         <Flex justifyContent={{ base: 'space-evenly', sm: 'space-around' }}>
             <Heading
@@ -27,6 +29,7 @@ const Header = () => {
                 color="#000000"
                 fontFamily="Comic Neue"
                 leftIcon={<AiOutlinePlus />}
+                onClick={() => navigate('/addnewteammember')}
             >
                 {' '}
                 Add new team member
