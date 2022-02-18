@@ -32,12 +32,8 @@ const BasicInfo = () => {
     const fileChooser = useRef(null);
 
     const submitProfileInfo = (data) => {
-        // e.preventDefault();
-        // alert(
-        //     ` Name - ${name}, Selected file - ${fileChooser.current.files[0].name}`,
-        // );
-        const inputValue = data.edit;
-        profile.editProfile(id, inputValue);
+        const inputValueName = data.editName;
+        profile.editProfile(id, inputValueName);
     };
 
     return (
@@ -86,7 +82,7 @@ const BasicInfo = () => {
                                 border="2px solid"
                                 borderRadius="none"
                                 color="white"
-                                {...register('edit', {
+                                {...register('editName', {
                                     required: true,
                                     validate: (value) => {
                                         return !!value.trim();
