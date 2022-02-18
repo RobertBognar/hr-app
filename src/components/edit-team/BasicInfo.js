@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -8,11 +8,26 @@ import {
     Stack,
     InputGroup,
 } from '@chakra-ui/react';
+import profile from '../../services/ProfileService';
+import { useParams } from 'react-router-dom';
 
 const BasicInfo = () => {
-    const [name, setName] = useState('Michael Jones');
+    const [name, setName] = useState('');
 
     const fileChooser = useRef(null);
+
+    const para = useParams();
+    const id = para.id;
+
+    async function getProfileId() {
+        const fetchedProfile = await profile.getProfileId(id);
+        console.log(fetchedProfile);
+        setName(fetchedProfile);
+    }
+
+    useEffect(() => {
+        getProfileId();
+    }, []);
 
     const submitProfileInfo = (e) => {
         e.preventDefault();

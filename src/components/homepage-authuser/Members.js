@@ -19,9 +19,7 @@ const Members = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            getProfile();
-        }, 2000);
+        getProfile();
     }, []);
 
     return (

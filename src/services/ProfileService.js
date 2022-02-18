@@ -22,6 +22,11 @@ const profile = {
             console.error(error);
         }
     },
+    getProfileId: async function (id) {
+        const response = await http.get(`/profiles/${id}`);
+        const question = response.data.data.attributes.name;
+        return question;
+    },
     editProfile: async function (id, name) {
         const response = await http.put(`/profiles/${id}`, {
             data: {
