@@ -27,6 +27,7 @@ const EditQuestion = () => {
     const onSubmit = (data) => {
         const inputValue = data.edit;
         questionsListService.editQuestion(id, inputValue);
+        console.log(data);
     };
 
     const para = useParams();

@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import registration from '../../services/RegisterService';
+import company from '../../services/CompanyService';
 import { Heading, VStack } from '@chakra-ui/layout';
 import { useNavigate } from 'react-router-dom';
 
-import { Input, Box, Button, FormControl, Flex, Link } from '@chakra-ui/react';
+import {
+    Input,
+    Box,
+    Button,
+    FormControl,
+    Flex,
+    Link,
+    Select,
+    Text,
+} from '@chakra-ui/react';
 import '@fontsource/comic-neue';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 import './Register.css';
+import profile from '../../services/ProfileService';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -15,6 +26,8 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [chooseFile, setChooseFile] = useState(null);
+    const [companies, setCompanies] = useState([]);
+    const [idOfCompany, setidOfCompany] = useState(null);
 
     // submit handler
 
@@ -22,8 +35,24 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('files', chooseFile);
-        registration.register(name, email, password, formData, name);
+        if (!idOfCompany) {
+            registration.register(name, email, password, formData, name);
+        } else {
+            registration.register(name, email, password, formData, idOfCompany);
+        }
     };
+
+    async function getComp() {
+        const companies = await company.getCompanies();
+        setCompanies(companies);
+    }
+
+    console.log(companies);
+    useEffect(() => {
+        getComp();
+    }, []);
+
+    console.log(companies);
 
     return (
         <VStack
@@ -127,6 +156,31 @@ const Register = () => {
                             type="file"
                             onChange={(e) => setChooseFile(e.target.files[0])}
                         />
+                    </Box>
+                    <Box>
+                        <Text>Choose company</Text>
+
+                        <Select
+                            color="white"
+                            cursor="pointer"
+                            marginBottom={'30px'}
+                            value={parseInt(idOfCompany)}
+                            onChange={(e) =>
+                                setidOfCompany(parseInt(e.target.value))
+                            }
+                        >
+                            <option value="-">-</option>
+                            {companies.map((company, id) => {
+                                return (
+                                    <>
+                                        <option value={company.id} key={id}>
+                                            {company.attributes.name}
+                                        </option>
+                                    </>
+                                );
+                            })}
+                            {console.log(idOfCompany)}
+                        </Select>
                     </Box>
                     <Box>
                         <Flex
