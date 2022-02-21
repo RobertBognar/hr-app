@@ -7,7 +7,7 @@ import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
 import { AuthProvider } from './context/AuthContext';
-
+import { GetQuestionsProvider } from './context/GetQuestionsContext';
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import GuestRoute from './components/Routes/GuestRoute';
@@ -18,8 +18,10 @@ import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
 import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
+import SubmitResponse from './components/SubmitResponse/SubmitResponse';
 import EditQuestion from './components/questions-list/EditQuestion';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
+import RegisterAndDropdown from './components/RegisterandDropdown/RegisterAndDropdown';
 
 function App() {
     return (
@@ -50,12 +52,21 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
+                            {/* <Route
                                 path="/register"
                                 element={
                                     <Page
                                         Layout={GuestLayout}
                                         Component={Register}
+                                    />
+                                }
+                            /> */}
+                            <Route
+                                path="/register"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={RegisterAndDropdown}
                                     />
                                 }
                             />
@@ -129,6 +140,9 @@ function App() {
                 </BrowserRouter>
 
                 <AddNew />
+                <GetQuestionsProvider>
+                    <SubmitResponse />
+                </GetQuestionsProvider>
             </AuthProvider>
         </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import GetCompanyQuestionsService from '../services/GetCompanyQuestionsService';
 import { useForm } from 'react-hook-form';
 import addQuestionService from '../services/AddQuestionService';
 import {
@@ -10,7 +11,10 @@ import {
     Button,
     Flex,
     Select,
+    Textarea,
+    InputGroup,
 } from '@chakra-ui/react';
+
 const AddNew = () => {
     const {
         register,
@@ -18,14 +22,21 @@ const AddNew = () => {
         getValues,
         formState: { errors },
     } = useForm();
+    let option;
+    let userData = JSON.parse(localStorage.getItem('userData'));
 
-    const saveQuestion = () => {
+    const saveQuestion = async () => {
         const question = getValues('question');
-        const option = getValues('questionType');
-
-        addQuestionService.addQuestion(question, option);
+        option = getValues('questionType');
+        localStorage.setItem('optionType', option);
+        console.log(userData);
+        let companyId = await GetCompanyQuestionsService.getProfile(
+            userData.id,
+        );
+        addQuestionService.addQuestion(question, option, companyId);
     };
-
+    let getOption = localStorage.getItem('optionType');
+    console.log(getOption);
     return (
         <Flex direction="column">
             <form onSubmit={handleSubmit(saveQuestion)}>
@@ -47,14 +58,39 @@ const AddNew = () => {
                                 <FormLabel color="whiteAlpha.700">
                                     Question text
                                 </FormLabel>
-                                <Input
-                                    color="white"
-                                    placeholder="Question text"
-                                    width="50%"
-                                    {...register('question', {
-                                        required: true,
-                                    })}
-                                />
+                                {option === 'Image' ? (
+                                    <InputGroup>
+                                        <Input
+                                            type={'file'}
+                                            color="white"
+                                            placeholder="Question text"
+                                            width="50%"
+                                            {...register('question', {
+                                                required: true,
+                                            })}
+                                        />
+                                    </InputGroup>
+                                ) : option === 'text' ? (
+                                    <Input
+                                        type="text"
+                                        color="white"
+                                        placeholder="Question text"
+                                        width="50%"
+                                        {...register('question', {
+                                            required: true,
+                                        })}
+                                    />
+                                ) : (
+                                    <Textarea
+                                        type="long_text"
+                                        color="white"
+                                        placeholder="Question text"
+                                        width="50%"
+                                        {...register('question', {
+                                            required: true,
+                                        })}
+                                    />
+                                )}
                             </FormControl>
                             {errors.question && (
                                 <Text color="red">
