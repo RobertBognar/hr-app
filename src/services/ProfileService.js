@@ -1,4 +1,5 @@
 import http from './HttpService';
+import upload from './UploadService';
 
 const profile = {
     getUser: async function () {
@@ -53,13 +54,14 @@ const profile = {
     },
     getProfileById: async function (id) {
         const response = await http.get(`/profiles/${id}`);
-        const question = response.data.data.attributes.name;
-        return question;
+        const profile = response.data.data;
+        return profile;
     },
-    editProfile: async function (id, name) {
-        const response = await http.put(`/profiles/${id}`, {
+    editProfile: async function (id, name, photoId) {
+        const response = await http.put(`/profiles/${id}?populate=*`, {
             data: {
-                name: `${name}`,
+                name: name,
+                profilePhoto: photoId,
             },
         });
         return response;
@@ -83,6 +85,21 @@ const profile = {
                 company: companyId,
             },
         });
+    },
+    addNewTeamMember: async function (newMember, setEmail, setPassword, file) {
+        const response = await http.post('/auth/local/register', {
+            username: newMember,
+            email: setEmail,
+            password: setPassword,
+        });
+        const userToken = response.data.jwt;
+        localStorage.setItem('userToken', userToken);
+
+        const username = response.data.user.username;
+        const userId = response.data.user.id;
+        const profilePhotoId = await upload.upload(file);
+
+        await profile.createProfile(username, userId, profilePhotoId);
     },
 };
 

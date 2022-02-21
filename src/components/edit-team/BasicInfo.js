@@ -10,12 +10,12 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-
+import http from '../../services/HttpService';
 import profile from '../../services/ProfileService';
 
 const BasicInfo = () => {
     const [name, setName] = useState('');
-
+    const [choosePhoto, setChoosePhoto] = useState();
     const fileChooser = useRef(null);
 
     const { register, handleSubmit } = useForm();
@@ -25,7 +25,7 @@ const BasicInfo = () => {
 
     async function getProfileById() {
         const fetchedProfile = await profile.getProfileById(id);
-        setName(fetchedProfile);
+        setName(fetchedProfile.attributes.name);
     }
 
     useEffect(() => {
@@ -34,7 +34,16 @@ const BasicInfo = () => {
 
     const submitProfileInfo = (data) => {
         const inputValueName = data.editName;
-        profile.editProfile(id, inputValueName);
+        const formData = new FormData();
+        formData.append('files', choosePhoto[0]);
+        http.post('/upload', formData)
+            .then((response) => {
+                console.log(response);
+                profile.editProfile(id, inputValueName, response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -147,6 +156,9 @@ const BasicInfo = () => {
                                     type="file"
                                     ref={fileChooser}
                                     display="none"
+                                    onChange={(e) =>
+                                        setChoosePhoto(e.target.files)
+                                    }
                                 />
                             </InputGroup>
                         </FormControl>
