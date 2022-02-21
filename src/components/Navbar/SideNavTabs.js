@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-    Button,
-    Divider,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList,
-    Text,
-    VStack,
-} from '@chakra-ui/react';
+import { Divider, Menu, MenuItem, Text, VStack } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronRightIcon } from '@chakra-ui/icons';
+import LogoutButton from '../UI/LogoutButton';
 
 const SideNavTabs = () => {
     const navigate = useNavigate();
@@ -55,6 +47,10 @@ const SideNavTabs = () => {
                 >
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>My Profile</Text>
+                </MenuItem>
+                <MenuItem backgroundColor={'whiteAlpha.600'}>
+                    <ChevronRightIcon />
+                    <LogoutButton />
                 </MenuItem>
                 <Divider
                     left={240}
