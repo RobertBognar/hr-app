@@ -1,4 +1,5 @@
 import http from './HttpService';
+import upload from './UploadService';
 
 const profile = {
     createProfile: async function (username, userId, photoId, companyId) {
@@ -27,10 +28,11 @@ const profile = {
         const question = response.data.data.attributes.name;
         return question;
     },
-    editProfile: async function (id, name) {
+    editProfile: async function (id, name, photo) {
         const response = await http.put(`/profiles/${id}`, {
             data: {
                 name: `${name}`,
+                photo: `${photo}`,
             },
         });
         return response;
@@ -42,6 +44,21 @@ const profile = {
         } catch (error) {
             console.log('An error occurred:', error.message);
         }
+    },
+    addNewTeamMember: async function (newMember, newEmail, newPassword, file) {
+        const response = await http.post('/auth/local/register', {
+            username: newMember,
+            email: newEmail,
+            password: newPassword,
+        });
+        const token = response.data.jwt;
+        localStorage.setItem('userToken', token);
+
+        const username = response.data.user.username;
+        const userId = response.data.user.id;
+        const profilePhotoId = await upload.upload(file);
+
+        await profile.createProfile(username, userId, profilePhotoId);
     },
 };
 
