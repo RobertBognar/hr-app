@@ -25,8 +25,8 @@ const profile = {
     },
     getProfileId: async function (id) {
         const response = await http.get(`/profiles/${id}`);
-        const question = response.data.data.attributes.name;
-        return question;
+        const responseProfileName = response.data.data.attributes.name;
+        return responseProfileName;
     },
     editProfile: async function (id, name, photo) {
         const response = await http.put(`/profiles/${id}`, {
