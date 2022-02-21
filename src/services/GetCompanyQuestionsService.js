@@ -11,6 +11,18 @@ const GetCompanyQuestionsService = {
             return;
         }
     },
+    getProfile: async function (userId) {
+        try {
+            const profile = await http.get(
+                `/profiles?filter[user][id][$eq]=${userId}&populate=company`,
+            );
+
+            console.log(profile);
+            return profile.data.data;
+        } catch (error) {
+            return;
+        }
+    },
     answerServis: function (arrayOfAnswers) {
         arrayOfAnswers.map((answer) => {
             postAnswer(answer);

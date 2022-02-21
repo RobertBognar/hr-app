@@ -24,6 +24,7 @@ const SubmitResponse = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [arrayOfAnswers, setArrayOfAnswers] = useState([]);
     const [finishedAnswers, setFinishedAnswers] = useState(false);
+    const [profileCompanyId, setProfileCompanyId] = useState();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const { companyQuestions, getCompanyQ } = useGetQuestionsContext();
@@ -40,20 +41,26 @@ const SubmitResponse = () => {
         },
     });
 
-    let companyId;
     let userData = JSON.parse(localStorage.getItem('userData'));
     let questionsPerPage = 1;
     let pagesVisited = questionsPerPage * pageNumber;
     let totalPages = companyQuestions.length;
 
+    async function getCompanyId() {
+        let companyId = await GetCompanyQuestionsService.getProfile(
+            userData.id,
+        );
+        if (companyId) setTimeout(setProfileCompanyId(companyId), 1000);
+    }
     useEffect(() => {
         if (userData && arrayOfAnswers.length == 0) {
-            companyId = userData.username;
-            getCompanyQ(companyId);
+            getCompanyId();
+
+            getCompanyQ(profileCompanyId);
         } else {
             return;
         }
-    }, [arrayOfAnswers]);
+    }, []);
 
     const Previous = () => {
         //reset inputs
@@ -81,7 +88,7 @@ const SubmitResponse = () => {
         //Collect inputs and store into array of answers
 
         data.id = Math.round(Math.random() * 1000);
-        data.profile = userData.username;
+        data.profile = userData.id;
         setArrayOfAnswers([...arrayOfAnswers, data]);
 
         //go to next question

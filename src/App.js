@@ -21,6 +21,7 @@ import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import SubmitResponse from './components/SubmitResponse/SubmitResponse';
 import EditQuestion from './components/questions-list/EditQuestion';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
+import RegisterAndDropdown from './components/RegisterandDropdown/RegisterAndDropdown';
 
 function App() {
     return (
@@ -51,12 +52,21 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
+                            {/* <Route
                                 path="/register"
                                 element={
                                     <Page
                                         Layout={GuestLayout}
                                         Component={Register}
+                                    />
+                                }
+                            /> */}
+                            <Route
+                                path="/register"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={RegisterAndDropdown}
                                     />
                                 }
                             />

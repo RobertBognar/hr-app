@@ -1,4 +1,5 @@
 import React from 'react';
+import GetCompanyQuestionsService from '../services/GetCompanyQuestionsService';
 import { useForm } from 'react-hook-form';
 import addQuestionService from '../services/AddQuestionService';
 import {
@@ -13,6 +14,7 @@ import {
     Textarea,
     InputGroup,
 } from '@chakra-ui/react';
+
 const AddNew = () => {
     const {
         register,
@@ -21,11 +23,17 @@ const AddNew = () => {
         formState: { errors },
     } = useForm();
     let option;
-    const saveQuestion = () => {
+    let userData = JSON.parse(localStorage.getItem('userData'));
+
+    const saveQuestion = async () => {
         const question = getValues('question');
         option = getValues('questionType');
         localStorage.setItem('optionType', option);
-        addQuestionService.addQuestion(question, option);
+        console.log(userData);
+        let companyId = await GetCompanyQuestionsService.getProfile(
+            userData.id,
+        );
+        addQuestionService.addQuestion(question, option, companyId);
     };
     let getOption = localStorage.getItem('optionType');
     console.log(getOption);
