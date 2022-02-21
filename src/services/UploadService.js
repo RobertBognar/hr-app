@@ -6,6 +6,11 @@ const upload = {
         const profilePhotoId = responseUpload.data[0].id;
         return profilePhotoId;
     },
+    getFilesId: async function (id) {
+        const response = await http.get(`/upload/files/${id}`);
+        const responseProfileName = response.data.name;
+        return responseProfileName;
+    },
 };
 
 export default upload;

@@ -28,11 +28,11 @@ const profile = {
         const responseProfileName = response.data.data.attributes.name;
         return responseProfileName;
     },
-    editProfile: async function (id, name, photo) {
-        const response = await http.put(`/profiles/${id}`, {
+    editProfile: async function (id, name, photoId) {
+        const response = await http.put(`/profiles/${id}?populate=*`, {
             data: {
-                name: `${name}`,
-                photo: `${photo}`,
+                name: name,
+                profilePhoto: photoId,
             },
         });
         return response;

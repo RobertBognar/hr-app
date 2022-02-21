@@ -11,9 +11,12 @@ import {
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import profile from '../../services/ProfileService';
+import upload from '../../services/UploadService';
+import http from '../../services/HttpService';
 
 const BasicInfo = () => {
     const [name, setName] = useState('');
+    const [file, setFile] = useState(null);
 
     const para = useParams();
     const id = para.id;
@@ -23,8 +26,16 @@ const BasicInfo = () => {
         console.log(fetchedProfile);
         setName(fetchedProfile);
     }
+
+    async function getPhoto() {
+        const fetchedPhoto = await upload.getFilesId(id);
+        console.log(fetchedPhoto);
+        setFile(fetchedPhoto);
+    }
+
     useEffect(() => {
         getQuestion();
+        getPhoto();
     }, []);
 
     const { register, handleSubmit } = useForm();
@@ -33,7 +44,16 @@ const BasicInfo = () => {
 
     const submitProfileInfo = (data) => {
         const inputValueName = data.editName;
-        profile.editProfile(id, inputValueName);
+        const formData = new FormData();
+        formData.append('files', file[0]);
+        http.post('/upload', formData)
+            .then((response) => {
+                console.log(response);
+                profile.editProfile(id, inputValueName, response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -150,6 +170,7 @@ const BasicInfo = () => {
                                     type="file"
                                     ref={fileChooser}
                                     display="none"
+                                    onChange={(e) => setFile(e.target.files)}
                                 />
                             </InputGroup>
                         </FormControl>
