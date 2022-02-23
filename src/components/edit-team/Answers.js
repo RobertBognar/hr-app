@@ -186,6 +186,7 @@ const Answers = () => {
                                             e.target.value,
                                         ])
                                     }
+                                    required
                                 />
                             )}
                         </Box>
