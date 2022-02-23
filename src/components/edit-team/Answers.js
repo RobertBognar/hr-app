@@ -77,7 +77,17 @@
 
 // export default Answers;
 
-import { Stack, Box, Button, InputGroup, Input } from '@chakra-ui/react';
+import {
+    Stack,
+    Box,
+    Button,
+    InputGroup,
+    Input,
+    FormLabel,
+    Image,
+    Flex,
+    FormControl,
+} from '@chakra-ui/react';
 import React, { useRef, useState, useEffect } from 'react';
 
 import questionsListService from '../../services/QuestionsListService';
@@ -88,10 +98,16 @@ const Answers = () => {
     const [questions, setQuestions] = useState([]);
     const [inputAnswer, setAnswer] = useState([]);
 
+    const onImageChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            setFiles(URL.createObjectURL(e.target.files[0]));
+        }
+    };
+
     const submitAnswers = (e) => {
         e.preventDefault();
 
-        questionsListService.submitQuestions([...inputAnswer, files[0].name]);
+        questionsListService.submitQuestions([...inputAnswer, files]);
     };
 
     const listQuestions = async () => {
@@ -149,31 +165,101 @@ const Answers = () => {
                         </Box>
                         <Box>
                             {questions.attributes.type === 'image' ? (
-                                <InputGroup
-                                    border="1px solid white"
-                                    borderRadius="none"
-                                    p="8px"
-                                    mb="8px"
-                                >
-                                    <Button
-                                        color="black"
-                                        onClick={() => {
-                                            filePicker.current.click();
-                                        }}
-                                    >
-                                        {' '}
-                                        Choose Photo
-                                    </Button>
-
-                                    <Input
-                                        type="file"
-                                        ref={filePicker}
-                                        display="none"
-                                        onChange={(e) =>
-                                            setFiles(e.target.files)
-                                        }
+                                <Flex>
+                                    <Image
+                                        src={files}
+                                        alt={files}
+                                        mr="13px"
+                                        mb="36px"
+                                        border="1px solid white"
+                                        minW={{ base: '110px', sm: '172px' }}
+                                        minH={{ base: '110px', sm: '124px' }}
+                                        maxW={{ base: '110px', sm: '172px' }}
+                                        maxH={{ base: '110px', sm: '124px' }}
                                     />
-                                </InputGroup>
+
+                                    <FormControl>
+                                        <FormLabel
+                                            htmlFor="profilePhoto"
+                                            fontSize="12px"
+                                            letterSpacing="0.04em"
+                                            fontWeight="normal"
+                                            lineHeight="14px"
+                                        >
+                                            Change photo
+                                        </FormLabel>
+                                        <InputGroup
+                                            alignItems="center"
+                                            border="2px solid"
+                                            borderRadius="none"
+                                            w={{ base: '93px', sm: '202px' }}
+                                            h={{ base: '30px', sm: '50px' }}
+                                        >
+                                            <FormLabel
+                                                htmlFor="file-upload"
+                                                fontStyle="normal"
+                                                fontWeight="normal"
+                                                fontSize={{
+                                                    base: '10px',
+                                                    sm: '16px',
+                                                }}
+                                                lineHeight="10px"
+                                                mt={3.5}
+                                                ml={{ base: '1', sm: '16px' }}
+                                                mb="18px"
+                                                whiteSpace={{
+                                                    base: 'wrap',
+                                                    sm: 'nowrap',
+                                                }}
+                                                mr="1px"
+                                                color="#7B7B7B"
+                                            >
+                                                Upload f
+                                            </FormLabel>
+                                            <Button
+                                                fontWeight=" bold"
+                                                w={{
+                                                    base: '64px',
+                                                    sm: '122px',
+                                                }}
+                                                h={{ base: '22px', sm: '30px' }}
+                                                lineHeight={{
+                                                    base: '9px',
+                                                    sm: '18px',
+                                                }}
+                                                color="#000000"
+                                                background="#DEE0E3"
+                                                border-radius=" 4px"
+                                                mr={{ base: '2px', sm: '8.5' }}
+                                                mt={2}
+                                                mb={{ base: '2', sm: '3' }}
+                                                fontSize={{
+                                                    base: '12px',
+                                                    sm: '16px',
+                                                }}
+                                                whiteSpace={{
+                                                    base: 'wrap',
+                                                    sm: 'nowrap',
+                                                }}
+                                                onClick={() => {
+                                                    filePicker.current.click();
+                                                }}
+                                            >
+                                                choose file
+                                            </Button>
+                                            <Input
+                                                type="file"
+                                                ref={filePicker}
+                                                display="none"
+                                                onChange={onImageChange}
+                                                accept="image/*"
+                                                onBlur={(e) =>
+                                                    setFiles(e.target.files)
+                                                }
+                                            />
+                                        </InputGroup>
+                                    </FormControl>
+                                </Flex>
                             ) : (
                                 <Input
                                     type="text"
