@@ -50,10 +50,10 @@ const questionsListService = {
         }
     },
     addAnswersData: async function (answersData) {
-        answersData.forEach((answer) => {
+        await answersData.forEach((answer) => {
             try {
                 const response = http.post('/answers', {
-                    data: answer,
+                    data: { answer: answer },
                 });
                 return response;
             } catch (error) {
