@@ -1,10 +1,27 @@
 import { Heading, Flex, Select, Button, HStack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import profile from '../../services/ProfileService';
 
 const Header = () => {
     const navigate = useNavigate();
+
+    const para = useParams();
+    const id = para.id;
+
+    //FETCH & DELETE PROFILE FROM EDIT TEAM PAGE - DELETE BUTTON
+    async function getProfileById() {
+        const fetchedProfile = await profile.fetchProfileById(id);
+        const user = fetchedProfile.id;
+        return user;
+    }
+
+    async function handleDelete() {
+        const user = await getProfileById();
+        await profile.deleteProfile(user);
+        navigate('/team');
+    }
 
     return (
         <Flex
@@ -54,8 +71,7 @@ const Header = () => {
                     lineheight="18px"
                     color="#000000"
                     onClick={() => {
-                        // something.delete(`/members/${id}`);
-                        navigate('/team');
+                        handleDelete();
                     }}
                 >
                     Delete
