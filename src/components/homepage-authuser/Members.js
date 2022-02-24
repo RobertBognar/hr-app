@@ -8,7 +8,7 @@ const Members = () => {
     const [members, setMembers] = useState([]);
 
     async function getProfile() {
-        const profiles = await profile.getProfile();
+        const profiles = await profile.getProfilePublished();
         setMembers(profiles);
         console.log(profiles);
     }
