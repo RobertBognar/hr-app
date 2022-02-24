@@ -1,7 +1,7 @@
 import { Text, Image, Flex, Button, Box } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
-const MemberCard = ({ card, handleDelete }) => {
+const PendingMemberCard = ({ card, handleDelete }) => {
     const navigate = useNavigate();
 
     const dateFormat = new Intl.DateTimeFormat('en-US', {
@@ -85,9 +85,11 @@ const MemberCard = ({ card, handleDelete }) => {
                     borderRadius="4px"
                     background="#FFFFFF"
                     border="2px solid #000000"
-                    onClick={() => navigate(`/team/${card.id}/edit`)}
+                    onClick={() =>
+                        navigate(`/pendingforapproval/${card.id}/edit`)
+                    }
                 >
-                    Edit
+                    Details
                 </Button>
 
                 <Button
@@ -110,4 +112,4 @@ const MemberCard = ({ card, handleDelete }) => {
     );
 };
 
-export default MemberCard;
+export default PendingMemberCard;

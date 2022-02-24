@@ -30,12 +30,15 @@ const SideNavTabs = () => {
                 >
                     Menu
                 </Text>
-                <MenuItem backgroundColor={'whiteAlpha.600'}>
+                <MenuItem
+                    backgroundColor={'whiteAlpha.600'}
+                    onClick={() => navigate('/pendingforapproval')}
+                >
                     <ChevronRightIcon />
                     <Text paddingLeft={3}>Pending For Approval</Text>
                 </MenuItem>
                 <MenuItem
-                    onClick={() => navigate('/board')}
+                    onClick={() => navigate('/team')}
                     backgroundColor={'whiteAlpha.600'}
                 >
                     <ChevronRightIcon />

@@ -20,6 +20,9 @@ import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import EditQuestion from './components/questions-list/EditQuestion';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
+import AddNewTeamMember from './components/homepage-authuser/AddNewTeamMember';
+import PendingForApproval from './components/edit-team/PendingForApproval';
+import Moderate from './components/edit-team/Moderate';
 
 function App() {
     return (
@@ -59,7 +62,7 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
+                            {/* <Route
                                 path="/team"
                                 element={
                                     <Page
@@ -67,7 +70,7 @@ function App() {
                                         Component={HomepageAuthUser}
                                     />
                                 }
-                            />
+                            /> */}
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -80,11 +83,47 @@ function App() {
                                 }
                             />
                             <Route
+                                path="/team"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={HomepageAuthUser}
+                                    />
+                                }
+                            />
+                            <Route
                                 path="/team/:id/edit"
                                 element={
                                     <Page
                                         Layout={AuthLayout}
                                         Component={EditTeam}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/pendingforapproval"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={PendingForApproval}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/pendingforapproval/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={Moderate}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="addnewteammember"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={AddNewTeamMember}
                                     />
                                 }
                             />

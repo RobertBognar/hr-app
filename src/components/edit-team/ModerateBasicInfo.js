@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom';
 import http from '../../services/HttpService';
 import profile from '../../services/ProfileService';
 
-const BasicInfo = () => {
+const ModerateBasicInfo = () => {
     const [name, setName] = useState('');
     const [choosePhoto, setChoosePhoto] = useState();
     const fileChooser = useRef(null);
@@ -183,4 +183,4 @@ const BasicInfo = () => {
     );
 };
 
-export default BasicInfo;
+export default ModerateBasicInfo;

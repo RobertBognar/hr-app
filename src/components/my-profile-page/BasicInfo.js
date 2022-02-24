@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -9,18 +9,37 @@ import {
     Stack,
     InputGroup,
 } from '@chakra-ui/react';
+import profile from '../../services/ProfileService';
+import http from '../../services/HttpService';
 
 const BasicInfo = () => {
-    const [name, setName] = useState('Michael Jones');
-
+    const [name, setName] = useState('');
+    const [choosePhoto, setChoosePhoto] = useState();
     const fileChooser = useRef(null);
 
     const submitProfileInfo = (e) => {
         e.preventDefault();
-        alert(
-            ` Name - ${name}, Selected file - ${fileChooser.current.files[0]}`,
-        );
+
+        const formData = new FormData();
+        formData.append('files', choosePhoto[0]);
+        http.post('/upload', formData)
+            .then((response) => {
+                profile.updateProfile(name, response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
+
+    async function showInputName() {
+        const user = await profile.filterUser();
+        const userName = user.attributes.name;
+        setName(userName);
+    }
+
+    useEffect(() => {
+        showInputName();
+    }, []);
 
     return (
         <div>
@@ -134,6 +153,9 @@ const BasicInfo = () => {
                                     type="file"
                                     ref={fileChooser}
                                     display="none"
+                                    onChange={(e) =>
+                                        setChoosePhoto(e.target.files)
+                                    }
                                 />
                             </InputGroup>
                         </FormControl>
