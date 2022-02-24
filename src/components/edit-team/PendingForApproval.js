@@ -11,7 +11,7 @@ const PendingForApproval = () => {
         showProfiles();
     }
     async function showProfiles() {
-        const profiles = await profile.getProfilesByStatus();
+        const profiles = await profile.getProfilesByStatusPending();
 
         setMembers(profiles);
         console.log(profiles);

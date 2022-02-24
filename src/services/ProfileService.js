@@ -57,10 +57,21 @@ const profile = {
         const profile = response.data.data;
         return profile;
     },
-    getProfilesByStatus: async function () {
+    getProfilesByStatusPending: async function () {
         try {
             const response = await http.get(
                 'profiles?populate=*&filters[status][$eq]=pending',
+            );
+
+            return response.data.data;
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    getProfilesByStatusPublished: async function () {
+        try {
+            const response = await http.get(
+                'profiles?populate=*&filters[status][$eq]=published',
             );
 
             return response.data.data;

@@ -11,7 +11,7 @@ const Members = () => {
         showProfiles();
     }
     async function showProfiles() {
-        const profiles = await profile.getProfiles();
+        const profiles = await profile.getProfilesByStatusPublished();
 
         setMembers(profiles);
         console.log(profiles);
