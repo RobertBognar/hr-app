@@ -11,7 +11,7 @@ const registration = {
             password: password,
         });
         const token = response.data.jwt;
-        localStorage.setItem('token', token);
+        localStorage.setItem('userToken', token);
 
         const username = response.data.user.username;
         const userId = response.data.user.id;

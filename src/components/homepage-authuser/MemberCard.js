@@ -4,6 +4,12 @@ import { useNavigate } from 'react-router-dom';
 const MemberCard = ({ card, handleDelete }) => {
     const navigate = useNavigate();
 
+    const dateFormat = new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
     return (
         <Box
             key={card.id}
@@ -21,8 +27,11 @@ const MemberCard = ({ card, handleDelete }) => {
                 width="248px"
                 height="161px"
                 objectFit="cover"
-                src={card.image}
-                alt={card.name}
+                src={
+                    'https://uteam-api-7nngy.ondigitalocean.app' +
+                    card.attributes.profilePhoto?.data?.attributes?.url
+                }
+                alt={card.attributes.profilePhoto?.data?.attributes?.name}
             />
 
             <Flex justifyContent="space-between">
@@ -32,7 +41,7 @@ const MemberCard = ({ card, handleDelete }) => {
                     lineHeight="18px"
                     fontWeight="bold"
                 >
-                    {card.name}
+                    {card.attributes.name}
                 </Text>
 
                 <Text
@@ -50,7 +59,7 @@ const MemberCard = ({ card, handleDelete }) => {
                     w="97px"
                     h="30px"
                 >
-                    Published
+                    {card.attributes.status}
                 </Text>
             </Flex>
 
@@ -61,7 +70,7 @@ const MemberCard = ({ card, handleDelete }) => {
                 lineHeight="14px"
                 letterSpacing="0.04em"
             >
-                Joined {card.joined}
+                Joined {dateFormat.format(new Date(card.attributes.createdAt))}
             </Text>
 
             <Flex justifyContent="space-between">
