@@ -57,6 +57,17 @@ const profile = {
         const profile = response.data.data;
         return profile;
     },
+    getProfilesByStatus: async function () {
+        try {
+            const response = await http.get(
+                'profiles?filters[status][$eq]=pending',
+            );
+
+            return response.data.data;
+        } catch (error) {
+            console.error(error);
+        }
+    },
     editProfile: async function (id, name, photoId) {
         const response = await http.put(`/profiles/${id}?populate=*`, {
             data: {

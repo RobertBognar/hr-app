@@ -1,0 +1,186 @@
+import React, { useState, useRef, useEffect } from 'react';
+import {
+    Box,
+    Button,
+    FormControl,
+    FormLabel,
+    Input,
+    Stack,
+    InputGroup,
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import http from '../../services/HttpService';
+import profile from '../../services/ProfileService';
+
+const ModerateBasicInfo = () => {
+    const [name, setName] = useState('');
+    const [choosePhoto, setChoosePhoto] = useState();
+    const fileChooser = useRef(null);
+
+    const { register, handleSubmit } = useForm();
+
+    const para = useParams();
+    const id = para.id;
+
+    async function getProfileById() {
+        const fetchedProfile = await profile.getProfileById(id);
+        setName(fetchedProfile.attributes.name);
+    }
+
+    useEffect(() => {
+        getProfileById();
+    }, []);
+
+    const submitProfileInfo = (data) => {
+        const inputValueName = data.editName;
+        const formData = new FormData();
+        formData.append('files', choosePhoto[0]);
+        http.post('/upload', formData)
+            .then((response) => {
+                console.log(response);
+                profile.editProfile(id, inputValueName, response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    return (
+        <div>
+            <Stack
+                border="1px solid white"
+                margin="auto"
+                w={['73vw', '445px', '445px']}
+            >
+                <Box
+                    borderBottom="1px solid white"
+                    pt={5}
+                    pb={3}
+                    pl={7}
+                    fontStyle=" normal"
+                    fontWeight=" bold"
+                    fontSize=" 12px"
+                    lineHeight=" 14px"
+                    letterSpacing=" 0.04"
+                    color="white"
+                >
+                    Basic info
+                </Box>
+                <Box p={7}>
+                    <form onSubmit={handleSubmit(submitProfileInfo)}>
+                        <FormControl>
+                            <FormLabel
+                                htmlFor="name"
+                                fontSize="12px"
+                                letterSpacing="0.04em"
+                                fontWeight="normal"
+                                lineHeight="14px"
+                                color="white"
+                                mb={1}
+                            >
+                                Name
+                            </FormLabel>
+                            <Input
+                                isRequired
+                                type="text"
+                                fontStyle="normal"
+                                fontWeight="normal"
+                                fontSize="16px"
+                                lineHeight="18px"
+                                border="2px solid"
+                                borderRadius="none"
+                                color="white"
+                                {...register('editName', {
+                                    required: true,
+                                })}
+                                defaultValue={name}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel
+                                htmlFor="profilePhoto"
+                                fontSize="12px"
+                                letterSpacing="0.04em"
+                                fontWeight="normal"
+                                lineHeight="14px"
+                                mt={6}
+                                mb={1}
+                                color="white"
+                            >
+                                Profile Photo
+                            </FormLabel>
+                            <InputGroup
+                                justifyContent="space-between"
+                                alignItems="center"
+                                border="2px solid white"
+                                borderRadius="none"
+                            >
+                                <FormLabel
+                                    htmlFor="file-upload"
+                                    fontStyle="normal"
+                                    fontWeight="normal"
+                                    fontSize="16px"
+                                    lineHeight="18px"
+                                    color=" #7B7B7B"
+                                    mt={3.5}
+                                    ml={4}
+                                    mb="18px"
+                                >
+                                    Upload file
+                                </FormLabel>
+                                <Button
+                                    fontWeight=" bold"
+                                    fontSize={{
+                                        base: '14px',
+                                        sm: '16px',
+                                        md: '16px',
+                                        lg: '16px',
+                                    }}
+                                    lineHeight="18px"
+                                    color="#000000"
+                                    background="#DEE0E3"
+                                    width="122px"
+                                    height="30px"
+                                    border-radius=" 4px"
+                                    mr={8.5}
+                                    mt={2}
+                                    mb={3}
+                                    onClick={() => {
+                                        fileChooser.current.click();
+                                    }}
+                                >
+                                    choose file
+                                </Button>
+                                <Input
+                                    type="file"
+                                    ref={fileChooser}
+                                    display="none"
+                                    onChange={(e) =>
+                                        setChoosePhoto(e.target.files)
+                                    }
+                                />
+                            </InputGroup>
+                        </FormControl>
+                        <Box>
+                            <Button
+                                type="submit"
+                                width="80px"
+                                height="30px"
+                                marginTop="40px"
+                                background="white"
+                                mb="46px"
+                                color="black"
+                                float={{ base: 'right' }}
+                            >
+                                Save
+                            </Button>
+                        </Box>
+                    </form>
+                </Box>
+            </Stack>
+        </div>
+    );
+};
+
+export default ModerateBasicInfo;
