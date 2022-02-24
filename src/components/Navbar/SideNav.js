@@ -12,6 +12,7 @@ import {
     Button,
 } from '@chakra-ui/react';
 import SideNavTabs from './SideNavTabs';
+import LogoutButton from '../UI/LogoutButton';
 
 //Hardcoded SideNavigation, Needs Update When AuthContext Is Done
 //Separate Menu Items Depends On User Role With AuthContext
@@ -37,12 +38,13 @@ const SideNav = () => {
                             <MenuItem onClick={() => navigate('/board')}>
                                 Team
                             </MenuItem>
-                            <MenuItem onClick={() => navigate('/addnew')}>
-                                Questions
-                            </MenuItem>
+                            <MenuItem>Questions</MenuItem>
                             <MenuItem>Company</MenuItem>
                             <MenuItem onClick={() => navigate('/profile')}>
                                 My Profile
+                            </MenuItem>
+                            <MenuItem>
+                                <LogoutButton />
                             </MenuItem>
                         </MenuList>
                     </>

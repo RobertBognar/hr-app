@@ -15,6 +15,7 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons';
 import companyLogo from '../../assets/corrpro-companies.svg';
 import Tabs from './Tabs';
+import LogoutButton from '../UI/LogoutButton';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -46,6 +47,9 @@ const Navbar = () => {
                         </MenuItem>
                         <MenuItem onClick={() => navigate('/profile')}>
                             My Account
+                        </MenuItem>
+                        <MenuItem>
+                            <LogoutButton />
                         </MenuItem>
                     </MenuList>
                 </Menu>

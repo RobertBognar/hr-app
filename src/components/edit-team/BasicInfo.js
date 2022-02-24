@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -8,17 +8,52 @@ import {
     Stack,
     InputGroup,
 } from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import profile from '../../services/ProfileService';
+import upload from '../../services/UploadService';
+import http from '../../services/HttpService';
 
 const BasicInfo = () => {
-    const [name, setName] = useState('Michael Jones');
+    const [name, setName] = useState('');
+    const [file, setFile] = useState(null);
+
+    const para = useParams();
+    const id = para.id;
+
+    async function getQuestion() {
+        const fetchedProfile = await profile.getProfileId(id);
+        console.log(fetchedProfile);
+        setName(fetchedProfile);
+    }
+
+    async function getPhoto() {
+        const fetchedPhoto = await upload.getFilesId(id);
+        console.log(fetchedPhoto);
+        setFile(fetchedPhoto);
+    }
+
+    useEffect(() => {
+        getQuestion();
+        getPhoto();
+    }, []);
+
+    const { register, handleSubmit } = useForm();
 
     const fileChooser = useRef(null);
 
-    const submitProfileInfo = (e) => {
-        e.preventDefault();
-        alert(
-            ` Name - ${name}, Selected file - ${fileChooser.current.files[0].name}`,
-        );
+    const submitProfileInfo = (data) => {
+        const inputValueName = data.editName;
+        const formData = new FormData();
+        formData.append('files', file[0]);
+        http.post('/upload', formData)
+            .then((response) => {
+                console.log(response);
+                profile.editProfile(id, inputValueName, response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -43,7 +78,7 @@ const BasicInfo = () => {
                     Basic info
                 </Box>
                 <Box p={7}>
-                    <form onSubmit={submitProfileInfo}>
+                    <form onSubmit={handleSubmit(submitProfileInfo)}>
                         <FormControl>
                             <FormLabel
                                 htmlFor="name"
@@ -59,8 +94,7 @@ const BasicInfo = () => {
                             <Input
                                 isRequired
                                 type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                // onChange={(e) => setName(e.target.value)}
                                 fontStyle="normal"
                                 fontWeight="normal"
                                 fontSize="16px"
@@ -68,6 +102,13 @@ const BasicInfo = () => {
                                 border="2px solid"
                                 borderRadius="none"
                                 color="white"
+                                {...register('editName', {
+                                    required: true,
+                                    validate: (value) => {
+                                        return !!value.trim();
+                                    },
+                                })}
+                                defaultValue={name}
                             />
                         </FormControl>
                         <FormControl>
@@ -129,6 +170,7 @@ const BasicInfo = () => {
                                     type="file"
                                     ref={fileChooser}
                                     display="none"
+                                    onChange={(e) => setFile(e.target.files)}
                                 />
                             </InputGroup>
                         </FormControl>

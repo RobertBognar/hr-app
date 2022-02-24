@@ -1,0 +1,8 @@
+#answers[type='file'] {
+    display: block;
+    color: lightgray;
+    padding-top: 8px;
+}
+#answers[type='file']::-webkit-file-upload-button {
+    margin-top: -4px;
+}

@@ -7,8 +7,17 @@ const company = {
                 name: `${companyName}'s Company`,
             },
         });
-        console.log(responseCompany.data.data.id);
         return responseCompany.data.data.id;
+    },
+    companyData: async function () {
+        try {
+            const response = await http.get('/companies');
+            const responseCompany = response.data.data;
+            console.log(responseCompany);
+            return responseCompany;
+        } catch (error) {
+            console.error(error);
+        }
     },
 };
 
