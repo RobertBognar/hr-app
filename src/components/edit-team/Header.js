@@ -1,5 +1,5 @@
 import { Heading, Flex, Select, Button, HStack, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import http from '../../services/HttpService';
@@ -7,7 +7,6 @@ import profile from '../../services/ProfileService';
 
 const Header = () => {
     const navigate = useNavigate();
-    const [option] = useState();
 
     const para = useParams();
     const id = para.id;
@@ -17,7 +16,7 @@ const Header = () => {
         const user = fetchedProfile.id;
         return user;
     }
-    const changeStatus = async (option) => {
+    async function changeStatus(option) {
         try {
             const user = await getProfileById();
 
@@ -29,7 +28,7 @@ const Header = () => {
         } catch (error) {
             return;
         }
-    };
+    }
 
     async function handleDelete() {
         const user = await getProfileById();
@@ -62,7 +61,6 @@ const Header = () => {
                     <Text color="white">Status</Text>
                     <Select
                         icon={<MdArrowDropDown />}
-                        value={option}
                         onChange={(e) => changeStatus(e.target.value)}
                         h="40px"
                         color="white"
