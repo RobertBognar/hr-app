@@ -2,6 +2,7 @@ import { Heading, Flex, Select, Button, HStack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
+import http from '../../services/HttpService';
 import profile from '../../services/ProfileService';
 
 const Header = () => {
@@ -22,6 +23,21 @@ const Header = () => {
         await profile.deleteProfile(user);
         navigate('/team');
     }
+
+    //CHANGE STATUS
+    const changeStatus = async (option) => {
+        try {
+            const user = await getProfileById();
+
+            const response = await http.put(`/profiles/${user}`, {
+                data: { status: option },
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            return;
+        }
+    };
 
     return (
         <Flex
@@ -48,7 +64,8 @@ const Header = () => {
                     <Text color="white">Status</Text>
                     <Select
                         icon={<MdArrowDropDown />}
-                        // onChange={() => {...somethnig...  }}
+                        // value={option}
+                        onChange={(e) => changeStatus(e.target.value)}
                         h="40px"
                         color="white"
                         borderRadius="none"
@@ -59,6 +76,7 @@ const Header = () => {
                             xl: '256px',
                         }}
                     >
+                        <option value="">Select</option>
                         <option value={'published'}>Published</option>
                         <option value={'pending'}>Pending</option>
                     </Select>
