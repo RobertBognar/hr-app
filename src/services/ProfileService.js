@@ -23,6 +23,18 @@ const profile = {
             console.error(error);
         }
     },
+    getProfilesByStatus: async function () {
+        try {
+            const response = await http.get(
+                '/profiles?filters[status][$eq]=pending',
+            );
+            const responseProfiles = response.data.data;
+            console.log(responseProfiles);
+            return responseProfiles;
+        } catch (error) {
+            console.error(error);
+        }
+    },
     getProfileId: async function (id) {
         const response = await http.get(`/profiles/${id}`);
         const responseProfileName = response.data.data.attributes.name;

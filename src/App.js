@@ -19,6 +19,8 @@ import QuestionsListMain from './components/questions-list/QuestionsListMain';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
 import SubmitResponse from './components/questions-list/SubmitResponse';
 import AddNewTeamMember from './components/homepage-authuser/AddNewTeamMember';
+import Pending from './components/edit-team/Pending';
+import ModerateTeam from './components/edit-team/ModerateTeam';
 
 function App() {
     return (
@@ -66,6 +68,24 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={ProfilePage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/pendingforapproval"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={Pending}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/pendingforapproval/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={ModerateTeam}
                                     />
                                 }
                             />
