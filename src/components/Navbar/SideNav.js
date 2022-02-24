@@ -34,7 +34,7 @@ const SideNav = () => {
                         </MenuButton>
                         <MenuList backgroundColor={'whiteAlpha.900'}>
                             <MenuItem>Pending For Approval</MenuItem>
-                            <MenuItem onClick={() => navigate('/board')}>
+                            <MenuItem onClick={() => navigate('/team')}>
                                 Team
                             </MenuItem>
                             <MenuItem onClick={() => navigate('/addnew')}>

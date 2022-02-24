@@ -17,7 +17,6 @@ const GetCompanyQuestionsService = {
                 `/profiles?filter[user][id][$eq]=${userId}&populate=company`,
             );
 
-            console.log(profile);
             return profile.data.data;
         } catch (error) {
             return;

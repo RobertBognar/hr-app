@@ -11,7 +11,7 @@ import { GetQuestionsProvider } from './context/GetQuestionsContext';
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import GuestRoute from './components/Routes/GuestRoute';
-import EditTeam from './components/edit-team/EditTeam';
+import EditTeam from './components/EditTeam/EditTeam';
 import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
@@ -22,6 +22,7 @@ import SubmitResponse from './components/SubmitResponse/SubmitResponse';
 import EditQuestion from './components/questions-list/EditQuestion';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
 import RegisterAndDropdown from './components/RegisterandDropdown/RegisterAndDropdown';
+import Team from './components/Team/Team';
 
 function App() {
     return (
@@ -70,15 +71,6 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
-                                path="/team"
-                                element={
-                                    <Page
-                                        Layout={GuestLayout}
-                                        Component={HomepageAuthUser}
-                                    />
-                                }
-                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -87,6 +79,15 @@ function App() {
                                     <Page
                                         Layout={AuthLayout}
                                         Component={ProfilePage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/team"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={Team}
                                     />
                                 }
                             />
@@ -127,6 +128,15 @@ function App() {
                                 }
                             />
                             <Route
+                                path="/addnew"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={AddNew}
+                                    />
+                                }
+                            />
+                            <Route
                                 path="/questions/:id/edit"
                                 element={
                                     <Page
@@ -139,7 +149,6 @@ function App() {
                     </Routes>
                 </BrowserRouter>
 
-                <AddNew />
                 <GetQuestionsProvider>
                     <SubmitResponse />
                 </GetQuestionsProvider>

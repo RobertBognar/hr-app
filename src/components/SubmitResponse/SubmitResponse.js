@@ -132,11 +132,7 @@ const SubmitResponse = () => {
                                 height={50}
                                 color="white"
                             >
-                                <label
-                                    htmlFor="file-upload"
-                                    fontSize={16}
-                                    className="custom-file-upload"
-                                >
+                                <label htmlFor="file-upload" fontSize={16}>
                                     <p> Choose file</p>
                                     <i>
                                         <FaCloudUploadAlt
