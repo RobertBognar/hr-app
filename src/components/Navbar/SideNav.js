@@ -33,7 +33,11 @@ const SideNav = () => {
                             {isOpen ? 'Close Menu' : 'Open Menu'}
                         </MenuButton>
                         <MenuList backgroundColor={'whiteAlpha.900'}>
-                            <MenuItem>Pending For Approval</MenuItem>
+                            <MenuItem
+                                onClick={() => navigate('/pendingforapproval')}
+                            >
+                                Pending For Approval
+                            </MenuItem>
                             <MenuItem onClick={() => navigate('/team')}>
                                 Team
                             </MenuItem>
