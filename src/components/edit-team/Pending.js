@@ -1,7 +1,6 @@
 import { Box, Container, Heading, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import profile from '../../services/ProfileService';
-import MemberCard from '../homepage-authuser/MemberCard';
 import PendingCard from './PendingCard';
 
 const Pending = () => {

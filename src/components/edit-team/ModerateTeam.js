@@ -1,8 +1,7 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import Answers from './Answers';
 import BasicInfo from './BasicInfo';
-import EditTeam from './EditTeam';
-import Header from './Header';
+
 import ModerateHeader from './ModerateHeader';
 
 const ModerateTeam = () => {
