@@ -33,6 +33,7 @@ const PendingForApproval = () => {
                     fontFamily="Comic Neue"
                     display={'flex'}
                     justifyContent={'center'}
+                    mt={30}
                 >
                     Pending for approval
                 </Heading>

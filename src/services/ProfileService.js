@@ -60,7 +60,7 @@ const profile = {
     getProfilesByStatus: async function () {
         try {
             const response = await http.get(
-                'profiles?filters[status][$eq]=pending',
+                'profiles?populate=*&filters[status][$eq]=pending',
             );
 
             return response.data.data;
