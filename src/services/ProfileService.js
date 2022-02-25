@@ -101,10 +101,34 @@ const profile = {
             console.log('An error occured: ', error.message);
         }
     },
+    filterPendingTeamAscending: async function () {
+        try {
+            const response = await http.get(
+                '/profiles?populate=*&sort[0]=name%3Aasc&filters[status][$eq]=pending',
+            );
+            const responseAscending = response.data.data;
+            console.log(responseAscending);
+            return responseAscending;
+        } catch (error) {
+            console.log('An error occured: ', error.message);
+        }
+    },
     filterTeamDescending: async function () {
         try {
             const response = await http.get(
                 '/profiles?populate=*&sort[0]=name%3Adesc&filters[status][$eq]=published',
+            );
+            const responseAscending = response.data.data;
+            console.log(responseAscending);
+            return responseAscending;
+        } catch (error) {
+            console.log('An error occured: ', error.message);
+        }
+    },
+    filterPendingTeamDescending: async function () {
+        try {
+            const response = await http.get(
+                '/profiles?populate=*&sort[0]=name%3Adesc&filters[status][$eq]=pending',
             );
             const responseAscending = response.data.data;
             console.log(responseAscending);
@@ -125,10 +149,34 @@ const profile = {
             console.log('An Error Has Occured:', error.message);
         }
     },
+    filterPendingTeamJoinedAscending: async function () {
+        try {
+            const response = await http.get(
+                '/profiles?populate=*&sort[0]=createdAt%3Aasc&filters[status][$eq]=pending',
+            );
+            const responseJoinedAscending = response.data.data;
+            console.log(responseJoinedAscending);
+            return responseJoinedAscending;
+        } catch (error) {
+            console.log('An Error Has Occured:', error.message);
+        }
+    },
     filterTeamJoinedDescending: async function () {
         try {
             const response = await http.get(
                 '/profiles?populate=*&sort[0]=createdAt%3Adesc&filters[status][$eq]=published',
+            );
+            const responseJoinedAscending = response.data.data;
+            console.log(responseJoinedAscending);
+            return responseJoinedAscending;
+        } catch (error) {
+            console.log('An Error Has Occured:', error.message);
+        }
+    },
+    filterPendingTeamJoinedDescending: async function () {
+        try {
+            const response = await http.get(
+                '/profiles?populate=*&sort[0]=createdAt%3Adesc&filters[status][$eq]=pending',
             );
             const responseJoinedAscending = response.data.data;
             console.log(responseJoinedAscending);

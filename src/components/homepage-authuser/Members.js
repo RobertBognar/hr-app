@@ -5,6 +5,7 @@ import {
     Button,
     Collapse,
     Container,
+    Input,
     Text,
     useDisclosure,
 } from '@chakra-ui/react';
@@ -129,6 +130,20 @@ const Members = () => {
                     </Text>
                 </Box>
             </Collapse>
+            <Input
+                variant="outline"
+                color="white"
+                placeholder="Search team member..."
+                justifyContent="center"
+                display="flex"
+                flexWrap="wrap"
+                ml="18em"
+                mt="2em"
+                colorScheme="lightgray"
+                border="1px"
+                borderColor="whiteAlpha.800"
+                width="14em"
+            />
 
             <Container
                 display="flex"
