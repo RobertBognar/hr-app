@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { Button, Container, Select } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    Collapse,
+    Container,
+    Text,
+    useDisclosure,
+} from '@chakra-ui/react';
 import profile from '../../services/ProfileService';
 import MemberCard from './MemberCard';
 
 const Members = () => {
     const [members, setMembers] = useState([]);
+    const { isOpen, onToggle } = useDisclosure();
 
     async function getProfile() {
         const profiles = await profile.getProfilePublished();
@@ -50,66 +58,78 @@ const Members = () => {
 
     return (
         <div>
-            <Select
-                display="flex"
-                justifyContent="center"
-                gap={10}
-                flexWrap="wrap"
-                m="37px auto"
-                width="50%"
-                maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
-                placeholder="Sort By"
-                color="white"
-            >
-                <option>Name Ascending</option>
-                <option>Name Descending</option>
-                <option>Joined Ascending</option>
-                <option>Joined Descending</option>
-            </Select>
             <Button
-                display="flex"
+                onClick={onToggle}
                 justifyContent="center"
-                gap={10}
-                flexWrap="wrap"
-                m="37px auto"
-                maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
-                onClick={() => sortMemberNameAscending()}
-            >
-                Sort Name Ascending
-            </Button>
-            <Button
                 display="flex"
-                justifyContent="center"
-                gap={10}
                 flexWrap="wrap"
-                m="37px auto"
-                maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
-                onClick={() => sortMemberNameDescending()}
+                ml="18em"
+                mt="2em"
+                colorScheme="lightgray"
+                border="1px"
+                borderColor="whiteAlpha.800"
+                width="14em"
+                _hover={{
+                    background: 'whiteAlpha.400',
+                }}
             >
-                Sort Name Descending
+                Sort By
             </Button>
-            <Button
-                display="flex"
-                justifyContent="center"
-                gap={10}
-                flexWrap="wrap"
-                m="37px auto"
-                maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
-                onClick={() => sortMemberJoinedAscending()}
-            >
-                Sort Joined Ascending
-            </Button>
-            <Button
-                display="flex"
-                justifyContent="center"
-                gap={10}
-                flexWrap="wrap"
-                m="37px auto"
-                maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
-                onClick={() => sortMemberJoinedDescending()}
-            >
-                Sort Joined Descending
-            </Button>
+            <Collapse in={isOpen} animateOpacity>
+                <Box
+                    justifyContent="center"
+                    display="flex"
+                    flexWrap="wrap"
+                    p="40px"
+                    color="white"
+                    mt="4"
+                    ml="18em"
+                    rounded="md"
+                    shadow="md"
+                    border="1px"
+                    borderColor="whiteAlpha.800"
+                    width="14em"
+                    gap="0.1em"
+                >
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberNameAscending()}
+                    >
+                        Name Ascending
+                    </Text>
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberNameDescending()}
+                    >
+                        Name Descending
+                    </Text>
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberJoinedAscending()}
+                    >
+                        Joined Ascending
+                    </Text>
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberJoinedDescending()}
+                    >
+                        Joined Descending
+                    </Text>
+                </Box>
+            </Collapse>
+
             <Container
                 display="flex"
                 justifyContent="center"
