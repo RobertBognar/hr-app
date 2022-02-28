@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
 import { Heading, Text, Flex, Button } from '@chakra-ui/react';
 import { SmallAddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
@@ -61,30 +59,33 @@ const QuestionsList = () => {
                         p="25px"
                         mb="25px"
                     >
-                        {console.log(card)}
-                        <Flex direction="column">
+                        <Flex
+                            direction="column"
+                            w={[
+                                '100%',
+                                'calc(100% - 180px)',
+                                'calc(100% - 180px)',
+                            ]}
+                        >
                             <Text fontWeight="700" fontSize="14px">
                                 Question {id + 1}
                             </Text>
                             <Text fontSize="24px">{card.attributes.text}</Text>
                         </Flex>
                         <Flex>
-                            {}
-                            <Link to={`/questions/${card.id}/edit`}>
-                                <Button
-                                    bg="black"
-                                    color="white"
-                                    border="1px"
-                                    borderColor="white"
-                                    mt="15px"
-                                    _hover={{
-                                        background: 'white',
-                                        color: 'black',
-                                    }}
-                                >
-                                    Edit
-                                </Button>
-                            </Link>
+                            <Button
+                                bg="black"
+                                color="white"
+                                border="1px"
+                                borderColor="white"
+                                mt="15px"
+                                _hover={{
+                                    background: 'white',
+                                    color: 'black',
+                                }}
+                            >
+                                Edit
+                            </Button>
                             <Button
                                 bg="black"
                                 color="white"

@@ -1,76 +1,170 @@
-import { Container } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import {
+    Box,
+    Button,
+    Collapse,
+    Container,
+    Input,
+    Text,
+    useDisclosure,
+} from '@chakra-ui/react';
+import profile from '../../services/ProfileService';
 import MemberCard from './MemberCard';
 
 const Members = () => {
-    const teamMembers = [
-        {
-            id: 1,
-            name: 'Miladin Popadic',
-            image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-            joined: 'Jan 23rd, 2021',
-        },
-        {
-            id: 2,
-            name: 'Slavko Bucanovic',
-            image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-            joined: 'Aug 18th, 2020',
-        },
-        {
-            id: 3,
-            name: 'Ratibor Popovic',
-            image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-            joined: 'Dec 30th, 2017',
-        },
-        {
-            id: 4,
-            name: 'Svetozar Slavkovic',
-            image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-            joined: 'Nov 3rd, 2015',
-        },
-        {
-            id: 5,
-            name: 'Verica Visekruna',
-            image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-            joined: 'Sep 23rd, 2021',
-        },
-        {
-            id: 6,
-            name: 'Svetlana Peric',
-            image: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80',
-            joined: 'May 21st, 2018',
-        },
-    ];
+    const [members, setMembers] = useState([]);
+    const { isOpen, onToggle } = useDisclosure();
 
-    const [members, setMembers] = useState(teamMembers);
+    async function getProfile() {
+        const profiles = await profile.getProfilePublished();
+        setMembers(profiles);
+        console.log(profiles);
+    }
 
-    const handleDelete = (id) => {
-        const newMembers = members.filter((member) => {
-            return member.id !== id;
-        });
-        setMembers(newMembers);
-    };
+    async function sortMemberNameAscending() {
+        const ascendedProfiles = await profile.filterTeamAscending();
+        setMembers(ascendedProfiles);
+        console.log(ascendedProfiles);
+    }
+
+    async function sortMemberNameDescending() {
+        const descendedProfiles = await profile.filterTeamDescending();
+        setMembers(descendedProfiles);
+        console.log(descendedProfiles);
+    }
+
+    async function sortMemberJoinedAscending() {
+        const ascendedProfilesJoined =
+            await profile.filterTeamJoinedAscending();
+        setMembers(ascendedProfilesJoined);
+        console.log(ascendedProfilesJoined);
+    }
+
+    async function sortMemberJoinedDescending() {
+        const descendedProfilesJoined =
+            await profile.filterTeamJoinedDescending();
+        setMembers(descendedProfilesJoined);
+        console.log(descendedProfilesJoined);
+    }
+
+    async function handleDelete(id) {
+        await profile.deleteProfile(id);
+        getProfile();
+    }
+
+    useEffect(() => {
+        getProfile();
+    }, []);
 
     return (
-        <Container
-            display="flex"
-            justifyContent="center"
-            gap={10}
-            flexWrap="wrap"
-            m="37px auto"
-            w="100%"
-            maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
-        >
-            {members.map((card, id) => {
-                return (
-                    <MemberCard
-                        card={card}
-                        handleDelete={handleDelete}
-                        key={id}
-                    />
-                );
-            })}
-        </Container>
+        <div>
+            <Button
+                onClick={onToggle}
+                justifyContent="center"
+                display="flex"
+                flexWrap="wrap"
+                ml="18em"
+                mt="2em"
+                colorScheme="lightgray"
+                border="1px"
+                borderColor="whiteAlpha.800"
+                width="14em"
+                _hover={{
+                    background: 'whiteAlpha.400',
+                }}
+            >
+                Sort By
+            </Button>
+            <Collapse in={isOpen} animateOpacity>
+                <Box
+                    justifyContent="center"
+                    display="flex"
+                    flexWrap="wrap"
+                    p="40px"
+                    color="white"
+                    mt="4"
+                    ml="18em"
+                    rounded="md"
+                    shadow="md"
+                    border="1px"
+                    borderColor="whiteAlpha.800"
+                    width="14em"
+                    gap="0.1em"
+                >
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberNameAscending()}
+                    >
+                        Name Ascending
+                    </Text>
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberNameDescending()}
+                    >
+                        Name Descending
+                    </Text>
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberJoinedAscending()}
+                    >
+                        Joined Ascending
+                    </Text>
+                    <Text
+                        cursor="pointer"
+                        _hover={{
+                            color: 'red.400',
+                        }}
+                        onClick={() => sortMemberJoinedDescending()}
+                    >
+                        Joined Descending
+                    </Text>
+                </Box>
+            </Collapse>
+            <Input
+                variant="outline"
+                color="white"
+                placeholder="Search team member..."
+                justifyContent="center"
+                display="flex"
+                flexWrap="wrap"
+                ml="18em"
+                mt="2em"
+                colorScheme="lightgray"
+                border="1px"
+                borderColor="whiteAlpha.800"
+                width="14em"
+            />
+
+            <Container
+                display="flex"
+                justifyContent="center"
+                gap={10}
+                flexWrap="wrap"
+                m="37px auto"
+                w="100%"
+                maxW={{ base: '82vw', sm: '100vw', lg: '90vw', xl: '80vw' }}
+            >
+                {members.map((card, id) => {
+                    return (
+                        <MemberCard
+                            card={card}
+                            handleDelete={handleDelete}
+                            key={id}
+                        />
+                    );
+                })}
+            </Container>
+        </div>
     );
 };
 

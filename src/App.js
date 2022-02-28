@@ -7,7 +7,6 @@ import Login from './components/Login/Login';
 import GuestHomepage from './components/guest-homepage/GuestHomepage';
 import ProfilePage from './components/my-profile-page/ProfilePage';
 import { AuthProvider } from './context/AuthContext';
-
 import HomepageAuthUser from './components/homepage-authuser/HomepageAuthUser';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import GuestRoute from './components/Routes/GuestRoute';
@@ -16,10 +15,12 @@ import GuestLayout from './components/Layout/GuestLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Page from './components/pages/Page';
 import CompanyInfoPage from './components/company-info-page/CompanyInfoPage';
-import AddNew from './components/AddNewQuestion';
 import QuestionsListMain from './components/questions-list/QuestionsListMain';
-import EditQuestion from './components/questions-list/EditQuestion';
 import AddNewQuestion from './components/questions-list/AddNewQuestion';
+import SubmitResponse from './components/questions-list/SubmitResponse';
+import AddNewTeamMember from './components/homepage-authuser/AddNewTeamMember';
+import Pending from './components/edit-team/Pending';
+import ModerateTeam from './components/edit-team/ModerateTeam';
 
 function App() {
     return (
@@ -59,15 +60,6 @@ function App() {
                                     />
                                 }
                             />
-                            <Route
-                                path="/team"
-                                element={
-                                    <Page
-                                        Layout={GuestLayout}
-                                        Component={HomepageAuthUser}
-                                    />
-                                }
-                            />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route
@@ -80,11 +72,47 @@ function App() {
                                 }
                             />
                             <Route
+                                path="/pendingforapproval"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={Pending}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/pendingforapproval/:id/edit"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={ModerateTeam}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/team"
+                                element={
+                                    <Page
+                                        Layout={GuestLayout}
+                                        Component={HomepageAuthUser}
+                                    />
+                                }
+                            />
+                            <Route
                                 path="/team/:id/edit"
                                 element={
                                     <Page
                                         Layout={AuthLayout}
                                         Component={EditTeam}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/addnewteammember"
+                                element={
+                                    <Page
+                                        Layout={AuthLayout}
+                                        Component={AddNewTeamMember}
                                     />
                                 }
                             />
@@ -116,19 +144,17 @@ function App() {
                                 }
                             />
                             <Route
-                                path="/questions/:id/edit"
+                                path="/submitresponse"
                                 element={
                                     <Page
-                                        Layout={AuthLayout}
-                                        Component={EditQuestion}
+                                        Layout={GuestLayout}
+                                        Component={SubmitResponse}
                                     />
                                 }
                             />
                         </Route>
                     </Routes>
                 </BrowserRouter>
-
-                <AddNew />
             </AuthProvider>
         </div>
     );

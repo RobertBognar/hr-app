@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
         let loginData = await Auth.login(user, password);
 
         if (loginData) {
-            console.log(loginData);
             localStorage.setItem(
                 'userData',
                 JSON.stringify(loginData.data.user),

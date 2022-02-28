@@ -1,28 +1,51 @@
-import { Stack, Box, Button } from '@chakra-ui/react';
-import React, { useRef, useState } from 'react';
-import QuestionsTypeText from './QuestionsTypeText';
-import QuestionsTypeImage from './QuestionsTypeImage';
+import React, { useState, useEffect } from 'react';
+import { Text, Button, Input, Textarea, Box, Stack } from '@chakra-ui/react';
+
+import { useForm } from 'react-hook-form';
+import questionsListService from '../../services/QuestionsListService';
+
+import './AddAnswers.css';
 
 const Answers = () => {
-    const fileChooser = useRef(null);
+    const [data, setData] = useState([]);
+    const [answersData, setAnswersData] = useState([]);
 
-    const [image, setImage] = useState(null);
-    const onImageChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            setImage(URL.createObjectURL(e.target.files[0]));
+    async function questionArrayFunc() {
+        const arr = await questionsListService.questionsData();
+        setData(arr);
+    }
+    useEffect(() => {
+        questionArrayFunc();
+    }, []);
+
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = (answer) => {
+        if (answer.answer === '') {
+            setAnswersData([...answersData, answer.answerFile[0].name]);
+        } else {
+            setAnswersData([...answersData, answer.answer]);
         }
-    };
-
-    const [q1Answer, setQ1Answer] = useState(
-        'Yes, I have a dog and his name is Milutin',
-    );
-    const [q2Answer, setQ2Answer] = useState('Novi Sad');
-
-    const submitAnswers = (e) => {
-        e.preventDefault();
-        alert(
-            `Q1 answer- ${q1Answer}, Q2 answer- ${q2Answer}, Selected photo - ${fileChooser.current.files[0].name}`,
-        );
+        if (data.length) {
+            if (answer.answer === '') {
+                questionsListService.addAnswersData([
+                    ...answersData,
+                    // answer.answerFile[0].name,
+                ]);
+            } else {
+                questionsListService.addAnswersData([
+                    ...answersData,
+                    answer.answer,
+                    answer.answerFile[0].name,
+                ]);
+            }
+        }
+        setValue('answer', '');
     };
 
     return (
@@ -43,19 +66,110 @@ const Answers = () => {
                 color="white"
             >
                 Answers
-            </Box>
-            <form onSubmit={submitAnswers}>
-                <QuestionsTypeText
-                    q1Answer={q1Answer}
-                    setQ1Answer={setQ1Answer}
-                    q2Answer={q2Answer}
-                    setQ2Answer={setQ2Answer}
-                />
-                <QuestionsTypeImage
-                    image={image}
-                    onImageChange={onImageChange}
-                    fileChooser={fileChooser}
-                />
+            </Box>{' '}
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {data.map((item, id) => {
+                    return (
+                        <div key={id}>
+                            <Box
+                                // textAlign="left"
+                                key={item.id}
+                                color="white"
+                                fontSize="16px"
+                                borderBottom="1px solid white"
+                                p={7}
+                                fontWeight="bold"
+                            >
+                                <Box
+                                    mb="10px"
+                                    fontStyle="normal"
+                                    fontSize={{ base: '16px', sm: '20px' }}
+                                    lineHeight="23px"
+                                    color="white"
+                                >
+                                    Question - {item.attributes.text}
+                                </Box>
+                                {item.attributes.type === 'text' ? (
+                                    <>
+                                        <Input
+                                            id="questionAnswer"
+                                            type="text"
+                                            color="white"
+                                            className={
+                                                errors.answer ? 'redBorder' : ''
+                                            }
+                                            {...register('answer', {
+                                                required: true,
+                                                validate: (value) => {
+                                                    return !!value.trim();
+                                                },
+                                            })}
+                                        />
+                                        {errors.answer && (
+                                            <Text
+                                                color="red"
+                                                textAlign="center"
+                                            >
+                                                can’t be empty
+                                            </Text>
+                                        )}
+                                    </>
+                                ) : item.attributes.type === 'image' ? (
+                                    <>
+                                        <Input
+                                            id="questionAnswer"
+                                            type="file"
+                                            color="white"
+                                            className={
+                                                errors.answerFile
+                                                    ? 'redBorder'
+                                                    : ''
+                                            }
+                                            {...register('answerFile', {
+                                                required: 'can’t be empty',
+                                            })}
+                                        />
+                                        {errors.answerFile && (
+                                            <Text
+                                                color="red"
+                                                textAlign="center"
+                                            >
+                                                {errors.answerFile.message}
+                                            </Text>
+                                        )}
+                                    </>
+                                ) : (
+                                    <>
+                                        <Textarea
+                                            id="questionAnswer"
+                                            size="sm"
+                                            color="white"
+                                            resize="none"
+                                            className={
+                                                errors.answer ? 'redBorder' : ''
+                                            }
+                                            {...register('answer', {
+                                                required: true,
+                                                validate: (value) => {
+                                                    return !!value.trim();
+                                                },
+                                            })}
+                                        />
+
+                                        {errors.answer && (
+                                            <Text
+                                                color="red"
+                                                textAlign="center"
+                                            >
+                                                can’t be empty
+                                            </Text>
+                                        )}
+                                    </>
+                                )}
+                            </Box>
+                        </div>
+                    );
+                })}
 
                 <Button
                     type="submit"

@@ -12,6 +12,7 @@ import {
     Button,
 } from '@chakra-ui/react';
 import SideNavTabs from './SideNavTabs';
+import LogoutButton from '../UI/LogoutButton';
 
 //Hardcoded SideNavigation, Needs Update When AuthContext Is Done
 //Separate Menu Items Depends On User Role With AuthContext
@@ -33,16 +34,29 @@ const SideNav = () => {
                             {isOpen ? 'Close Menu' : 'Open Menu'}
                         </MenuButton>
                         <MenuList backgroundColor={'whiteAlpha.900'}>
-                            <MenuItem>Pending For Approval</MenuItem>
-                            <MenuItem onClick={() => navigate('/board')}>
+                            <MenuItem
+                                onClick={() => navigate('/pendingforapproval')}
+                            >
+                                Pending For Approval
+                            </MenuItem>
+                            <MenuItem onClick={() => navigate('/team')}>
                                 Team
                             </MenuItem>
-                            <MenuItem onClick={() => navigate('/addnew')}>
+                            <MenuItem
+                                onClick={() => navigate('/questionslistmain')}
+                            >
                                 Questions
                             </MenuItem>
-                            <MenuItem>Company</MenuItem>
+                            <MenuItem
+                                onClick={() => navigate('/companyinfopage')}
+                            >
+                                Company
+                            </MenuItem>
                             <MenuItem onClick={() => navigate('/profile')}>
                                 My Profile
+                            </MenuItem>
+                            <MenuItem>
+                                <LogoutButton />
                             </MenuItem>
                         </MenuList>
                     </>
